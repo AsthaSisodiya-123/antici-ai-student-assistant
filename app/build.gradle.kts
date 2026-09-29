@@ -4,7 +4,6 @@ plugins {
 
 android {
     namespace = "com.anticai.studentassistant"
-    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.anticai.studentassistant"

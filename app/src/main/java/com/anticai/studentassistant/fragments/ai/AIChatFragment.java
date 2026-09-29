@@ -30,7 +30,7 @@ public class AIChatFragment extends Fragment {
             @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(
-                R.layout.fragment_ai_chat,
+                R.layout.fragment_a_i_chat,
                 container,
                 false
         );

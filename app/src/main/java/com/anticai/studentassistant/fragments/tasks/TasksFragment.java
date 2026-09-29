@@ -31,23 +31,29 @@ public class TasksFragment extends Fragment {
                 false
         );
 
+        // Assignments button
         TextView btnAssignments =
                 view.findViewById(R.id.btnAssignments);
 
-        TextView taskDbms =
+        // Task cards are LinearLayouts in XML,
+        // therefore use View instead of TextView.
+        View taskDbms =
                 view.findViewById(R.id.taskDbms);
 
-        TextView taskDsa =
+        View taskDsa =
                 view.findViewById(R.id.taskDsa);
 
+        // Open Assignments screen
         btnAssignments.setOnClickListener(v ->
                 openFragment(new AssignmentsFragment())
         );
 
+        // Open DBMS task details
         taskDbms.setOnClickListener(v ->
                 openFragment(new TaskDetailFragment())
         );
 
+        // Open DSA task details
         taskDsa.setOnClickListener(v ->
                 openFragment(new TaskDetailFragment())
         );
@@ -56,11 +62,14 @@ public class TasksFragment extends Fragment {
     }
 
     private void openFragment(Fragment fragment) {
+
         requireActivity()
                 .getSupportFragmentManager()
                 .beginTransaction()
+                .setReorderingAllowed(true)
                 .replace(R.id.mainContainer, fragment)
                 .addToBackStack(null)
                 .commit();
     }
 }
+
