@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12">
+
+    <!-- Brand -->
+
+    <TextView
+        android:id="@+id/tvBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="35dp"
+        android:letterSpacing="0.12"
+        android:text="ANTICIAI"
+        android:textColor="#F5F7FF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <!-- Skip -->
+
+    <TextView
+        android:id="@+id/tvSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:text="SKIP"
+        android:textColor="#6F7893"
+        android:textSize="11sp"
+        android:letterSpacing="0.12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvBrand"/>
+
+
+    <!-- Main visual -->
+
+    <FrameLayout
+        android:id="@+id/visualArea"
+        android:layout_width="0dp"
+        android:layout_height="330dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBrand">
+
+        <!-- Orb -->
+
+        <View
+            android:id="@+id/orb"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_ai_orb_outer"/>
+
+
+        <!-- Core -->
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_ai_orb_inner"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="PREDICT"
+                android:textColor="#B7C9FF"
+                android:textSize="8sp"
+                android:letterSpacing="0.15"/>
+
+        </LinearLayout>
+
+
+        <!-- Floating data point -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="35dp"
+            android:text="01"
+            android:textColor="#4D8DFF"
+            android:textSize="12sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="35dp"
+            android:text="BEHAVIOR"
+            android:textColor="#59627D"
+            android:textSize="9sp"
+            android:letterSpacing="0.15"/>
+
+    </FrameLayout>
+
+
+    <!-- Small line -->
+
+    <View
+        android:id="@+id/accentLine"
+        android:layout_width="45dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="28dp"
+        android:background="#4D8DFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/visualArea"/>
+
+
+    <!-- Title -->
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:text="Your day, before it happens."
+        android:textColor="#F5F7FF"
+        android:textSize="31sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accentLine"/>
+
+
+    <!-- Description -->
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="28dp"
+        android:lineSpacingExtra="4dp"
+        android:text="AnticiAI learns your academic patterns and identifies what may need your attention next."
+        android:textColor="#858DA5"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
+
+
+    <!-- Bottom navigation -->
+
+    <LinearLayout
+        android:id="@+id/bottomArea"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Indicators -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/dot1"
+                android:layout_width="30dp"
+                android:layout_height="3dp"
+                android:background="#4D8DFF"/>
+
+            <View
+                android:id="@+id/dot2"
+                android:layout_width="15dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="5dp"
+                android:background="#252B3D"/>
+
+            <View
+                android:id="@+id/dot3"
+                android:layout_width="15dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="5dp"
+                android:background="#252B3D"/>
+
+        </LinearLayout>
+
+
+        <!-- Button -->
+
+        <TextView
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="CONTINUE  →"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
