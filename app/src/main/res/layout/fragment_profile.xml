@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:paddingBottom="110dp">
 
         <!-- HEADER -->
 
@@ -46,6 +47,8 @@
             android:orientation="horizontal"
             android:padding="20dp">
 
+            <!-- PROFILE INITIALS -->
+
             <TextView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -55,6 +58,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <!-- USER INFO -->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -92,6 +97,23 @@
         </LinearLayout>
 
 
+        <!-- EDIT PROFILE -->
+
+        <TextView
+            android:id="@+id/btnEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="EDIT PROFILE"
+            android:textColor="#4D8DFF"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+
         <!-- ACADEMIC -->
 
         <TextView
@@ -110,6 +132,8 @@
             android:background="@drawable/bg_main_card"
             android:orientation="vertical"
             android:padding="17dp">
+
+            <!-- COLLEGE -->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,6 +156,8 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="13dp"
                 android:background="#202638" />
+
+            <!-- YEAR -->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -164,17 +190,25 @@
             android:textSize="9sp"
             android:textStyle="bold" />
 
+
+        <!-- PRIVACY -->
+
         <TextView
             android:id="@+id/btnPrivacy"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center_vertical"
             android:paddingStart="17dp"
             android:text="Privacy &amp; Data"
             android:textColor="#F5F7FF"
             android:textSize="13sp" />
+
+
+        <!-- SETTINGS -->
 
         <TextView
             android:id="@+id/btnSettings"
@@ -182,17 +216,25 @@
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center_vertical"
             android:paddingStart="17dp"
             android:text="Settings"
             android:textColor="#F5F7FF"
             android:textSize="13sp" />
 
+
+        <!-- HELP & SUPPORT -->
+
         <TextView
+            android:id="@+id/btnHelpSupport"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center_vertical"
             android:paddingStart="17dp"
             android:text="Help &amp; Support"

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PERSONAL WORKSPACE"
+            android:textColor="#6F7893"
+            android:textSize="11sp"
+            android:letterSpacing="0.12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="New subject."
+            android:textColor="#F5F7FF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Add a subject to personalize your academic workspace."
+            android:textColor="#858DA5"
+            android:textSize="14sp" />
+
+        <!-- SUBJECT NAME -->
+
+        <EditText
+            android:id="@+id/etSubjectName"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_main_card"
+            android:hint="Subject name"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#6F7893"
+            android:textSize="15sp" />
+
+        <!-- SUBJECT CODE -->
+
+        <EditText
+            android:id="@+id/etSubjectCode"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:hint="Subject code"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#6F7893"
+            android:textSize="15sp"
+            android:inputType="textCapCharacters" />
+
+        <!-- TEACHER -->
+
+        <EditText
+            android:id="@+id/etTeacherName"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:hint="Teacher name"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#6F7893"
+            android:textSize="15sp" />
+
+        <!-- SEMESTER -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="SEMESTER"
+            android:textColor="#858DA5"
+            android:textSize="11sp"
+            android:letterSpacing="0.1" />
+
+        <Spinner
+            android:id="@+id/spinnerSemester"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_main_card"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+        <!-- BUTTON -->
+
+        <Button
+            android:id="@+id/btnAddSubject"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#4D8DFF"
+            android:text="ADD SUBJECT"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

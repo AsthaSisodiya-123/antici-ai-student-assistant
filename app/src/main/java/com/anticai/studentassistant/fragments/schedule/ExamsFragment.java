@@ -14,6 +14,11 @@ import com.anticai.studentassistant.R;
 
 public class ExamsFragment extends Fragment {
 
+    private TextView btnAddExam;
+
+    private View examDbms;
+    private View examDsa;
+
     public ExamsFragment() {
         // Required empty constructor
     }
@@ -31,14 +36,62 @@ public class ExamsFragment extends Fragment {
                 false
         );
 
-        TextView btnBack = view.findViewById(R.id.btnBack);
-
-        btnBack.setOnClickListener(v ->
-                requireActivity()
-                        .getSupportFragmentManager()
-                        .popBackStack()
-        );
+        initializeViews(view);
+        setupClickListeners();
 
         return view;
+    }
+
+    private void initializeViews(View view) {
+
+        btnAddExam =
+                view.findViewById(R.id.btnAddExam);
+
+        examDbms =
+                view.findViewById(R.id.examDbms);
+
+        examDsa =
+                view.findViewById(R.id.examDsa);
+    }
+
+    private void setupClickListeners() {
+
+        // Add new exam
+        btnAddExam.setOnClickListener(v ->
+                openFragment(new AddExamFragment())
+        );
+
+        // DBMS exam
+        examDbms.setOnClickListener(v ->
+                showExam("DBMS")
+        );
+
+        // DSA exam
+        examDsa.setOnClickListener(v ->
+                showExam("DSA")
+        );
+    }
+
+    private void showExam(String subject) {
+
+        android.widget.Toast.makeText(
+                requireContext(),
+                subject + " Exam selected",
+                android.widget.Toast.LENGTH_SHORT
+        ).show();
+    }
+
+    private void openFragment(Fragment fragment) {
+
+        requireActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(
+                        R.id.mainContainer,
+                        fragment
+                )
+                .addToBackStack(null)
+                .commit();
     }
 }

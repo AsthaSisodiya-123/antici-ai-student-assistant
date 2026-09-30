@@ -21,26 +21,43 @@ public class LoginActivity extends AppCompatActivity {
         TextView btnApple = findViewById(R.id.btnApple);
         TextView btnMobile = findViewById(R.id.btnMobile);
         TextView tvRegister = findViewById(R.id.tvRegister);
+        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
 
+        // Login
         btnLogin.setOnClickListener(v -> openMain());
 
+        // Google
         btnGoogle.setOnClickListener(v -> {
             // Google authentication will be connected later
         });
 
+        // Apple
         btnApple.setOnClickListener(v -> {
             // Apple authentication will be connected later
         });
 
+        // Mobile OTP
         btnMobile.setOnClickListener(v -> {
             // Mobile OTP screen will be connected later
         });
 
+        // Register
         tvRegister.setOnClickListener(v -> {
 
             Intent intent = new Intent(
                     LoginActivity.this,
                     RegisterActivity.class
+            );
+
+            startActivity(intent);
+        });
+
+        // Forgot Password
+        tvForgotPassword.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    LoginActivity.this,
+                    ForgotPasswordActivity.class
             );
 
             startActivity(intent);

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUPPORT"
+            android:textColor="#6F7893"
+            android:textSize="11sp"
+            android:letterSpacing="0.12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="How can we help?"
+            android:textColor="#F5F7FF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Find answers about AnticiAI and your account."
+            android:textColor="#858DA5"
+            android:textSize="14sp" />
+
+        <!-- ACCOUNT -->
+
+        <TextView
+            android:id="@+id/faqAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="Account &amp; Login"
+            android:textColor="#F5F7FF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- TASKS -->
+
+        <TextView
+            android:id="@+id/faqTasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="Tasks &amp; Assignments"
+            android:textColor="#F5F7FF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- PREDICTIONS -->
+
+        <TextView
+            android:id="@+id/faqPredictions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="AI Predictions"
+            android:textColor="#F5F7FF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- PRIVACY -->
+
+        <TextView
+            android:id="@+id/faqPrivacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="Privacy &amp; Data"
+            android:textColor="#F5F7FF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- CONTACT SUPPORT -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEED MORE HELP?"
+                android:textColor="#858DA5"
+                android:textSize="11sp"
+                android:letterSpacing="0.1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Contact AnticiAI support"
+                android:textColor="#F5F7FF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="We're here to help with your questions."
+                android:textColor="#858DA5"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/btnContactSupport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#4D8DFF"
+                android:background="@drawable/bg_main_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingStart="18dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="12dp"
+                android:text="CONTACT SUPPORT"
+                android:textColor="#4D8DFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="24dp"
+            android:text="AnticiAI • Support"
+            android:textColor="#4F566B"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+</ScrollView>

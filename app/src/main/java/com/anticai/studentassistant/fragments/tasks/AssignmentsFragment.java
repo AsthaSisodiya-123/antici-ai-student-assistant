@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +13,11 @@ import androidx.fragment.app.Fragment;
 import com.anticai.studentassistant.R;
 
 public class AssignmentsFragment extends Fragment {
+
+    private TextView btnAddAssignment;
+
+    private View assignmentDbms;
+    private View assignmentDsa;
 
     public AssignmentsFragment() {
         // Required empty constructor
@@ -32,36 +36,52 @@ public class AssignmentsFragment extends Fragment {
                 false
         );
 
-        TextView btnBack = view.findViewById(R.id.btnBack);
-
-        LinearLayout assignmentDbms =
-                view.findViewById(R.id.assignmentDbms);
-
-        LinearLayout assignmentDsa =
-                view.findViewById(R.id.assignmentDsa);
-
-        btnBack.setOnClickListener(v ->
-                requireActivity()
-                        .getSupportFragmentManager()
-                        .popBackStack()
-        );
-
-        assignmentDbms.setOnClickListener(v ->
-                openFragment(new AssignmentDetailFragment())
-        );
-
-        assignmentDsa.setOnClickListener(v ->
-                openFragment(new AssignmentDetailFragment())
-        );
+        initializeViews(view);
+        setupClickListeners();
 
         return view;
     }
 
+    private void initializeViews(View view) {
+
+        btnAddAssignment =
+                view.findViewById(R.id.btnAddAssignment);
+
+        assignmentDbms =
+                view.findViewById(R.id.assignmentDbms);
+
+        assignmentDsa =
+                view.findViewById(R.id.assignmentDsa);
+    }
+
+    private void setupClickListeners() {
+
+        // Add new assignment
+        btnAddAssignment.setOnClickListener(v ->
+                openFragment(new AddAssignmentFragment())
+        );
+
+        // DBMS assignment
+        assignmentDbms.setOnClickListener(v ->
+                openFragment(new AssignmentDetailFragment())
+        );
+
+        // DSA assignment
+        assignmentDsa.setOnClickListener(v ->
+                openFragment(new AssignmentDetailFragment())
+        );
+    }
+
     private void openFragment(Fragment fragment) {
+
         requireActivity()
                 .getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.mainContainer, fragment)
+                .setReorderingAllowed(true)
+                .replace(
+                        R.id.mainContainer,
+                        fragment
+                )
                 .addToBackStack(null)
                 .commit();
     }

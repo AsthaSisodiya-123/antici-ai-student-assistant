@@ -11,17 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:paddingBottom="110dp">
+
+        <!-- BACK -->
 
         <TextView
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center_vertical"
             android:text="←  BACK"
             android:textColor="#69738D"
             android:textSize="10sp"
             android:textStyle="bold" />
+
+
+        <!-- HEADER -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,6 +50,7 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+
         <!-- DUE SOON -->
 
         <TextView
@@ -53,12 +62,17 @@
             android:textSize="9sp"
             android:textStyle="bold" />
 
+
+        <!-- DBMS ASSIGNMENT -->
+
         <LinearLayout
             android:id="@+id/assignmentDbms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_prediction_card"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -89,12 +103,17 @@
 
         </LinearLayout>
 
+
+        <!-- DSA ASSIGNMENT -->
+
         <LinearLayout
             android:id="@+id/assignmentDsa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
             android:padding="18dp">
 
@@ -125,6 +144,7 @@
 
         </LinearLayout>
 
+
         <!-- UPCOMING -->
 
         <TextView
@@ -135,6 +155,9 @@
             android:textColor="#69738D"
             android:textSize="9sp"
             android:textStyle="bold" />
+
+
+        <!-- AI & ML PROJECT -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -163,11 +186,17 @@
 
         </LinearLayout>
 
+
+        <!-- ADD ASSIGNMENT -->
+
         <TextView
+            android:id="@+id/btnAddAssignment"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:text="+  ADD ASSIGNMENT"
             android:textColor="#4D8DFF"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#080A12"
@@ -13,22 +12,14 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <TextView
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:gravity="center_vertical"
-            android:text="←  BACK"
-            android:textColor="#69738D"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+        <!-- HEADER -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             android:letterSpacing="0.15"
-            android:text="ACADEMIC ASSESSMENT"
+            android:text="ACADEMIC SCHEDULE"
             android:textColor="#4D8DFF"
             android:textSize="9sp"
             android:textStyle="bold" />
@@ -46,53 +37,69 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Keep upcoming assessments visible and predictable."
+            android:text="Track your upcoming examinations."
             android:textColor="#858DA5"
             android:textSize="12sp" />
 
-        <!-- NEXT EXAM -->
+        <!-- SUMMARY -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:background="@drawable/bg_prediction_card"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:orientation="horizontal"
+            android:padding="18dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="NEXT EXAM"
-                android:textColor="#4D8DFF"
-                android:textSize="9sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="DBMS"
-                android:textColor="#F5F7FF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UPCOMING"
+                    android:textColor="#69738D"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="02 October 2026  •  10:00 AM"
-                android:textColor="#858DA5"
-                android:textSize="11sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="02"
+                    android:textColor="#F5F7FF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="3 DAYS LEFT"
-                android:textColor="#FFB86B"
-                android:textSize="9sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NEXT EXAM"
+                    android:textColor="#69738D"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="02 OCT"
+                    android:textColor="#FFB86B"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -102,70 +109,104 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="UPCOMING"
+            android:text="UPCOMING EXAMS"
             android:textColor="#69738D"
             android:textSize="9sp"
             android:textStyle="bold" />
 
+        <!-- DBMS EXAM -->
+
         <LinearLayout
+            android:id="@+id/examDbms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_main_card"
+            android:background="@drawable/bg_prediction_card"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
             android:padding="17dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data Structures"
+                android:text="06 OCTOBER 2026"
+                android:textColor="#FFB86B"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Database Management Systems"
                 android:textColor="#F5F7FF"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="08 October 2026  •  10:00 AM"
-                android:textColor="#69738D"
+                android:text="09:00 AM • Main Examination Hall"
+                android:textColor="#858DA5"
                 android:textSize="10sp" />
 
         </LinearLayout>
 
+        <!-- DSA EXAM -->
+
         <LinearLayout
+            android:id="@+id/examDsa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
             android:padding="17dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Java Programming"
+                android:text="02 OCTOBER 2026"
+                android:textColor="#4D8DFF"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/data_structures_algorithms"
                 android:textColor="#F5F7FF"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="12 October 2026  •  02:00 PM"
-                android:textColor="#69738D"
+                android:text="09:00 AM • Main Examination Hall"
+                android:textColor="#858DA5"
                 android:textSize="10sp" />
 
         </LinearLayout>
 
+        <!-- ADD EXAM -->
+
         <TextView
+            android:id="@+id/btnAddExam"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
-            android:text="+  ADD EXAM"
+            android:text="+ ADD NEW EXAM"
             android:textColor="#4D8DFF"
             android:textSize="10sp"
             android:textStyle="bold" />

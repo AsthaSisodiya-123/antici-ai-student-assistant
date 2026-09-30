@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#080A12"
@@ -13,22 +12,14 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <TextView
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:gravity="center_vertical"
-            android:text="←  BACK"
-            android:textColor="#69738D"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+        <!-- HEADER -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             android:letterSpacing="0.15"
-            android:text="ACADEMIC STRUCTURE"
+            android:text="ACADEMIC SCHEDULE"
             android:textColor="#4D8DFF"
             android:textSize="9sp"
             android:textStyle="bold" />
@@ -42,193 +33,228 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <!-- SUBJECT 1 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Manage the subjects you are currently studying."
+            android:textColor="#858DA5"
+            android:textSize="12sp" />
+
+        <!-- SUMMARY -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:background="@drawable/bg_prediction_card"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="18dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TOTAL SUBJECTS"
+                    android:textColor="#69738D"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="04"
+                    android:textColor="#F5F7FF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACTIVE"
+                    android:textColor="#69738D"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="04"
+                    android:textColor="#4D8DFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- SUBJECTS -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="CURRENT SUBJECTS"
+            android:textColor="#69738D"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <!-- DBMS -->
+
+        <LinearLayout
+            android:id="@+id/subjectDbms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_prediction_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="17dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="01"
                 android:textColor="#4D8DFF"
-                android:textSize="9sp"
+                android:textSize="8sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:text="Data Structures"
+                android:layout_marginTop="6dp"
+                android:text="Database Management Systems"
                 android:textColor="#F5F7FF"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="DSA  •  4 Credits"
-                android:textColor="#69738D"
-                android:textSize="10sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Progress  64%"
-                android:textColor="#858DA5"
-                android:textSize="10sp" />
 
         </LinearLayout>
 
-        <!-- SUBJECT 2 -->
+        <!-- DSA -->
 
         <LinearLayout
+            android:id="@+id/subjectDsa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:padding="17dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="02"
                 android:textColor="#4D8DFF"
-                android:textSize="9sp"
+                android:textSize="8sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:text="Database Management"
+                android:layout_marginTop="6dp"
+                android:text="@string/data_structures_algorithms"
                 android:textColor="#F5F7FF"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="DBMS  •  4 Credits"
-                android:textColor="#69738D"
-                android:textSize="10sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Progress  72%"
-                android:textColor="#858DA5"
-                android:textSize="10sp" />
 
         </LinearLayout>
 
-        <!-- SUBJECT 3 -->
+        <!-- JAVA -->
 
         <LinearLayout
+            android:id="@+id/subjectJava"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:padding="17dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="03"
                 android:textColor="#4D8DFF"
-                android:textSize="9sp"
+                android:textSize="8sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:text="Java Programming"
+                android:layout_marginTop="6dp"
+                android:text="Core Java"
                 android:textColor="#F5F7FF"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Java  •  4 Credits"
-                android:textColor="#69738D"
-                android:textSize="10sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Progress  58%"
-                android:textColor="#858DA5"
-                android:textSize="10sp" />
 
         </LinearLayout>
 
-        <!-- SUBJECT 4 -->
+        <!-- AI ML -->
 
         <LinearLayout
+            android:id="@+id/subjectAiMl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:padding="17dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="04"
                 android:textColor="#4D8DFF"
-                android:textSize="9sp"
+                android:textSize="8sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:text="Artificial Intelligence"
+                android:layout_marginTop="6dp"
+                android:text="@string/artificial_intelligence_ml"
                 android:textColor="#F5F7FF"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="AI  •  4 Credits"
-                android:textColor="#69738D"
-                android:textSize="10sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Progress  61%"
-                android:textColor="#858DA5"
-                android:textSize="10sp" />
 
         </LinearLayout>
 
+        <!-- ADD SUBJECT -->
+
         <TextView
+            android:id="@+id/btnAddSubject"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
-            android:text="+  ADD SUBJECT"
+            android:text="+ ADD NEW SUBJECT"
             android:textColor="#4D8DFF"
             android:textSize="10sp"
             android:textStyle="bold" />
