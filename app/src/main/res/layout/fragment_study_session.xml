@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:text="←  BACK"
+            android:textColor="#69738D"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:letterSpacing="0.15"
+            android:text="FOCUSED SESSION"
+            android:textColor="#4D8DFF"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Study Session."
+            android:textColor="#F5F7FF"
+            android:textSize="29sp"
+            android:textStyle="bold" />
+
+        <!-- TIMER -->
+
+        <FrameLayout
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="35dp">
+
+            <View
+                android:layout_width="230dp"
+                android:layout_height="230dp"
+                android:background="@drawable/bg_ai_orb_outer" />
+
+            <View
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_ai_orb_inner" />
+
+            <TextView
+                android:id="@+id/tvTimer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+
+        <!-- SUBJECT -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CURRENT SUBJECT"
+                android:textColor="#69738D"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Database Management"
+                android:textColor="#F5F7FF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Focused preparation • DBMS exam"
+                android:textColor="#858DA5"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/btnSession"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_profile_circle"
+            android:gravity="center"
+            android:text="START STUDY SESSION"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:text="AnticiAI will use this session to understand your study pattern."
+            android:textColor="#555D73"
+            android:textSize="9sp" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACCOUNT"
+            android:textColor="#6F7893"
+            android:textSize="11sp"
+            android:letterSpacing="0.12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Edit profile."
+            android:textColor="#F5F7FF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Keep your personal and academic information up to date."
+            android:textColor="#858DA5"
+            android:textSize="14sp" />
+
+        <!-- PROFILE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_main_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_main_card"
+                android:gravity="center"
+                android:text="AS"
+                android:textColor="#4D8DFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PROFILE"
+                    android:textColor="#858DA5"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Personal information"
+                    android:textColor="#F5F7FF"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- FULL NAME -->
+
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_main_card"
+            android:hint="Full name"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#6F7893"
+            android:textSize="15sp" />
+
+        <!-- EMAIL -->
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:hint="Email address"
+            android:inputType="textEmailAddress"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#6F7893"
+            android:textSize="15sp" />
+
+        <!-- PHONE -->
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:hint="Phone number"
+            android:inputType="phone"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#6F7893"
+            android:textSize="15sp" />
+
+        <!-- COLLEGE -->
+
+        <EditText
+            android:id="@+id/etCollege"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_main_card"
+            android:hint="College / University"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#6F7893"
+            android:textSize="15sp" />
+
+        <!-- BRANCH -->
+
+        <EditText
+            android:id="@+id/etBranch"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:hint="Branch / Department"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#6F7893"
+            android:textSize="15sp" />
+
+        <!-- SEMESTER -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="SEMESTER"
+            android:textColor="#858DA5"
+            android:textSize="11sp"
+            android:letterSpacing="0.1" />
+
+        <Spinner
+            android:id="@+id/spinnerSemester"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_main_card"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+        <Button
+            android:id="@+id/btnSaveChanges"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#4D8DFF"
+            android:text="SAVE CHANGES"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

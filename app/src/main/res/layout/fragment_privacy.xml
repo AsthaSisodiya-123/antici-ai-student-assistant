@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:text="←  BACK"
+            android:textColor="#69738D"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:letterSpacing="0.15"
+            android:text="DATA CONTROL"
+            android:textColor="#4D8DFF"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Privacy."
+            android:textColor="#F5F7FF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Control what AnticiAI can use to understand your routine."
+            android:textColor="#858DA5"
+            android:textSize="12sp" />
+
+
+        <!-- DATA MINIMIZATION -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_prediction_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PRIVACY BY DESIGN"
+                android:textColor="#4D8DFF"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="AnticiAI uses only the data required for features you enable. You remain in control of your personal information."
+                android:textColor="#A5ADC2"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+
+        <!-- PERMISSIONS -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="PERMISSIONS"
+            android:textColor="#69738D"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+
+        <!-- ACADEMIC DATA -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_main_card"
+            android:gravity="center_vertical"
+            android:paddingStart="17dp"
+            android:paddingEnd="17dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Academic Data"
+                    android:textColor="#F5F7FF"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tasks, subjects and deadlines"
+                    android:textColor="#69738D"
+                    android:textSize="9sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ON"
+                android:textColor="#4D8DFF"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <!-- STUDY ACTIVITY -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_main_card"
+            android:gravity="center_vertical"
+            android:paddingStart="17dp"
+            android:paddingEnd="17dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Study Activity"
+                    android:textColor="#F5F7FF"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Study sessions and progress"
+                    android:textColor="#69738D"
+                    android:textSize="9sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ON"
+                android:textColor="#4D8DFF"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <!-- LOCATION -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_main_card"
+            android:gravity="center_vertical"
+            android:paddingStart="17dp"
+            android:paddingEnd="17dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textColor="#F5F7FF"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Optional contextual predictions"
+                    android:textColor="#69738D"
+                    android:textSize="9sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFF"
+                android:textColor="#69738D"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <!-- CONTROL -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_main_card"
+            android:padding="18dp"
+            android:text="You can change these permissions at any time. Disabling optional data may reduce the amount of contextual information available to predictions."
+            android:textColor="#858DA5"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+</ScrollView>

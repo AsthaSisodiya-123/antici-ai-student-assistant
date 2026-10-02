@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12"
+    android:orientation="vertical">
+
+
+    <!-- HEADER -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.15"
+            android:text="ANTICIAI"
+            android:textColor="#4D8DFF"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="AI Assistant"
+            android:textColor="#F5F7FF"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <!-- CHAT AREA -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/chatContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <!-- AI MESSAGE -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_main_card"
+                android:orientation="vertical"
+                android:padding="17dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✦  ANTICIAI"
+                    android:textColor="#4D8DFF"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="Hi Astha. I'm your personal academic assistant. I can help you understand your schedule, tasks, study patterns and upcoming deadlines."
+                    android:textColor="#DCE2F2"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+
+            <!-- SUGGESTIONS -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="TRY ASKING"
+                android:textColor="#69738D"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_main_card"
+                android:padding="15dp"
+                android:text="What should I study today?"
+                android:textColor="#AFC7FF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_main_card"
+                android:padding="15dp"
+                android:text="Create a study plan for my DBMS exam."
+                android:textColor="#AFC7FF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_main_card"
+                android:padding="15dp"
+                android:text="What needs my attention next?"
+                android:textColor="#AFC7FF"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <!-- MESSAGE INPUT -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#0D101A"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_main_card"
+            android:hint="Ask AnticiAI..."
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textColor="#F5F7FF"
+            android:textColorHint="#69738D"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/btnSend"
+            android:layout_width="58dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_profile_circle"
+            android:gravity="center"
+            android:text="→"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

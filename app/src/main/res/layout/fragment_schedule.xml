@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:letterSpacing="0.15"
+            android:text="ACADEMIC PLANNER"
+            android:textColor="#4D8DFF"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Schedule."
+            android:textColor="#F5F7FF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Your academic day, organized in one place."
+            android:textColor="#858DA5"
+            android:textSize="12sp" />
+
+        <!-- DATE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_prediction_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_profile_circle"
+                android:gravity="center"
+                android:text="29"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MONDAY"
+                    android:textColor="#4D8DFF"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="September 2026"
+                    android:textColor="#F5F7FF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- TODAY -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="TODAY"
+            android:textColor="#69738D"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <!-- DATA STRUCTURES -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="17dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:30 AM"
+                android:textColor="#4D8DFF"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Data Structures"
+                android:textColor="#F5F7FF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Room 204  •  Lecture"
+                android:textColor="#69738D"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- JAVA -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="17dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="02:00 PM"
+                android:textColor="#4D8DFF"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Java Programming"
+                android:textColor="#F5F7FF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Lab 3  •  Practical"
+                android:textColor="#69738D"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- STUDY -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_prediction_card"
+            android:orientation="vertical"
+            android:padding="17dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="05:30 PM"
+                android:textColor="#4D8DFF"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="DBMS Study Session"
+                android:textColor="#F5F7FF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Suggested by AnticiAI"
+                android:textColor="#858DA5"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- MODULES -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="ACADEMIC MODULES"
+            android:textColor="#69738D"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnTimetable"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_main_card"
+            android:gravity="center_vertical"
+            android:paddingStart="17dp"
+            android:text="Timetable"
+            android:textColor="#F5F7FF"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/btnSubjects"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_main_card"
+            android:gravity="center_vertical"
+            android:paddingStart="17dp"
+            android:text="Subjects"
+            android:textColor="#F5F7FF"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/btnExams"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_main_card"
+            android:gravity="center_vertical"
+            android:paddingStart="17dp"
+            android:text="Exams"
+            android:textColor="#F5F7FF"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</ScrollView>
