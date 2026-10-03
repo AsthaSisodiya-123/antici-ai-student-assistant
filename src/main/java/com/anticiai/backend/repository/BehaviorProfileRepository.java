@@ -1,4 +1,7 @@
 package com.anticiai.backend.repository;
 
-public class BehaviorProfileRepository {
+import com.anticiai.backend.entity.BehaviorProfile;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BehaviorProfileRepository extends JpaRepository<BehaviorProfile, Long> {
 }
