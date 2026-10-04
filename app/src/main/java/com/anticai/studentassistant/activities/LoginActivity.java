@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         // Create API service
         ApiService apiService =
                 RetrofitClient
-                        .getInstance()
+                        .getInstance(LoginActivity.this)
                         .create(ApiService.class);
 
         // Call backend login API
@@ -154,15 +154,39 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()
                         && response.body() != null) {
 
-                    // Login successful
-                    Toast.makeText(
-                            LoginActivity.this,
-                            "Login successful",
-                            Toast.LENGTH_SHORT
-                    ).show();
+                    // Get JWT token from backend
+                    String token = response.body().getToken();
 
-                    // Open main screen
-                    openMain();
+                    // Make sure token is not empty
+                    if (token != null && !token.isEmpty()) {
+
+                        // Save JWT token locally
+                        getSharedPreferences(
+                                "AnticiPrefs",
+                                MODE_PRIVATE
+                        )
+                                .edit()
+                                .putString("jwt_token", token)
+                                .apply();
+
+                        // Login successful
+                        Toast.makeText(
+                                LoginActivity.this,
+                                "Login successful",
+                                Toast.LENGTH_SHORT
+                        ).show();
+
+                        // Open main screen
+                        openMain();
+
+                    } else {
+
+                        Toast.makeText(
+                                LoginActivity.this,
+                                "Login failed: token missing",
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
 
                 } else {
 

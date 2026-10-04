@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/search_view_bh"
+    >
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/facewash"
+        android:id="@+id/ivCustomImage"
+        android:layout_margin="6dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Offer"
+        android:id="@+id/tvCustomOffer"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:fontFamily="@font/abril_fatface"
+        android:padding="7dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginLeft="6dp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="106dp"
+        android:layout_marginLeft="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:id="@+id/tvCustomName"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abril_fatface"
+           />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prize"
+            android:id="@+id/tvCustomPrize"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:fontFamily="@font/abril_fatface"
+          />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivary Rate"
+            android:id="@+id/tvCustomRate"
+            android:textColor="@color/link"
+            android:textSize="10sp"
+            android:fontFamily="@font/abril_fatface"
+            />
+
+
+    </LinearLayout>
+</FrameLayout>

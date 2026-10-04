@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="search">#7BFFFFFF</color>
+    <color name="mix">#016241</color>
+    <color name="blue">#FF4000</color>
+    <color name="card" >#588C8C8C</color>
+    <color name="grey" >#494949</color>
+    <color name="light_grey" >#6B494949</color>
+    <color name="hint" >#CCCBCB</color>
+    <color name="button">#A200093A</color>
+    <color name="red">#FF0000</color>
+    <color name="link">#006FFF</color>
+    <color name="green">#6FF8D5</color>
+    <color name="music">#4D6FF8D5</color>
+    <color name="dark_green">#449984</color>
+<color name="purple">#D900FF</color>
+    <color name="dark_purple">#60056F</color>
+    <color name="orange">#F65C39</color>
+    <color name="chat">#498DBAA3</color>
+    <color name="frame">#5A449984</color>
+
+</resources>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F9F9F9">
+
+        <!-- Heading -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send SMS"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:textColor="#000" />
+
+        <!-- Mobile Number Input -->
+        <EditText
+            android:id="@+id/etMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Mobile Number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:textColorHint="@color/grey"
+            android:textColor="@color/grey"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="5dp"/>
+
+        <!-- Message Input -->
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Type your message"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:padding="12dp"
+            android:textColorHint="@color/grey"
+            android:textColor="@color/grey"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="5dp"/>
+
+        <!-- Send Button -->
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send SMS"
+            android:backgroundTint="#007BFF"
+            android:textColor="#FFF"
+            android:padding="12dp"
+            android:layout_marginBottom="5dp"/>
+
+        <!-- In-App Message Display -->
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OR"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Email"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"
+        android:textColor="#000" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Email Id"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColorHint="@color/grey"
+        android:textColor="@color/grey"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="5dp"/>
+    <EditText
+        android:id="@+id/etSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Subject"
+        android:inputType="textEmailSubject"
+        android:padding="12dp"
+        android:textColorHint="@color/grey"
+        android:textColor="@color/grey"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="5dp"/>
+    <!-- Message Input -->
+    <EditText
+        android:id="@+id/etEmailMsg"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:hint="Type your message"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:padding="12dp"
+        android:textColorHint="@color/grey"
+        android:textColor="@color/grey"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="5dp"
+        />
+
+
+    <!-- Send Button -->
+    <Button
+        android:id="@+id/btnSendEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Email"
+        android:backgroundTint="#007BFF"
+        android:textColor="#FFF"
+        android:padding="12dp"
+        />
+
+</LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.CategoriesFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rvProductList"
+    android:layout_margin="8sp"
+    />
+    <LinearLayout
+        android:id="@+id/tvcfNetworkStatus"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D32F2F"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You are offline"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:padding="8dp"
+            android:layout_alignParentBottom="true"
+            android:drawableStart="@drawable/baseline_language_24"/>
+
+
+    </LinearLayout>
+</FrameLayout>

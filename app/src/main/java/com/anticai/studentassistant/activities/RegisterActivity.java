@@ -178,7 +178,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Create Retrofit API service
         ApiService apiService =
                 RetrofitClient
-                        .getInstance()
+                        .getInstance(RegisterActivity.this)
                         .create(ApiService.class);
 
         // Call backend

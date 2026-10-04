@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.MyCartFragment"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <com.denzcoskun.imageslider.ImageSlider
+        android:layout_width="380dp"
+        android:layout_height="250dp"
+        android:id="@+id/isMyCartImageSlider"
+        app:iss_auto_cycle="true"
+        app:iss_period="2000"
+        app:iss_delay="2000"
+        app:iss_text_align="CENTER"
+        app:iss_text_color="#000000"
+        app:iss_selected_dot="@drawable/default_selected_dot"
+        app:iss_unselected_dot="@drawable/default_unselected_dot"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30sp"
+        />
+
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vvMyCartVideo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30sp"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tvMyCartNetworkStatus"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D32F2F"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You are offline"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:padding="8dp"
+            android:layout_alignParentBottom="true"
+            android:drawableStart="@drawable/baseline_language_24"/>
+
+
+    </LinearLayout>
+</FrameLayout>

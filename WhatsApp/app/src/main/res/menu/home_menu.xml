@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuScaner"
+        android:title="Scanner"
+        app:showAsAction="always"
+        android:icon="@drawable/scanner"
+        />
+    <item
+        android:id="@+id/menuCamera"
+        android:title="Camera"
+        app:showAsAction="always"
+        android:icon="@drawable/camera"
+        />
+
+    <item
+        android:id="@+id/menuMyprofile"
+        android:title="My Profile"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/menuLogout"
+        android:title="Logout"
+        app:showAsAction="never"
+        />
+
+
+</menu>

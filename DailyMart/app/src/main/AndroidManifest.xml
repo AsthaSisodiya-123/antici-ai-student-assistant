@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/tks"
+        android:label="Thakur Kirana Shoppy"
+        android:roundIcon="@mipmap/tks"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DailyMart"
+        tools:targetApi="31">
+        <activity
+            android:name=".BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdaptorClass.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NoInternetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QR_CodeActivity"
+            android:exported="false" />
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDXKrtmMVOvzYhO9YDMYIdILpIThd8WW3w" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".ScannerActivity"
+            android:exported="false"
+            android:label="Scanner"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".MyFavoriteActivity"
+            android:exported="false"
+            android:label="My Favorite"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".AboutUsActivity"
+            android:exported="false"
+            android:label="About us"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".ContactUsActivity"
+            android:exported="false"
+            android:label="Contact us"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".SettingActivity"
+            android:exported="false"
+            android:label="Text Detection"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".MyProfileActivity"
+            android:exported="false"
+            android:label="My Profile"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".HomePageActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false"
+            android:label="Registration Here"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="Login Here"
+            android:theme="@style/Theme.ShowActionBar" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Base.Theme.DailyMart">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapsActivity" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:layout_marginBottom="34sp"
+        android:background="@color/black"
+        >
+        <Button
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:id="@+id/btnNormal"
+            android:background="@drawable/normal"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="15sp"
+            android:text="Normal"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"/>
+        <Button
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:id="@+id/btnSatellite"
+            android:background="@drawable/satellite"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="15sp"
+            android:layout_marginLeft="15sp"
+            android:text="Satellite"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"/>
+        <Button
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:id="@+id/btnTerrain"
+            android:background="@drawable/terrain"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="15sp"
+            android:layout_marginLeft="15sp"
+            android:text="Terrain"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"/>
+        <Button
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:id="@+id/btnHybrid"
+            android:background="@drawable/hybrid"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="15sp"
+            android:layout_marginLeft="15sp"
+            android:text="Hybrid"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"/>
+        <Button
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:id="@+id/btnNull"
+            android:background="@drawable/loctype"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="15sp"
+            android:layout_marginLeft="15sp"
+            android:text="Null"
+            android:textSize="10sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:background="@color/black"
+        >
+        <Button
+            android:id="@+id/btn3D"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3D View"
+            android:layout_below="@id/btnNull"
+            android:layout_alignParentStart="true"
+            android:backgroundTint="@color/dark_green"
+            />
+
+    </LinearLayout>
+
+
+</fragment>

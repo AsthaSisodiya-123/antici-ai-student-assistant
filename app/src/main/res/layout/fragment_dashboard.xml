@@ -24,6 +24,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvDashboardTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -33,13 +34,21 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvStudentGreeting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Welcome back"
+            android:textColor="#858DA5"
+            android:textSize="13sp" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Your academic intelligence at a glance."
             android:textColor="#858DA5"
             android:textSize="13sp" />
-
 
         <!-- AI STATUS -->
 
@@ -78,7 +87,6 @@
                 android:textSize="12sp" />
 
         </LinearLayout>
-
 
         <!-- METRICS -->
 
@@ -153,7 +161,6 @@
 
         </LinearLayout>
 
-
         <!-- PREDICTIONS -->
 
         <TextView
@@ -199,7 +206,6 @@
                 android:textSize="11sp" />
 
         </LinearLayout>
-
 
         <!-- TODAY -->
 

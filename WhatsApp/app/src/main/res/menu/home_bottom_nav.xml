@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homeBottomNavChat"
+        android:title="Home"
+        app:showAsAction="never"
+        android:icon="@drawable/chat"
+        />
+    <item
+        android:id="@+id/homeBottomNavCall"
+        android:title="Call"
+        app:showAsAction="never"
+        android:icon="@drawable/call"
+        />
+
+    <item
+        android:id="@+id/homeBottomNavSettings"
+        android:title="Settings"
+        app:showAsAction="never"
+        android:icon="@drawable/setting"
+        />
+</menu>
