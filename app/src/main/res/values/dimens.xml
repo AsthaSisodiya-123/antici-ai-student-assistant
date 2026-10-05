@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="screen_padding">24dp</dimen>
+
+    <dimen name="radius_large">24dp</dimen>
+    <dimen name="radius_medium">16dp</dimen>
+    <dimen name="radius_small">12dp</dimen>
+
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="input_height">56dp</dimen>
+
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <!-- AnticiAI Primary -->
+    <color name="primary">#635BFF</color>
+    <color name="primary_dark">#5147E8</color>
+    <color name="primary_light">#A78BFA</color>
+
+    <!-- Dark -->
+    <color name="navy">#10162F</color>
+    <color name="deep_navy">#0B1020</color>
+
+    <!-- Background -->
+    <color name="background">#F7F7FC</color>
+    <color name="surface">#FFFFFF</color>
+
+    <!-- Text -->
+    <color name="text_primary">#171A2B</color>
+    <color name="text_secondary">#73758A</color>
+    <color name="text_light">#A1A3B5</color>
+
+    <!-- Status -->
+    <color name="success">#22C55E</color>
+    <color name="warning">#F59E0B</color>
+    <color name="danger">#EF4444</color>
+
+    <!-- UI -->
+    <color name="divider">#E8E8F0</color>
+    <color name="input_background">#F5F5FA</color>
+
+</resources>
