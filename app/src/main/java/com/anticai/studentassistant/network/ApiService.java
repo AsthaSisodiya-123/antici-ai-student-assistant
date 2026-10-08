@@ -23,6 +23,8 @@ public interface ApiService {
     @GET("api/student/dashboard")
     Call<DashboardResponse> getDashboard();
 
+    @GET("api/study-plan")
+    Call<StudyPlanResponse> getStudyPlan();
     @POST("api/ai/chat")
     Call<AIChatResponse> chat(
             @Body AIChatRequest request

@@ -13,7 +13,6 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-
         <!-- HEADER -->
 
         <TextView
@@ -43,7 +42,6 @@
             android:textColor="#858DA5"
             android:textSize="13sp" />
 
-
         <!-- AI PLAN SUMMARY -->
 
         <LinearLayout
@@ -63,6 +61,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvPlanTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
@@ -72,6 +71,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvPlanDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -80,7 +80,6 @@
                 android:textSize="12sp" />
 
         </LinearLayout>
-
 
         <!-- TODAY -->
 
@@ -93,7 +92,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-
         <!-- SESSION 1 -->
 
         <LinearLayout
@@ -105,6 +103,7 @@
             android:padding="18dp">
 
             <TextView
+                android:id="@+id/tvSession1Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="07:00 PM  •  45 MIN"
@@ -113,6 +112,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvSession1Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -122,6 +122,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvSession1Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -130,7 +131,6 @@
                 android:textSize="11sp" />
 
         </LinearLayout>
-
 
         <!-- SESSION 2 -->
 
@@ -143,6 +143,7 @@
             android:padding="18dp">
 
             <TextView
+                android:id="@+id/tvSession2Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="08:00 PM  •  30 MIN"
@@ -151,6 +152,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvSession2Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -160,6 +162,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvSession2Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -168,7 +171,6 @@
                 android:textSize="11sp" />
 
         </LinearLayout>
-
 
         <!-- SESSION 3 -->
 
@@ -181,6 +183,7 @@
             android:padding="18dp">
 
             <TextView
+                android:id="@+id/tvSession3Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="08:40 PM  •  20 MIN"
@@ -189,6 +192,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvSession3Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -198,6 +202,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvSession3Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -206,7 +211,6 @@
                 android:textSize="11sp" />
 
         </LinearLayout>
-
 
         <!-- START BUTTON -->
 
