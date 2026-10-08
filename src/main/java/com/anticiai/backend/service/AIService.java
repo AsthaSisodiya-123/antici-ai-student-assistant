@@ -16,12 +16,20 @@ public class AIService {
     private final HttpClient httpClient;
 
     public AIService() {
+
         this.httpClient = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .build();
     }
 
     public AIChatResponse chat(String message) {
+
+        if (message == null || message.isBlank()) {
+
+            throw new IllegalArgumentException(
+                    "AI message cannot be empty"
+            );
+        }
 
         String escapedMessage = message
                 .replace("\\", "\\\\")
@@ -33,8 +41,13 @@ public class AIService {
         String jsonBody =
                 "{\"question\":\"" + escapedMessage + "\"}";
 
-        System.out.println("===== ANTICI AI REQUEST BODY =====");
-        System.out.println(jsonBody);
+        System.out.println(
+                "===== ANTICI AI REQUEST ====="
+        );
+
+        System.out.println(
+                "Message: " + message
+        );
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(
@@ -62,10 +75,6 @@ public class AIService {
 
         try {
 
-            System.out.println(
-                    "===== SENDING REQUEST TO ANTICI AI ====="
-            );
-
             HttpResponse<String> response =
                     httpClient.send(
                             request,
@@ -83,18 +92,15 @@ public class AIService {
                             + response.statusCode()
             );
 
-            System.out.println(
-                    "Body: "
-                            + response.body()
-            );
-
             if (response.statusCode() != 200) {
 
-                throw new RuntimeException(
-                        "Antici AI returned HTTP "
-                                + response.statusCode()
-                                + ": "
+                System.err.println(
+                        "Antici AI error: "
                                 + response.body()
+                );
+
+                throw new RuntimeException(
+                        "Antici AI is currently unavailable"
                 );
             }
 
@@ -127,10 +133,13 @@ public class AIService {
 
         } catch (IOException e) {
 
-            throw new RuntimeException(
+            System.err.println(
                     "Could not connect to Antici AI: "
-                            + e.getMessage(),
-                    e
+                            + e.getMessage()
+            );
+
+            throw new RuntimeException(
+                    "Antici AI is currently unavailable"
             );
         }
     }
