@@ -7,7 +7,6 @@
     android:background="#080A12"
     android:orientation="vertical">
 
-
     <!-- HEADER -->
 
     <LinearLayout
@@ -42,25 +41,29 @@
     <!-- CHAT AREA -->
 
     <ScrollView
+        android:id="@+id/chatScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:id="@+id/chatContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
 
-
-            <!-- AI MESSAGE -->
+            <!-- INITIAL AI MESSAGE -->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_main_card"
+                android:background="@drawable/bg_ai_message"
                 android:orientation="vertical"
                 android:padding="17dp">
 
@@ -78,7 +81,8 @@
                     android:layout_marginTop="9dp"
                     android:text="Hi Astha. I'm your personal academic assistant. I can help you understand your schedule, tasks, study patterns and upcoming deadlines."
                     android:textColor="#DCE2F2"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="3dp" />
 
             </LinearLayout>
 
@@ -95,30 +99,39 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/suggestionStudy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_main_card"
+                android:clickable="true"
+                android:focusable="true"
                 android:padding="15dp"
                 android:text="What should I study today?"
                 android:textColor="#AFC7FF"
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/suggestionPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/bg_main_card"
+                android:clickable="true"
+                android:focusable="true"
                 android:padding="15dp"
                 android:text="Create a study plan for my DBMS exam."
                 android:textColor="#AFC7FF"
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/suggestionAttention"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/bg_main_card"
+                android:clickable="true"
+                android:focusable="true"
                 android:padding="15dp"
                 android:text="What needs my attention next?"
                 android:textColor="#AFC7FF"
@@ -146,6 +159,8 @@
             android:layout_weight="1"
             android:background="@drawable/bg_main_card"
             android:hint="Ask AnticiAI..."
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLines="3"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:textColor="#F5F7FF"
@@ -158,6 +173,8 @@
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/bg_profile_circle"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:text="→"
             android:textColor="#FFFFFF"

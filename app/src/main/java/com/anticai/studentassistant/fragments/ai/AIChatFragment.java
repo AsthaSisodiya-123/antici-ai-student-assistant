@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class AIChatFragment extends Fragment {
     private EditText etMessage;
     private TextView btnSend;
     private LinearLayout chatContainer;
+    private ScrollView chatScrollView;
+    private TextView typingIndicator;
 
     public AIChatFragment() {
         // Required empty constructor
@@ -49,10 +52,49 @@ public class AIChatFragment extends Fragment {
         etMessage = view.findViewById(R.id.etMessage);
         btnSend = view.findViewById(R.id.btnSend);
         chatContainer = view.findViewById(R.id.chatContainer);
+        chatScrollView = view.findViewById(R.id.chatScrollView);
 
-        btnSend.setOnClickListener(v -> sendMessage());
+        // SEND BUTTON
+        btnSend.setOnClickListener(
+                v -> sendMessage()
+        );
+
+        // SUGGESTION CARDS
+        TextView suggestionStudy =
+                view.findViewById(R.id.suggestionStudy);
+
+        TextView suggestionPlan =
+                view.findViewById(R.id.suggestionPlan);
+
+        TextView suggestionAttention =
+                view.findViewById(R.id.suggestionAttention);
+
+        suggestionStudy.setOnClickListener(
+                v -> sendSuggestion(
+                        "What should I study today?"
+                )
+        );
+
+        suggestionPlan.setOnClickListener(
+                v -> sendSuggestion(
+                        "Create a study plan for my DBMS exam."
+                )
+        );
+
+        suggestionAttention.setOnClickListener(
+                v -> sendSuggestion(
+                        "What needs my attention next?"
+                )
+        );
 
         return view;
+    }
+
+    private void sendSuggestion(String message) {
+
+        etMessage.setText(message);
+
+        sendMessage();
     }
 
     private void sendMessage() {
@@ -73,11 +115,19 @@ public class AIChatFragment extends Fragment {
             return;
         }
 
+        // ADD USER MESSAGE
         addUserMessage(message);
 
+        // CLEAR INPUT
         etMessage.setText("");
 
+        // DISABLE SEND BUTTON
         btnSend.setEnabled(false);
+
+        // SHOW THINKING INDICATOR
+        showTypingIndicator();
+
+        scrollToBottom();
 
         ApiService apiService =
                 RetrofitClient
@@ -101,6 +151,10 @@ public class AIChatFragment extends Fragment {
                     return;
                 }
 
+                // REMOVE THINKING INDICATOR
+                removeTypingIndicator();
+
+                // ENABLE SEND BUTTON
                 btnSend.setEnabled(true);
 
                 if (response.isSuccessful()
@@ -109,16 +163,27 @@ public class AIChatFragment extends Fragment {
                     String reply =
                             response.body().getReply();
 
-                    addAIMessage(reply);
+                    if (reply != null
+                            && !reply.isBlank()) {
+
+                        addAIMessage(reply);
+
+                    } else {
+
+                        addAIMessage(
+                                "Antici AI returned an empty response."
+                        );
+                    }
 
                 } else {
 
                     addAIMessage(
-                            "Sorry, I couldn't process your request. "
-                                    + "Server error: "
-                                    + response.code()
+                            "Antici AI is temporarily unavailable. "
+                                    + "Please try again in a moment."
                     );
                 }
+
+                scrollToBottom();
             }
 
             @Override
@@ -130,44 +195,52 @@ public class AIChatFragment extends Fragment {
                     return;
                 }
 
+                // REMOVE THINKING INDICATOR
+                removeTypingIndicator();
+
+                // ENABLE SEND BUTTON
                 btnSend.setEnabled(true);
 
                 addAIMessage(
-                        "I couldn't connect to the Antici AI server. "
-                                + "Please make sure the backend is running."
+                        "I couldn't connect to Antici AI. "
+                                + "Please check your connection "
+                                + "and try again."
                 );
+
+                scrollToBottom();
 
                 Toast.makeText(
                         requireContext(),
-                        "Network error: " + t.getMessage(),
+                        "Network error",
                         Toast.LENGTH_LONG
                 ).show();
             }
         });
     }
 
-    private void addUserMessage(String message) {
+    private void showTypingIndicator() {
 
-        TextView textView =
+        if (typingIndicator != null) {
+            return;
+        }
+
+        typingIndicator =
                 new TextView(requireContext());
 
-        textView.setText(
-                "You\n\n" + message
+        typingIndicator.setText(
+                "✦  ANTICIAI\n\nThinking..."
         );
 
-        textView.setTextColor(
+        typingIndicator.setTextColor(
                 getResources().getColor(
                         android.R.color.white
                 )
         );
 
-        textView.setTextSize(13);
+        typingIndicator.setTextSize(13);
 
-        textView.setPadding(
-                17,
-                15,
-                17,
-                15
+        typingIndicator.setBackgroundResource(
+                R.drawable.bg_ai_message
         );
 
         LinearLayout.LayoutParams params =
@@ -178,6 +251,61 @@ public class AIChatFragment extends Fragment {
 
         params.setMargins(
                 0,
+                12,
+                35,
+                0
+        );
+
+        typingIndicator.setLayoutParams(params);
+
+        chatContainer.addView(
+                typingIndicator
+        );
+
+        scrollToBottom();
+    }
+
+    private void removeTypingIndicator() {
+
+        if (typingIndicator != null) {
+
+            chatContainer.removeView(
+                    typingIndicator
+            );
+
+            typingIndicator = null;
+        }
+    }
+
+    private void addUserMessage(String message) {
+
+        TextView textView =
+                new TextView(requireContext());
+
+        textView.setText(
+                "YOU\n\n" + message
+        );
+
+        textView.setTextColor(
+                getResources().getColor(
+                        android.R.color.white
+                )
+        );
+
+        textView.setTextSize(13);
+
+        textView.setBackgroundResource(
+                R.drawable.bg_user_message
+        );
+
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+        params.setMargins(
+                35,
                 12,
                 0,
                 0
@@ -205,11 +333,8 @@ public class AIChatFragment extends Fragment {
 
         textView.setTextSize(13);
 
-        textView.setPadding(
-                17,
-                15,
-                17,
-                15
+        textView.setBackgroundResource(
+                R.drawable.bg_ai_message
         );
 
         LinearLayout.LayoutParams params =
@@ -221,7 +346,7 @@ public class AIChatFragment extends Fragment {
         params.setMargins(
                 0,
                 12,
-                0,
+                35,
                 0
         );
 
@@ -229,4 +354,18 @@ public class AIChatFragment extends Fragment {
 
         chatContainer.addView(textView);
     }
+
+    private void scrollToBottom() {
+
+        if (chatScrollView == null) {
+            return;
+        }
+
+        chatScrollView.post(() ->
+                chatScrollView.fullScroll(
+                        View.FOCUS_DOWN
+                )
+        );
+    }
 }
+
