@@ -1,3 +1,4 @@
+
 package com.anticiai.backend.repository;
 
 import com.anticiai.backend.entity.StudySession;
@@ -6,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface StudySessionRepository extends JpaRepository<StudySession, Long> {
+public interface StudySessionRepository
+        extends JpaRepository<StudySession, Long> {
 
     List<StudySession> findByUser(User user);
 }
-
