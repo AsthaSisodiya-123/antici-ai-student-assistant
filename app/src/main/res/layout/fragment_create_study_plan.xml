@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080A12"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- HEADER -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:letterSpacing="0.15"
+            android:text="ANTICIAI"
+            android:textColor="#4D8DFF"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Your goals.\nYour study plan."
+            android:textColor="#F5F7FF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Build a personalized schedule around your subjects, exam dates and available time."
+            android:textColor="#858DA5"
+            android:textSize="13sp"
+            android:lineSpacingExtra="3dp" />
+
+        <!-- PERSONALIZATION CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_prediction_card"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✦  PERSONALIZED PLANNER"
+                android:textColor="#AFC7FF"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Tell us what you need to study"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Your inputs will be used to build your study schedule."
+                android:textColor="#A5ADC2"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- SUBJECTS -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="01  /  YOUR SUBJECTS"
+            android:textColor="#4D8DFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="What are you preparing for?"
+            android:textColor="#F5F7FF"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:hint="Enter one subject per line"
+            app:boxBackgroundColor="#111522"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:boxStrokeColor="#4D8DFF"
+            app:hintTextColor="#858DA5">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSubjects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:minLines="3"
+                android:inputType="textMultiLine|textCapSentences"
+                android:textColor="#F5F7FF"
+                android:textColorHint="#69738D"
+                android:hint="DBMS&#10;Java&#10;Operating Systems" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- EXAM DATES -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="02  /  YOUR DEADLINES"
+            android:textColor="#4D8DFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="When are your exams?"
+            android:textColor="#F5F7FF"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Optional. Enter dates in the same order as your subjects, using yyyy-MM-dd."
+            android:textColor="#858DA5"
+            android:textSize="12sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Exam dates, one per line"
+            app:boxBackgroundColor="#111522"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:boxStrokeColor="#4D8DFF"
+            app:hintTextColor="#858DA5">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etExamDates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:minLines="3"
+                android:inputType="textMultiLine"
+                android:textColor="#F5F7FF"
+                android:textColorHint="#69738D"
+                android:hint="2026-11-10&#10;2026-11-15&#10;2026-11-20" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- DIFFICULTY -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="03  /  YOUR PRIORITY"
+            android:textColor="#4D8DFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="How difficult are your subjects?"
+            android:textColor="#F5F7FF"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rgDifficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:checkedButton="@id/rbMedium">
+
+            <RadioButton
+                android:id="@+id/rbEasy"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="#4D8DFF"
+                android:paddingStart="8dp"
+                android:text="Easy — basic revision"
+                android:textColor="#F5F7FF" />
+
+            <RadioButton
+                android:id="@+id/rbMedium"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="#4D8DFF"
+                android:paddingStart="8dp"
+                android:text="Medium — balanced practice"
+                android:textColor="#F5F7FF" />
+
+            <RadioButton
+                android:id="@+id/rbHard"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="#4D8DFF"
+                android:paddingStart="8dp"
+                android:text="Hard — extra focus"
+                android:textColor="#F5F7FF" />
+        </RadioGroup>
+
+        <!-- DAILY AVAILABILITY -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="04  /  YOUR ROUTINE"
+            android:textColor="#4D8DFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Set your available time"
+            android:textColor="#F5F7FF"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Choose a realistic daily target you can maintain."
+            android:textColor="#858DA5"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Daily study time"
+            android:textColor="#AFC7FF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spDailyHours"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_main_card"
+            android:entries="@array/daily_study_hours"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Duration of each session"
+            android:textColor="#AFC7FF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spSessionMinutes"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_main_card"
+            android:entries="@array/study_session_lengths"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Break between sessions"
+            android:textColor="#AFC7FF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spBreakMinutes"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_main_card"
+            android:entries="@array/study_break_lengths"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+        <!-- GENERATE BUTTON -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGeneratePlan"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="30dp"
+            android:text="GENERATE MY STUDY PLAN  →"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:backgroundTint="#4D8DFF"
+            app:cornerRadius="14dp" />
+
+        <ProgressBar
+            android:id="@+id/progressGeneratePlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:indeterminateTint="#4D8DFF"
+            android:visibility="gone" />
+
+        <!-- GENERATED PLAN RESULT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✦  YOUR GENERATED PLAN"
+                android:textColor="#4D8DFF"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvGeneratedPlanResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Your personalized schedule will appear here."
+                android:textColor="#858DA5"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

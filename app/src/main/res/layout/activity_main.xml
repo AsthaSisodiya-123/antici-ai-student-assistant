@@ -7,10 +7,7 @@
     android:layout_height="match_parent"
     android:background="#080A12">
 
-
-    <!-- ========================================================= -->
-    <!-- MAIN FRAGMENT CONTAINER                                   -->
-    <!-- ========================================================= -->
+    <!-- MAIN FRAGMENT CONTAINER -->
 
     <FrameLayout
         android:id="@+id/mainContainer"
@@ -22,10 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <!-- ===================================================== -->
-        <!-- HOME SCREEN                                           -->
-        <!-- ===================================================== -->
+        <!-- HOME SCREEN -->
 
         <ScrollView
             android:id="@+id/mainScroll"
@@ -44,10 +38,7 @@
                 android:paddingEnd="24dp"
                 android:paddingBottom="25dp">
 
-
-                <!-- ================================================= -->
-                <!-- HEADER                                            -->
-                <!-- ================================================= -->
+                <!-- HEADER -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,8 +72,7 @@
 
                     </LinearLayout>
 
-
-                    <!-- Notification -->
+                    <!-- NOTIFICATION -->
 
                     <FrameLayout
                         android:id="@+id/notificationButton"
@@ -108,8 +98,7 @@
 
                     </FrameLayout>
 
-
-                    <!-- Profile -->
+                    <!-- PROFILE SHORTCUT -->
 
                     <TextView
                         android:id="@+id/profileButton"
@@ -125,10 +114,7 @@
 
                 </LinearLayout>
 
-
-                <!-- ================================================= -->
-                <!-- SUBTITLE                                           -->
-                <!-- ================================================= -->
+                <!-- SUBTITLE -->
 
                 <TextView
                     android:layout_width="match_parent"
@@ -138,10 +124,7 @@
                     android:textColor="#858DA5"
                     android:textSize="14sp" />
 
-
-                <!-- ================================================= -->
-                <!-- AI PREDICTION CARD                                 -->
-                <!-- ================================================= -->
+                <!-- AI PREDICTION CARD -->
 
                 <LinearLayout
                     android:id="@+id/predictionCard"
@@ -151,7 +134,6 @@
                     android:background="@drawable/bg_prediction_card"
                     android:orientation="vertical"
                     android:padding="20dp">
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -178,7 +160,6 @@
 
                     </LinearLayout>
 
-
                     <TextView
                         android:id="@+id/tvPrediction"
                         android:layout_width="match_parent"
@@ -189,7 +170,6 @@
                         android:textSize="21sp"
                         android:textStyle="bold" />
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -199,17 +179,13 @@
                         android:textColor="#A5ADC2"
                         android:textSize="13sp" />
 
-
-                    <!-- Prediction Data -->
+                    <!-- PREDICTION DATA -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="horizontal">
-
-
-                        <!-- Exam -->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -236,9 +212,6 @@
 
                         </LinearLayout>
 
-
-                        <!-- Preparation -->
-
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -264,9 +237,6 @@
 
                         </LinearLayout>
 
-
-                        <!-- Why -->
-
                         <TextView
                             android:id="@+id/btnWhy"
                             android:layout_width="wrap_content"
@@ -283,10 +253,7 @@
 
                 </LinearLayout>
 
-
-                <!-- ================================================= -->
-                <!-- TODAY                                              -->
-                <!-- ================================================= -->
+                <!-- TODAY -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -315,10 +282,7 @@
 
                 </LinearLayout>
 
-
-                <!-- ================================================= -->
-                <!-- SCHEDULE ITEM 1                                    -->
-                <!-- ================================================= -->
+                <!-- SCHEDULE ITEM 1 -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -378,10 +342,7 @@
 
                 </LinearLayout>
 
-
-                <!-- ================================================= -->
-                <!-- SCHEDULE ITEM 2                                    -->
-                <!-- ================================================= -->
+                <!-- SCHEDULE ITEM 2 -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -433,10 +394,7 @@
 
                 </LinearLayout>
 
-
-                <!-- ================================================= -->
-                <!-- YOUR PROGRESS                                      -->
-                <!-- ================================================= -->
+                <!-- YOUR PROGRESS -->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -447,15 +405,11 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="105dp"
                     android:layout_marginTop="13dp"
                     android:orientation="horizontal">
-
-
-                    <!-- Weekly Progress -->
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -484,13 +438,9 @@
 
                     </LinearLayout>
 
-
                     <Space
                         android:layout_width="10dp"
                         android:layout_height="1dp" />
-
-
-                    <!-- Study -->
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -521,10 +471,7 @@
 
                 </LinearLayout>
 
-
-                <!-- ================================================= -->
-                <!-- UPCOMING                                           -->
-                <!-- ================================================= -->
+                <!-- UPCOMING -->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -535,8 +482,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-
-                <!-- Assignment -->
+                <!-- ASSIGNMENT -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -579,8 +525,7 @@
 
                 </LinearLayout>
 
-
-                <!-- Exam -->
+                <!-- EXAM -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -629,10 +574,7 @@
 
     </FrameLayout>
 
-
-    <!-- ========================================================= -->
-    <!-- BOTTOM NAVIGATION                                         -->
-    <!-- ========================================================= -->
+    <!-- BOTTOM NAVIGATION -->
 
     <LinearLayout
         android:id="@+id/bottomNavigation"
@@ -646,7 +588,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-
         <!-- HOME -->
 
         <LinearLayout
@@ -655,7 +596,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -674,7 +617,6 @@
 
         </LinearLayout>
 
-
         <!-- SCHEDULE -->
 
         <LinearLayout
@@ -683,7 +625,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -702,7 +646,6 @@
 
         </LinearLayout>
 
-
         <!-- TASKS -->
 
         <LinearLayout
@@ -711,7 +654,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -730,7 +675,6 @@
 
         </LinearLayout>
 
-
         <!-- AI -->
 
         <LinearLayout
@@ -739,7 +683,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -758,6 +704,34 @@
 
         </LinearLayout>
 
+        <!-- STUDY PLAN -->
+
+        <LinearLayout
+            android:id="@+id/navStudyPlan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="◷"
+                android:textColor="#4D8DFF"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.04"
+                android:text="STUDY"
+                android:textColor="#69738D"
+                android:textSize="8sp" />
+
+        </LinearLayout>
 
         <!-- PROFILE -->
 
@@ -767,7 +741,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"

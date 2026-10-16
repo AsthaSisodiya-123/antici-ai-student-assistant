@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="daily_study_hours">
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>3 hours</item>
+        <item>4 hours</item>
+        <item>5 hours</item>
+        <item>6 hours</item>
+        <item>8 hours</item>
+    </string-array>
+
+    <string-array name="study_session_lengths">
+        <item>25 minutes</item>
+        <item>30 minutes</item>
+        <item>45 minutes</item>
+        <item>60 minutes</item>
+        <item>90 minutes</item>
+    </string-array>
+
+    <string-array name="study_break_lengths">
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>20 minutes</item>
+    </string-array>
+
+    <string-array name="study_subjects">
+        <item>DBMS</item>
+        <item>Java</item>
+        <item>Operating Systems</item>
+        <item>Computer Networks</item>
+        <item>Data Structures</item>
+        <item>Software Engineering</item>
+    </string-array>
+
+    <string-array name="study_timer_durations">
+        <item>25 minutes</item>
+        <item>30 minutes</item>
+        <item>45 minutes</item>
+        <item>60 minutes</item>
+    </string-array>
+</resources>

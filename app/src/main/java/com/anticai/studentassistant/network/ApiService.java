@@ -1,9 +1,16 @@
 package com.anticai.studentassistant.network;
 
+import java.util.List;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import com.google.gson.JsonObject;
+import retrofit2.Response;
+
 
 public interface ApiService {
 
@@ -25,8 +32,26 @@ public interface ApiService {
 
     @GET("api/study-plan")
     Call<StudyPlanResponse> getStudyPlan();
+
     @POST("api/ai/chat")
     Call<AIChatResponse> chat(
             @Body AIChatRequest request
     );
+
+    @POST("api/study-sessions/start")
+    Call<StudySessionResponse> startStudySession(
+            @Body StartStudySessionRequest request
+    );
+
+    @POST("api/study-sessions/{sessionId}/finish")
+    Call<StudySessionResponse> finishStudySession(
+            @Path("sessionId") long sessionId,
+            @Body FinishStudySessionRequest request
+    );
+
+    @GET("api/study-sessions")
+    Call<List<StudySessionResponse>> getStudySessions();
+
+    @POST("api/study-plan/generate")
+    Call<ResponseBody> generateStudyPlan(@Body JsonObject request);
 }
