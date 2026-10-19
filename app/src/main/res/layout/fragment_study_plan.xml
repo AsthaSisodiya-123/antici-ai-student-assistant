@@ -1,487 +1,642 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#080A12"
-    android:fillViewport="true">
-
-    <LinearLayout
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_height="match_parent"
+        android:background="#080A12"
+        android:fillViewport="true">
 
-        <!-- HEADER -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="ANTICIAI"
-            android:textColor="#4D8DFF"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Study Plan."
-            android:textColor="#F5F7FF"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="Choose what to prepare and focus on one session at a time."
-            android:textColor="#858DA5"
-            android:textSize="13sp" />
-
-        <!-- PLAN SUMMARY -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/bg_prediction_card"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="24dp">
+
+            <!-- HEADER -->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="✦ AI STUDY PLAN"
-                android:textColor="#AFC7FF"
-                android:textSize="10sp"
+                android:layout_marginTop="15dp"
+                android:letterSpacing="0.15"
+                android:text="ANTICIAI  /  ACADEMIC PLANNER"
+                android:textColor="#4D8DFF"
+                android:textSize="9sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvPlanTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="Study Plan."
+                android:textColor="#F5F7FF"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Your next step toward exam success."
+                android:textColor="#858DA5"
+                android:textSize="12sp" />
+
+            <!-- SUMMARY -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="115dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_prediction_card"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ACTIVE PLANS"
+                        android:textColor="#858DA5"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvActivePlans"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="4"
+                        android:textColor="#F5F7FF"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Plans in progress"
+                        android:textColor="#69738D"
+                        android:textSize="9sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="115dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_prediction_card"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STUDY TODAY"
+                        android:textColor="#858DA5"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvStudyTimeToday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="75 min"
+                        android:textColor="#4D8DFF"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Time invested today"
+                        android:textColor="#69738D"
+                        android:textSize="9sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- DAILY PROGRESS -->
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Your Exam Preparation"
-                android:textColor="#FFFFFF"
-                android:textSize="19sp"
-                android:textStyle="bold" />
+                android:background="@drawable/bg_main_card"
+                android:orientation="vertical"
+                android:padding="17dp">
 
-            <TextView
-                android:id="@+id/tvPlanDescription"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Daily study goal"
+                        android:textColor="#F5F7FF"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDailyGoalProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="75 / 120 min"
+                        android:textColor="#4D8DFF"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressDailyGoal"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="14dp"
+                    android:max="120"
+                    android:progress="75"
+                    android:progressBackgroundTint="#252B3A"
+                    android:progressTint="#4D8DFF" />
+
+            </LinearLayout>
+
+            <!-- CREATE PLAN -->
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:text="Select a subject and topic to begin."
-                android:textColor="#A5ADC2"
-                android:textSize="12sp" />
-        </LinearLayout>
+                android:layout_marginTop="26dp"
+                android:background="@drawable/bg_prediction_card"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-        <!-- PERSONALIZED PREPARATION -->
-        <LinearLayout
-            android:id="@+id/layoutPreparation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="vertical"
-            android:padding="18dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Create your preparation plan"
+                    android:textColor="#F5F7FF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Choose your subject, topic, difficulty, exam date and daily study time."
+                    android:textColor="#858DA5"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="SUBJECT"
+                    android:textColor="#858DA5"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etPlanSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_main_card"
+                    android:hint="e.g. Database Management Systems"
+                    android:inputType="textCapWords"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
+                    android:singleLine="true"
+                    android:textColor="#F5F7FF"
+                    android:textColorHint="#69738D"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="TOPIC"
+                    android:textColor="#858DA5"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etPlanTopic"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_main_card"
+                    android:hint="e.g. Normalization"
+                    android:inputType="textCapSentences"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
+                    android:singleLine="true"
+                    android:textColor="#F5F7FF"
+                    android:textColorHint="#69738D"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="DIFFICULTY"
+                    android:textColor="#858DA5"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spPlanDifficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_main_card"
+                    android:entries="@array/plan_difficulties"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="EXAM DATE"
+                    android:textColor="#858DA5"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etPlanExamDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_main_card"
+                    android:hint="YYYY-MM-DD"
+                    android:inputType="date"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
+                    android:singleLine="true"
+                    android:textColor="#F5F7FF"
+                    android:textColorHint="#69738D"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="DAILY STUDY TIME"
+                    android:textColor="#858DA5"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etPlanMinutes"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_main_card"
+                    android:hint="Minutes per day (e.g. 60)"
+                    android:inputType="number"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="13dp"
+                    android:singleLine="true"
+                    android:textColor="#F5F7FF"
+                    android:textColorHint="#69738D"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btnCreatePlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#4D8DFF"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="GENERATE STUDY PLAN  →"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.04" />
+
+                <ProgressBar
+                    android:id="@+id/progressCreatePlan"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:indeterminateTint="#4D8DFF"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvPlanStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#4D8DFF"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- TODAY'S PREPARATION -->
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PERSONALIZED PREPARATION"
-                android:textColor="#4D8DFF"
-                android:textSize="10sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="28dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Select subject"
-                android:textColor="#F5F7FF"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Today's preparation"
+                    android:textColor="#F5F7FF"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/spStudySubject"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="6dp"
-                android:backgroundTint="#4D8DFF"
-                android:entries="@array/study_subjects"
-                android:popupBackground="#151A2A" />
+                <TextView
+                    android:id="@+id/btnViewAllPlans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
+                    android:text="VIEW ALL  →"
+                    android:textColor="#4D8DFF"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="Select topic to prepare"
-                android:textColor="#F5F7FF"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+            </LinearLayout>
 
-            <Spinner
-                android:id="@+id/spStudyTopic"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="6dp"
-                android:backgroundTint="#4D8DFF"
-                android:popupBackground="#151A2A" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="Study duration"
-                android:textColor="#F5F7FF"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spStudyDuration"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="6dp"
-                android:backgroundTint="#4D8DFF"
-                android:entries="@array/study_timer_durations"
-                android:popupBackground="#151A2A" />
-
-            <TextView
-                android:id="@+id/tvSelectedPreparation"
+            <LinearLayout
+                android:id="@+id/layoutPlans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Subject: DBMS&#10;Topic: Normalization&#10;Duration: 25 minutes"
-                android:textColor="#A5ADC2"
-                android:textSize="12sp" />
+                android:orientation="vertical">
+
+                <!-- SAMPLE PLAN: replace with backend data -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_main_card"
+                    android:orientation="vertical"
+                    android:padding="17dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DBMS — Normalization"
+                        android:textColor="#F5F7FF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="25 min  ·  Medium difficulty"
+                        android:textColor="#858DA5"
+                        android:textSize="10sp" />
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="13dp"
+                        android:max="100"
+                        android:progress="65"
+                        android:progressBackgroundTint="#252B3A"
+                        android:progressTint="#4D8DFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_main_card"
+                    android:orientation="vertical"
+                    android:padding="17dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Operating Systems"
+                        android:textColor="#F5F7FF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="45 min  ·  Revision"
+                        android:textColor="#858DA5"
+                        android:textSize="10sp" />
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="13dp"
+                        android:max="100"
+                        android:progress="100"
+                        android:progressBackgroundTint="#252B3A"
+                        android:progressTint="#4D8DFF" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/btnStartSelectedPreparation"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_profile_circle"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="START THIS PREPARATION"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <!-- TODAY'S PLAN -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="TODAY'S PLAN"
-            android:textColor="#F5F7FF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <!-- SESSION 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="vertical"
-            android:padding="18dp">
-
-            <TextView
-                android:id="@+id/tvSession1Time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SESSION 1"
-                android:textColor="#4D8DFF"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSession1Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="DBMS Normalization"
-                android:textColor="#F5F7FF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSession1Description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Tap to select this session"
-                android:textColor="#858DA5"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <!-- SESSION 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="vertical"
-            android:padding="18dp">
-
-            <TextView
-                android:id="@+id/tvSession2Time"
+                android:id="@+id/tvPlansEmpty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SESSION 2"
-                android:textColor="#8B7CFF"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSession2Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="Practice Questions"
-                android:textColor="#F5F7FF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSession2Description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Tap to select this session"
-                android:textColor="#858DA5"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <!-- SESSION 3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="vertical"
-            android:padding="18dp">
-
-            <TextView
-                android:id="@+id/tvSession3Time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SESSION 3"
-                android:textColor="#69738D"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSession3Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="Quick Revision"
-                android:textColor="#F5F7FF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSession3Description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Tap to select this session"
-                android:textColor="#858DA5"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <!-- EXISTING START PLAN BUTTON -->
-        <TextView
-            android:id="@+id/btnStartPlan"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/bg_profile_circle"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="START STUDY PLAN"
-            android:textColor="#FFFFFF"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <!-- TIMER -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="FOCUS TIMER"
-                android:textColor="#858DA5"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvTimer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="25:00"
-                android:textColor="#4D8DFF"
-                android:textSize="44sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/btnPauseResume"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_profile_circle"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="PAUSE"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/btnFinishSession"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/bg_main_card"
-                android:clickable="true"
-                android:focusable="true"
                 android:gravity="center"
-                android:text="FINISH STUDY SESSION"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:textStyle="bold"
+                android:padding="22dp"
+                android:text="No study plans yet.\nCreate your first plan above."
+                android:textColor="#858DA5"
+                android:textSize="12sp"
                 android:visibility="gone" />
 
-        </LinearLayout>
-
-        <!-- STUDY HISTORY -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="YOUR PROGRESS"
-            android:textColor="#4D8DFF"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="Study History"
-            android:textColor="#F5F7FF"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <!-- HISTORY SUMMARY -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            <!-- FOCUS TIMER -->
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginTop="26dp"
+                android:background="@drawable/bg_prediction_card"
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TOTAL STUDY TIME"
+                    android:text="Focus timer"
+                    android:textColor="#F5F7FF"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Stay focused. Make every minute count."
                     android:textColor="#858DA5"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tvFocusSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:text="READY FOR YOUR NEXT SESSION?"
+                    android:textColor="#69738D"
                     android:textSize="9sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvTotalStudyTime"
+                    android:id="@+id/tvFocusTimer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="0 min"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:text="25:00"
+                    android:textColor="#4D8DFF"
+                    android:textSize="46sp"
                     android:textStyle="bold" />
-            </LinearLayout>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="12dp"
-                android:background="#293047" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                <ProgressBar
+                    android:id="@+id/progressFocusTimer"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="15dp"
+                    android:max="1500"
+                    android:progress="1500"
+                    android:progressBackgroundTint="#252B3A"
+                    android:progressTint="#4D8DFF" />
 
                 <TextView
+                    android:id="@+id/btnStartSession"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="22dp"
+                    android:background="#4D8DFF"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="▶   START SESSION"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="COMPLETED SESSIONS"
+                    android:layout_marginTop="9dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/btnPauseSession"
+                        android:layout_width="0dp"
+                        android:layout_height="46dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_main_card"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="Ⅱ   PAUSE"
+                        android:textColor="#F5F7FF"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnFinishSession"
+                        android:layout_width="0dp"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_main_card"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="✓   FINISH"
+                        android:textColor="#4D8DFF"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btnViewHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_main_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="VIEW STUDY HISTORY  →"
+                    android:textColor="#4D8DFF"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvHistorySummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:textColor="#858DA5"
-                    android:textSize="9sp"
-                    android:textStyle="bold" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/tvCompletedSessions"
+                <LinearLayout
+                    android:id="@+id/layoutHistory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="0"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+
             </LinearLayout>
+
+            <!-- FOOTER -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:text="ANTICIAI  ·  PLAN SMARTER. STUDY BETTER."
+                android:textColor="#525D75"
+                android:textSize="9sp"
+                android:letterSpacing="0.08" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvHistoryStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:text="Loading your study history..."
-            android:textColor="#858DA5"
-            android:textSize="12sp" />
-
-        <LinearLayout
-            android:id="@+id/layoutStudyHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="24dp" />
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
