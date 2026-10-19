@@ -1,76 +1,110 @@
 package com.anticiai.backend.dto.study;
 
-import java.util.List;
+import com.anticiai.backend.entity.StudyPlan;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class StudyPlanResponse {
 
-    private String title;
-    private String description;
-    private List<StudyPlanItem> sessions;
+    private Long id;
+    private String subject;
+    private String topic;
+    private String difficulty;
+    private LocalDate examDate;
+    private Integer targetMinutes;
+    private Integer completedMinutes;
+    private String status;
+    private LocalDateTime createdAt;
 
-    public StudyPlanResponse(
-            String title,
-            String description,
-            List<StudyPlanItem> sessions
-    ) {
-        this.title = title;
-        this.description = description;
-        this.sessions = sessions;
+    public StudyPlanResponse() {
     }
 
-    public String getTitle() {
-        return title;
+    public static StudyPlanResponse fromEntity(StudyPlan plan) {
+        StudyPlanResponse response = new StudyPlanResponse();
+
+        response.setId(plan.getId());
+        response.setSubject(plan.getSubject());
+        response.setTopic(plan.getTopic());
+        response.setDifficulty(plan.getDifficulty());
+        response.setExamDate(plan.getExamDate());
+        response.setTargetMinutes(plan.getTargetMinutes());
+        response.setCompletedMinutes(plan.getCompletedMinutes());
+        response.setStatus(plan.getStatus());
+        response.setCreatedAt(plan.getCreatedAt());
+
+        return response;
     }
 
-    public String getDescription() {
-        return description;
+    public Long getId() {
+        return id;
     }
 
-    public List<StudyPlanItem> getSessions() {
-        return sessions;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public static class StudyPlanItem {
+    public String getSubject() {
+        return subject;
+    }
 
-        private String time;
-        private Integer durationMinutes;
-        private String subject;
-        private String topic;
-        private String priority;
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
-        public StudyPlanItem(
-                String time,
-                Integer durationMinutes,
-                String subject,
-                String topic,
-                String priority
-        ) {
-            this.time = time;
-            this.durationMinutes = durationMinutes;
-            this.subject = subject;
-            this.topic = topic;
-            this.priority = priority;
-        }
+    public String getTopic() {
+        return topic;
+    }
 
-        public String getTime() {
-            return time;
-        }
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 
-        public Integer getDurationMinutes() {
-            return durationMinutes;
-        }
+    public String getDifficulty() {
+        return difficulty;
+    }
 
-        public String getSubject() {
-            return subject;
-        }
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
 
-        public String getTopic() {
-            return topic;
-        }
+    public LocalDate getExamDate() {
+        return examDate;
+    }
 
-        public String getPriority() {
-            return priority;
-        }
+    public void setExamDate(LocalDate examDate) {
+        this.examDate = examDate;
+    }
+
+    public Integer getTargetMinutes() {
+        return targetMinutes;
+    }
+
+    public void setTargetMinutes(Integer targetMinutes) {
+        this.targetMinutes = targetMinutes;
+    }
+
+    public Integer getCompletedMinutes() {
+        return completedMinutes;
+    }
+
+    public void setCompletedMinutes(Integer completedMinutes) {
+        this.completedMinutes = completedMinutes;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
-

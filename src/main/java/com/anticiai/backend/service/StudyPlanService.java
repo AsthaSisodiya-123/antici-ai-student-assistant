@@ -1,211 +1,104 @@
 package com.anticiai.backend.service;
 
+import com.anticiai.backend.dto.study.StudyPlanRequest;
 import com.anticiai.backend.dto.study.StudyPlanResponse;
-import com.anticiai.backend.entity.Exam;
-import com.anticiai.backend.entity.Task;
-import com.anticiai.backend.entity.User;
-import com.anticiai.backend.repository.ExamRepository;
-import com.anticiai.backend.repository.TaskRepository;
-import org.springframework.stereotype.Service;
+import com.anticiai.backend.entity.StudyPlan;
+import com.anticiai.backend.exception.StudyPlanNotFoundException;
+import com.anticiai.backend.mapper.StudyPlanMapper;
+import com.anticiai.backend.repository.StudyPlanRepository;
+import com.anticiai.backend.validation.StudyPlanValidator;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class StudyPlanService {
 
-    private final ExamRepository examRepository;
-    private final TaskRepository taskRepository;
+    private final StudyPlanRepository studyPlanRepository;
+    private final StudyPlanMapper studyPlanMapper;
+    private final StudyPlanValidator studyPlanValidator;
 
     public StudyPlanService(
-            ExamRepository examRepository,
-            TaskRepository taskRepository
-    ) {
-        this.examRepository = examRepository;
-        this.taskRepository = taskRepository;
+            StudyPlanRepository studyPlanRepository,
+            StudyPlanMapper studyPlanMapper,
+            StudyPlanValidator studyPlanValidator) {
+        this.studyPlanRepository = studyPlanRepository;
+        this.studyPlanMapper = studyPlanMapper;
+        this.studyPlanValidator = studyPlanValidator;
     }
 
-    public StudyPlanResponse generatePlan(User user) {
+    // Get all study plans
+    @Transactional(readOnly = true)
+    public List<StudyPlanResponse> getAllPlans() {
+        return studyPlanRepository.findAll()
+                .stream()
+                .map(studyPlanMapper::toResponse)
+                .collect(Collectors.toList());
+    }
 
-        List<Exam> exams = examRepository.findByUser(user);
-        List<Task> tasks = taskRepository.findByUser(user);
+    // Get active study plans
+    @Transactional(readOnly = true)
+    public List<StudyPlanResponse> getActivePlans() {
+        return studyPlanRepository
+                .findByStatusOrderByCreatedAtDesc("ACTIVE")
+                .stream()
+                .map(studyPlanMapper::toResponse)
+                .collect(Collectors.toList());
+    }
 
-        final List<StudyPlanResponse.StudyPlanItem> sessions =
-                new ArrayList<>();
+    // Get a study plan by ID
+    @Transactional(readOnly = true)
+    public StudyPlanResponse getPlanById(Long id) {
+        StudyPlan plan = studyPlanRepository.findById(id)
+                .orElseThrow(() -> new StudyPlanNotFoundException(id));
 
-        /*
-         * Priority 1:
-         * Upcoming exam.
-         */
-        exams.stream()
-                .sorted(
-                        Comparator.comparing(
-                                Exam::getExamDate,
-                                Comparator.nullsLast(
-                                        String::compareTo
-                                )
-                        )
-                )
-                .limit(1)
-                .forEach(exam -> {
+        return studyPlanMapper.toResponse(plan);
+    }
 
-                    String examSubject = exam.getSubject();
+    // Create a study plan
+    public StudyPlanResponse createPlan(StudyPlanRequest request) {
+        List<String> errors = studyPlanValidator.validate(request);
 
-                    String finalSubject =
-                            examSubject == null
-                                    || examSubject.isBlank()
-                                    ? "Exam Preparation"
-                                    : examSubject;
-
-                    String examTitle = exam.getTitle();
-
-                    String finalTopic =
-                            examTitle == null
-                                    || examTitle.isBlank()
-                                    ? "Exam Preparation"
-                                    : examTitle;
-
-                    sessions.add(
-                            new StudyPlanResponse.StudyPlanItem(
-                                    "07:00 PM",
-                                    45,
-                                    finalSubject,
-                                    finalTopic,
-                                    "HIGH"
-                            )
-                    );
-                });
-
-        /*
-         * Priority 2:
-         * Pending tasks.
-         */
-        tasks.stream()
-                .filter(task ->
-                        task.getStatus() == null
-                                || !task.getStatus()
-                                .equalsIgnoreCase("COMPLETED")
-                )
-                .sorted(
-                        Comparator.comparing(
-                                Task::getPriority,
-                                Comparator.nullsLast(
-                                        String::compareTo
-                                )
-                        )
-                )
-                .limit(2)
-                .forEach(task -> {
-
-                    String taskTitle = task.getTitle();
-
-                    String finalTopic =
-                            taskTitle == null
-                                    || taskTitle.isBlank()
-                                    ? "Pending Task"
-                                    : taskTitle;
-
-                    String taskDescription =
-                            task.getDescription();
-
-                    String finalDescription =
-                            taskDescription == null
-                                    || taskDescription.isBlank()
-                                    ? "Complete this pending task."
-                                    : taskDescription;
-
-                    String taskPriority =
-                            task.getPriority();
-
-                    String finalPriority =
-                            taskPriority == null
-                                    || taskPriority.isBlank()
-                                    ? "MEDIUM"
-                                    : taskPriority.toUpperCase();
-
-                    sessions.add(
-                            new StudyPlanResponse.StudyPlanItem(
-                                    "08:00 PM",
-                                    30,
-                                    "Task",
-                                    finalTopic
-                                            + " — "
-                                            + finalDescription,
-                                    finalPriority
-                            )
-                    );
-                });
-
-        /*
-         * Add revision session when needed.
-         */
-        if (sessions.size() < 3) {
-
-            sessions.add(
-                    new StudyPlanResponse.StudyPlanItem(
-                            "08:40 PM",
-                            20,
-                            "Revision",
-                            "Review today's concepts and notes",
-                            "MEDIUM"
-                    )
-            );
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(String.join(", ", errors));
         }
 
-        /*
-         * Limit to three sessions without
-         * reassigning the original list.
-         */
-        List<StudyPlanResponse.StudyPlanItem> finalSessions;
+        StudyPlan plan = studyPlanMapper.toEntity(request);
+        StudyPlan savedPlan = studyPlanRepository.save(plan);
 
-        if (sessions.size() > 3) {
-            finalSessions = new ArrayList<>(
-                    sessions.subList(0, 3)
-            );
-        } else {
-            finalSessions = new ArrayList<>(sessions);
+        return studyPlanMapper.toResponse(savedPlan);
+    }
+
+    // Update a study plan
+    public StudyPlanResponse updatePlan(
+            Long id,
+            StudyPlanRequest request) {
+
+        List<String> errors = studyPlanValidator.validate(request);
+
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(String.join(", ", errors));
         }
 
-        String title = "Personalized Study Plan";
+        StudyPlan existingPlan = studyPlanRepository.findById(id)
+                .orElseThrow(() -> new StudyPlanNotFoundException(id));
 
-        String description =
-                "A focused plan generated from your "
-                        + "exams and pending tasks.";
+        studyPlanMapper.updateEntity(existingPlan, request);
 
-        /*
-         * Find the nearest exam.
-         */
-        Exam nearestExam = exams.stream()
-                .filter(exam ->
-                        exam.getTitle() != null
-                                && !exam.getTitle().isBlank()
-                )
-                .min(
-                        Comparator.comparing(
-                                Exam::getExamDate,
-                                Comparator.nullsLast(
-                                        String::compareTo
-                                )
-                        )
-                )
-                .orElse(null);
+        StudyPlan updatedPlan = studyPlanRepository.save(existingPlan);
 
-        if (nearestExam != null) {
+        return studyPlanMapper.toResponse(updatedPlan);
+    }
 
-            title = nearestExam.getTitle()
-                    + " Preparation";
+    // Delete a study plan
+    public void deletePlan(Long id) {
+        StudyPlan plan = studyPlanRepository.findById(id)
+                .orElseThrow(() -> new StudyPlanNotFoundException(id));
 
-            description =
-                    "A focused preparation plan based "
-                            + "on your upcoming exam.";
-        }
-
-        return new StudyPlanResponse(
-                title,
-                description,
-                finalSessions
-        );
+        studyPlanRepository.delete(plan);
     }
 }
-
