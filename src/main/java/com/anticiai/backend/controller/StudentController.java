@@ -4,6 +4,7 @@ import com.anticiai.backend.dto.DashboardResponse;
 import com.anticiai.backend.entity.User;
 import com.anticiai.backend.repository.UserRepository;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +25,13 @@ public class StudentController {
 
     @GetMapping("/me")
     public ResponseEntity<Map<String, Object>> getCurrentStudent(
-            Authentication authentication
-    ) {
-        System.out.println("===== /api/student/me CALLED =====");
-        System.out.println("Authenticated user: " + authentication.getName());
+            Authentication authentication) {
+
+        if (authentication == null
+                || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .build();
+        }
 
         return ResponseEntity.ok(
                 Map.of(
@@ -39,31 +43,27 @@ public class StudentController {
 
     @GetMapping("/dashboard")
     public ResponseEntity<DashboardResponse> getDashboard(
-            Authentication authentication
-    ) {
-        System.out.println("===== /api/student/dashboard CALLED =====");
-        System.out.println("Authenticated user: " + authentication.getName());
+            Authentication authentication) {
+
+        if (authentication == null
+                || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .build();
+        }
 
         String email = authentication.getName();
-
-        System.out.println("Searching user: " + email);
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() ->
                         new RuntimeException("Student not found")
                 );
 
-        System.out.println("User found: " + user.getName());
-
-        DashboardResponse response =
-                new DashboardResponse(
-                        user.getId(),
-                        user.getName(),
-                        user.getEmail(),
-                        user.getRole()
-                );
-
-        System.out.println("Sending dashboard response");
+        DashboardResponse response = new DashboardResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole()
+        );
 
         return ResponseEntity.ok(response);
     }
