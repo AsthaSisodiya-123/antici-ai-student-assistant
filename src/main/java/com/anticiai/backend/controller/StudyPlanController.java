@@ -1,79 +1,100 @@
+
 package com.anticiai.backend.controller;
 
 import com.anticiai.backend.dto.study.StudyPlanRequest;
 import com.anticiai.backend.dto.study.StudyPlanResponse;
+import com.anticiai.backend.repository.UserRepository;
 import com.anticiai.backend.service.StudyPlanService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/study-plan")
 public class StudyPlanController {
 
-    private final StudyPlanService studyPlanService;
+    private final StudyPlanService service;
+    private final UserRepository userRepository;
 
-    public StudyPlanController(StudyPlanService studyPlanService) {
-        this.studyPlanService = studyPlanService;
+    public StudyPlanController(
+            StudyPlanService service,
+            UserRepository userRepository) {
+        this.service = service;
+        this.userRepository = userRepository;
     }
 
-    // Get all study plans
+    private Long currentUserId(Authentication authentication) {
+        if (authentication == null ||
+                authentication.getName() == null) {
+            throw new AccessDeniedException("Authentication required");
+        }
+
+        return userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() ->
+                        new AccessDeniedException("User not found"))
+                .getId();
+    }
+
     @GetMapping
-    public ResponseEntity<List<StudyPlanResponse>> getAllPlans() {
-        return ResponseEntity.ok(studyPlanService.getAllPlans());
-    }
-
-    // Get active study plans
-    @GetMapping("/active")
-    public ResponseEntity<List<StudyPlanResponse>> getActivePlans() {
-        return ResponseEntity.ok(studyPlanService.getActivePlans());
-    }
-
-    // Get a study plan by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<StudyPlanResponse> getPlanById(
-            @PathVariable Long id) {
-        return ResponseEntity.ok(studyPlanService.getPlanById(id));
-    }
-
-    // Create a study plan
-    @PostMapping
-    public ResponseEntity<StudyPlanResponse> createPlan(
-            @RequestBody StudyPlanRequest request) {
-        StudyPlanResponse response = studyPlanService.createPlan(request);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
-    // Generate a study plan from the supplied request data
-    @PostMapping("/generate")
-    public ResponseEntity<StudyPlanResponse> generateStudyPlan(
-            @RequestBody StudyPlanRequest request) {
-
-        StudyPlanResponse response = studyPlanService.createPlan(request);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
-    // Update a study plan
-    @PutMapping("/{id}")
-    public ResponseEntity<StudyPlanResponse> updatePlan(
-            @PathVariable Long id,
-            @RequestBody StudyPlanRequest request) {
-
+    public ResponseEntity<List<StudyPlanResponse>> getAll(
+            Authentication authentication) {
         return ResponseEntity.ok(
-                studyPlanService.updatePlan(id, request)
-        );
+                service.getAllPlans(currentUserId(authentication)));
     }
 
-    // Delete a study plan
+    @GetMapping("/active")
+    public ResponseEntity<List<StudyPlanResponse>> getActive(
+            Authentication authentication) {
+        return ResponseEntity.ok(
+                service.getActivePlans(currentUserId(authentication)));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<StudyPlanResponse> getById(
+            @PathVariable Long id,
+            Authentication authentication) {
+        return ResponseEntity.ok(
+                service.getPlanById(id, currentUserId(authentication)));
+    }
+
+    @PostMapping
+    public ResponseEntity<StudyPlanResponse> create(
+            @RequestBody StudyPlanRequest request,
+            Authentication authentication) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(service.createPlan(
+                        request, currentUserId(authentication)));
+    }
+
+    @PostMapping("/generate")
+    public ResponseEntity<StudyPlanResponse> generate(
+            @RequestBody StudyPlanRequest request,
+            Authentication authentication) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(service.createPlan(
+                        request, currentUserId(authentication)));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<StudyPlanResponse> update(
+            @PathVariable Long id,
+            @RequestBody StudyPlanRequest request,
+            Authentication authentication) {
+        return ResponseEntity.ok(
+                service.updatePlan(
+                        id, request, currentUserId(authentication)));
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePlan(@PathVariable Long id) {
-        studyPlanService.deletePlan(id);
+    public ResponseEntity<Void> delete(
+            @PathVariable Long id,
+            Authentication authentication) {
+        service.deletePlan(id, currentUserId(authentication));
         return ResponseEntity.noContent().build();
     }
 }

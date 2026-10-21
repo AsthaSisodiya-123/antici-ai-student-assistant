@@ -1,104 +1,119 @@
+
 package com.anticiai.backend.service;
 
 import com.anticiai.backend.dto.study.StudyPlanRequest;
 import com.anticiai.backend.dto.study.StudyPlanResponse;
 import com.anticiai.backend.entity.StudyPlan;
+import com.anticiai.backend.entity.User;
 import com.anticiai.backend.exception.StudyPlanNotFoundException;
 import com.anticiai.backend.mapper.StudyPlanMapper;
 import com.anticiai.backend.repository.StudyPlanRepository;
+import com.anticiai.backend.repository.UserRepository;
 import com.anticiai.backend.validation.StudyPlanValidator;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class StudyPlanService {
 
-    private final StudyPlanRepository studyPlanRepository;
-    private final StudyPlanMapper studyPlanMapper;
-    private final StudyPlanValidator studyPlanValidator;
+    private final StudyPlanRepository repository;
+    private final StudyPlanMapper mapper;
+    private final StudyPlanValidator validator;
+    private final UserRepository userRepository;
 
     public StudyPlanService(
-            StudyPlanRepository studyPlanRepository,
-            StudyPlanMapper studyPlanMapper,
-            StudyPlanValidator studyPlanValidator) {
-        this.studyPlanRepository = studyPlanRepository;
-        this.studyPlanMapper = studyPlanMapper;
-        this.studyPlanValidator = studyPlanValidator;
+            StudyPlanRepository repository,
+            StudyPlanMapper mapper,
+            StudyPlanValidator validator,
+            UserRepository userRepository) {
+        this.repository = repository;
+        this.mapper = mapper;
+        this.validator = validator;
+        this.userRepository = userRepository;
     }
 
-    // Get all study plans
-    @Transactional(readOnly = true)
-    public List<StudyPlanResponse> getAllPlans() {
-        return studyPlanRepository.findAll()
-                .stream()
-                .map(studyPlanMapper::toResponse)
-                .collect(Collectors.toList());
+    private User getUser(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("User not found"));
     }
 
-    // Get active study plans
-    @Transactional(readOnly = true)
-    public List<StudyPlanResponse> getActivePlans() {
-        return studyPlanRepository
-                .findByStatusOrderByCreatedAtDesc("ACTIVE")
-                .stream()
-                .map(studyPlanMapper::toResponse)
-                .collect(Collectors.toList());
-    }
-
-    // Get a study plan by ID
-    @Transactional(readOnly = true)
-    public StudyPlanResponse getPlanById(Long id) {
-        StudyPlan plan = studyPlanRepository.findById(id)
+    private StudyPlan getOwnedPlan(Long id, Long userId) {
+        return repository.findByIdAndUserId(id, userId)
                 .orElseThrow(() -> new StudyPlanNotFoundException(id));
-
-        return studyPlanMapper.toResponse(plan);
     }
 
-    // Create a study plan
-    public StudyPlanResponse createPlan(StudyPlanRequest request) {
-        List<String> errors = studyPlanValidator.validate(request);
-
+    private void validateRequest(StudyPlanRequest request) {
+        List<String> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             throw new IllegalArgumentException(String.join(", ", errors));
         }
-
-        StudyPlan plan = studyPlanMapper.toEntity(request);
-        StudyPlan savedPlan = studyPlanRepository.save(plan);
-
-        return studyPlanMapper.toResponse(savedPlan);
     }
 
-    // Update a study plan
+    @Transactional(readOnly = true)
+    public List<StudyPlanResponse> getAllPlans(Long userId) {
+        return repository.findByUserIdOrderByCreatedAtDesc(userId)
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudyPlanResponse> getActivePlans(Long userId) {
+        return repository
+                .findByUserIdAndStatusIgnoreCaseOrderByCreatedAtDesc(
+                        userId, "ACTIVE")
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public StudyPlanResponse getPlanById(Long id, Long userId) {
+        return mapper.toResponse(getOwnedPlan(id, userId));
+    }
+
+    public StudyPlanResponse createPlan(
+            StudyPlanRequest request, Long userId) {
+
+        validateRequest(request);
+
+        StudyPlan plan = mapper.toEntity(request);
+        plan.setId(null);
+        plan.setUser(getUser(userId));
+
+        if (plan.getCompletedMinutes() == null) {
+            plan.setCompletedMinutes(0);
+        }
+
+        if (plan.getStatus() == null || plan.getStatus().isBlank()) {
+            plan.setStatus("ACTIVE");
+        }
+
+        if (plan.getCreatedAt() == null) {
+            plan.setCreatedAt(java.time.LocalDateTime.now());
+        }
+
+        return mapper.toResponse(repository.save(plan));
+    }
+
     public StudyPlanResponse updatePlan(
-            Long id,
-            StudyPlanRequest request) {
+            Long id, StudyPlanRequest request, Long userId) {
 
-        List<String> errors = studyPlanValidator.validate(request);
+        validateRequest(request);
 
-        if (!errors.isEmpty()) {
-            throw new IllegalArgumentException(String.join(", ", errors));
-        }
+        StudyPlan plan = getOwnedPlan(id, userId);
+        mapper.updateEntity(plan, request);
 
-        StudyPlan existingPlan = studyPlanRepository.findById(id)
-                .orElseThrow(() -> new StudyPlanNotFoundException(id));
-
-        studyPlanMapper.updateEntity(existingPlan, request);
-
-        StudyPlan updatedPlan = studyPlanRepository.save(existingPlan);
-
-        return studyPlanMapper.toResponse(updatedPlan);
+        // Preserve the existing owner.
+        return mapper.toResponse(repository.save(plan));
     }
 
-    // Delete a study plan
-    public void deletePlan(Long id) {
-        StudyPlan plan = studyPlanRepository.findById(id)
-                .orElseThrow(() -> new StudyPlanNotFoundException(id));
-
-        studyPlanRepository.delete(plan);
+    public void deletePlan(Long id, Long userId) {
+        repository.delete(getOwnedPlan(id, userId));
     }
 }
