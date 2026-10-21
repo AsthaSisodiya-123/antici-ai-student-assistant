@@ -3,14 +3,12 @@ package com.anticai.studentassistant.fragments.ai;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -25,43 +23,31 @@ import androidx.fragment.app.Fragment;
 
 import com.anticai.studentassistant.R;
 import com.anticai.studentassistant.network.ApiService;
-import com.anticai.studentassistant.network.FinishStudySessionRequest;
 import com.anticai.studentassistant.network.RetrofitClient;
-import com.anticai.studentassistant.network.StartStudySessionRequest;
-import com.anticai.studentassistant.network.StudySessionResponse;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.anticai.studentassistant.network.StudyPlanRequest;
+import com.anticai.studentassistant.network.StudyPlanResponse;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Date;
 import java.util.Locale;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StudyPlanFragment extends Fragment {
 
-    private static final String PREFS_NAME = "anticai_saved_plans";
-    private static final String PREFS_PLANS_KEY = "plans";
-    private static final int DAILY_GOAL_MINUTES = 120;
-    private static final int DEFAULT_FOCUS_SECONDS = 25 * 60;
-
-    private ApiService api;
-
+    // Summary views
     private TextView tvActivePlans;
     private TextView tvStudyTimeToday;
     private TextView tvDailyGoalProgress;
     private ProgressBar progressDailyGoal;
 
+    // Create plan views
     private EditText etPlanSubject;
     private EditText etPlanTopic;
     private EditText etPlanExamDate;
@@ -71,10 +57,11 @@ public class StudyPlanFragment extends Fragment {
     private ProgressBar progressCreatePlan;
     private TextView tvPlanStatus;
 
-    private TextView btnViewAllPlans;
+    // Plan list
     private LinearLayout layoutPlans;
     private TextView tvPlansEmpty;
 
+    // Focus session views
     private TextView tvFocusSubject;
     private TextView tvFocusTimer;
     private ProgressBar progressFocusTimer;
@@ -82,33 +69,51 @@ public class StudyPlanFragment extends Fragment {
     private TextView btnPauseSession;
     private TextView btnFinishSession;
 
+    // History views
     private TextView btnViewHistory;
     private TextView tvHistorySummary;
     private LinearLayout layoutHistory;
 
-    private final Handler handler = new Handler(Looper.getMainLooper());
+    // API
+    private ApiService apiService;
 
-    private final List<JsonObject> plans = new ArrayList<>();
-    private final List<JsonObject> history = new ArrayList<>();
+    // Local session history
+    private SharedPreferences historyPreferences;
+    private static final String HISTORY_KEY = "study_session_history";
 
-    private Long currentSessionId;
-    private String currentSubject = "";
-    private int currentPlanIndex = -1;
+    // Timer
+    private final Handler timerHandler =
+            new Handler(Looper.getMainLooper());
 
-    private long elapsedSeconds;
-    private long lastTickMillis;
-    private int focusDurationSeconds = DEFAULT_FOCUS_SECONDS;
+    private int totalSeconds = 25 * 60;
+    private int remainingSeconds = 25 * 60;
 
-    private boolean timerRunning;
-    private boolean sessionStarting;
-    private boolean sessionFinishing;
-    private boolean showingAllPlans;
-    private boolean showingHistory;
+    private boolean isSessionRunning = false;
+    private boolean isSessionPaused = false;
+    private boolean isSessionFinished = false;
 
-    private Runnable timerRunnable;
+    private String sessionSubject = "Focus Session";
+
+    private final Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+
+            if (!isAdded() || !isSessionRunning || isSessionPaused) {
+                return;
+            }
+
+            if (remainingSeconds > 0) {
+                remainingSeconds--;
+                updateTimerDisplay();
+                timerHandler.postDelayed(this, 1000);
+            } else {
+                finishSession(true);
+            }
+        }
+    };
 
     public StudyPlanFragment() {
-        // Required empty constructor.
+        // Required empty constructor
     }
 
     @Nullable
@@ -116,95 +121,84 @@ public class StudyPlanFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState
-    ) {
-        return inflater.inflate(
+            @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(
                 R.layout.fragment_study_plan,
                 container,
                 false
         );
-    }
 
-    @Override
-    public void onViewCreated(
-            @NonNull View view,
-            @Nullable Bundle savedInstanceState
-    ) {
-        super.onViewCreated(view, savedInstanceState);
-
-        api = RetrofitClient.getInstance(requireContext())
-                .create(ApiService.class);
-
-        bindViews(view);
-        setupDifficultySpinner();
-        setupDatePicker();
-        setupTimer();
-
-        loadSavedPlans();
-        loadActivePlansFromServer();
-        loadStudyHistory();
-
-        updateDashboard();
-        updateTimerDisplay();
-        updateButtons();
-    }
-
-    private void bindViews(@NonNull View view) {
+        // Summary
         tvActivePlans = view.findViewById(R.id.tvActivePlans);
         tvStudyTimeToday = view.findViewById(R.id.tvStudyTimeToday);
         tvDailyGoalProgress = view.findViewById(R.id.tvDailyGoalProgress);
         progressDailyGoal = view.findViewById(R.id.progressDailyGoal);
 
+        // Plan form
         etPlanSubject = view.findViewById(R.id.etPlanSubject);
         etPlanTopic = view.findViewById(R.id.etPlanTopic);
         etPlanExamDate = view.findViewById(R.id.etPlanExamDate);
         etPlanMinutes = view.findViewById(R.id.etPlanMinutes);
         spPlanDifficulty = view.findViewById(R.id.spPlanDifficulty);
+
         btnCreatePlan = view.findViewById(R.id.btnCreatePlan);
         progressCreatePlan = view.findViewById(R.id.progressCreatePlan);
         tvPlanStatus = view.findViewById(R.id.tvPlanStatus);
 
-        btnViewAllPlans = view.findViewById(R.id.btnViewAllPlans);
+        // Plans list
         layoutPlans = view.findViewById(R.id.layoutPlans);
         tvPlansEmpty = view.findViewById(R.id.tvPlansEmpty);
 
+        // Focus session
         tvFocusSubject = view.findViewById(R.id.tvFocusSubject);
         tvFocusTimer = view.findViewById(R.id.tvFocusTimer);
         progressFocusTimer = view.findViewById(R.id.progressFocusTimer);
+
         btnStartSession = view.findViewById(R.id.btnStartSession);
         btnPauseSession = view.findViewById(R.id.btnPauseSession);
         btnFinishSession = view.findViewById(R.id.btnFinishSession);
 
+        // Study history
         btnViewHistory = view.findViewById(R.id.btnViewHistory);
         tvHistorySummary = view.findViewById(R.id.tvHistorySummary);
         layoutHistory = view.findViewById(R.id.layoutHistory);
 
+        historyPreferences = requireContext().getSharedPreferences(
+                "AnticiStudyHistory",
+                Context.MODE_PRIVATE
+        );
+
+        apiService = RetrofitClient.getApiService(requireContext());
+
+        setupDifficultySpinner();
+        setupExamDatePicker();
+        setupFocusSession();
+        setupStudyHistory();
+
+        progressCreatePlan.setVisibility(View.GONE);
+        tvPlanStatus.setVisibility(View.GONE);
+
         btnCreatePlan.setOnClickListener(v -> createPlan());
 
-        btnViewAllPlans.setOnClickListener(v -> {
-            showingAllPlans = !showingAllPlans;
-            renderPlans();
-        });
+        loadActivePlans();
 
-        btnStartSession.setOnClickListener(v -> startSession());
-        btnPauseSession.setOnClickListener(v -> togglePause());
-        btnFinishSession.setOnClickListener(v -> finishSession());
-
-        btnViewHistory.setOnClickListener(v -> {
-            showingHistory = !showingHistory;
-            renderHistory();
-        });
+        return view;
     }
 
-    private void setupDifficultySpinner() {
-        if (spPlanDifficulty == null || !isAdded()) return;
+    // ==========================================
+    // DIFFICULTY SPINNER
+    // ==========================================
 
-        ArrayAdapter<CharSequence> adapter =
-                ArrayAdapter.createFromResource(
-                        requireContext(),
-                        R.array.plan_difficulties,
-                        android.R.layout.simple_spinner_item
-                );
+    private void setupDifficultySpinner() {
+
+        String[] difficulties = {"Easy", "Medium", "Hard"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                difficulties
+        );
 
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
@@ -213,23 +207,29 @@ public class StudyPlanFragment extends Fragment {
         spPlanDifficulty.setAdapter(adapter);
     }
 
-    private void setupDatePicker() {
-        etPlanExamDate.setFocusable(false);
-        etPlanExamDate.setClickable(true);
+    // ==========================================
+    // EXAM DATE PICKER
+    // ==========================================
+
+    private void setupExamDatePicker() {
 
         etPlanExamDate.setOnClickListener(v -> {
+
             Calendar calendar = Calendar.getInstance();
 
             DatePickerDialog dialog = new DatePickerDialog(
                     requireContext(),
                     (picker, year, month, day) -> {
-                        etPlanExamDate.setText(String.format(
+
+                        String date = String.format(
                                 Locale.US,
                                 "%04d-%02d-%02d",
                                 year,
                                 month + 1,
                                 day
-                        ));
+                        );
+
+                        etPlanExamDate.setText(date);
                     },
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
@@ -244,65 +244,23 @@ public class StudyPlanFragment extends Fragment {
         });
     }
 
-    private void setupTimer() {
-        timerRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (!isAdded() || !timerRunning) return;
-
-                long now = System.currentTimeMillis();
-
-                elapsedSeconds += Math.max(
-                        0L,
-                        (now - lastTickMillis) / 1000L
-                );
-
-                lastTickMillis = now;
-
-                updateTimerDisplay();
-                handler.postDelayed(this, 1000L);
-            }
-        };
-    }
-
-    // ---------------------------------------------------------
-    // PLAN CREATION
-    // ---------------------------------------------------------
+    // ==========================================
+    // CREATE STUDY PLAN
+    // ==========================================
 
     private void createPlan() {
-        if (!isAdded()) return;
 
         String subject = etPlanSubject.getText().toString().trim();
         String topic = etPlanTopic.getText().toString().trim();
         String examDate = etPlanExamDate.getText().toString().trim();
         String minutesText = etPlanMinutes.getText().toString().trim();
 
-        if (subject.isEmpty()) {
-            etPlanSubject.setError("Enter a subject");
-            etPlanSubject.requestFocus();
-            return;
-        }
+        String difficulty = spPlanDifficulty.getSelectedItem() == null
+                ? "Easy"
+                : spPlanDifficulty.getSelectedItem().toString();
 
-        if (topic.isEmpty()) {
-            etPlanTopic.setError("Enter a topic");
-            etPlanTopic.requestFocus();
-            return;
-        }
-
-        if (examDate.isEmpty()) {
-            etPlanExamDate.setError("Select an exam date");
-            return;
-        }
-
-        try {
-            LocalDate date = LocalDate.parse(examDate);
-
-            if (date.isBefore(LocalDate.now())) {
-                etPlanExamDate.setError("Date cannot be in the past");
-                return;
-            }
-        } catch (DateTimeParseException e) {
-            etPlanExamDate.setError("Choose a valid date");
+        if (subject.isEmpty() || topic.isEmpty() || minutesText.isEmpty()) {
+            showMessage("Enter subject, topic and study minutes.");
             return;
         }
 
@@ -310,1144 +268,630 @@ public class StudyPlanFragment extends Fragment {
 
         try {
             minutes = Integer.parseInt(minutesText);
+
+            if (minutes <= 0) {
+                showMessage("Study minutes must be greater than zero.");
+                return;
+            }
+
         } catch (NumberFormatException e) {
-            etPlanMinutes.setError("Enter study time in minutes");
+            showMessage("Enter valid study minutes.");
             return;
         }
 
-        if (minutes < 5 || minutes > 1440) {
-            etPlanMinutes.setError("Enter between 5 and 1440 minutes");
+        if (!examDate.isEmpty() && !isValidDate(examDate)) {
+            showMessage("Select a valid exam date.");
             return;
         }
 
-        String difficulty = spPlanDifficulty.getSelectedItem() == null
-                ? "Medium"
-                : spPlanDifficulty.getSelectedItem().toString();
+        StudyPlanRequest request = new StudyPlanRequest(
+                subject,
+                topic,
+                difficulty,
+                examDate.isEmpty() ? null : examDate,
+                minutes
+        );
 
-        JsonObject request = new JsonObject();
-        request.addProperty("subject", subject);
-        request.addProperty("topic", topic);
-        request.addProperty("difficulty", difficulty);
-        request.addProperty("examDate", examDate);
-        request.addProperty("targetMinutes", minutes);
-        request.addProperty("dailyStudyMinutes", minutes);
+        btnCreatePlan.setEnabled(false);
+        progressCreatePlan.setVisibility(View.VISIBLE);
+        tvPlanStatus.setVisibility(View.VISIBLE);
+        tvPlanStatus.setText("Creating study plan...");
 
-        setCreateLoading(true);
-        setPlanStatus("Generating your study plan…", false);
+        apiService.createStudyPlan(request).enqueue(
+                new Callback<StudyPlanResponse>() {
 
-        api.generateStudyPlan(request).enqueue(
-                new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(
-                            @NonNull Call<ResponseBody> call,
-                            @NonNull Response<ResponseBody> response
-                    ) {
+                            @NonNull Call<StudyPlanResponse> call,
+                            @NonNull Response<StudyPlanResponse> response) {
+
                         if (!isAdded()) {
-                            closeBody(response.body());
-                            closeBody(response.errorBody());
                             return;
                         }
 
-                        setCreateLoading(false);
+                        btnCreatePlan.setEnabled(true);
+                        progressCreatePlan.setVisibility(View.GONE);
 
-                        if (!response.isSuccessful()) {
-                            closeBody(response.errorBody());
+                        if (response.isSuccessful() && response.body() != null) {
 
-                            setPlanStatus(
-                                    "Plan generation failed (HTTP "
-                                            + response.code() + ").",
-                                    true
+                            tvPlanStatus.setText(
+                                    "Study plan created successfully!"
                             );
-                            return;
+
+                            showMessage("Study plan saved successfully.");
+
+                            etPlanSubject.setText("");
+                            etPlanTopic.setText("");
+                            etPlanExamDate.setText("");
+                            etPlanMinutes.setText("");
+                            spPlanDifficulty.setSelection(0);
+
+                            loadActivePlans();
+
+                        } else {
+
+                            tvPlanStatus.setText(
+                                    "Unable to create study plan."
+                            );
+
+                            showMessage(
+                                    "Create failed. HTTP " + response.code()
+                            );
                         }
-
-                        String responseJson = readBody(response.body());
-
-                        JsonObject saved = makePlan(
-                                subject,
-                                topic,
-                                difficulty,
-                                examDate,
-                                minutes
-                        );
-
-                        if (!responseJson.isEmpty()) {
-                            try {
-                                JsonElement element =
-                                        JsonParser.parseString(responseJson);
-
-                                JsonObject serverPlan =
-                                        findPlanObject(element);
-
-                                if (serverPlan != null) {
-                                    for (String key : serverPlan.keySet()) {
-                                        saved.add(key, serverPlan.get(key));
-                                    }
-                                }
-                            } catch (Exception ignored) {
-                                // Ignore a non-JSON response.
-                            }
-                        }
-
-                        upsertPlan(saved);
-                        savePlans();
-                        hideKeyboard();
-                        clearPlanForm();
-                        renderPlans();
-                        updateDashboard();
-
-                        setPlanStatus(
-                                "Your study plan is ready.",
-                                false
-                        );
-
-                        showToast("Study plan created successfully.");
-
-                        // Refresh backend plans after creating a plan.
-                        loadActivePlansFromServer();
                     }
 
                     @Override
                     public void onFailure(
-                            @NonNull Call<ResponseBody> call,
-                            @NonNull Throwable t
-                    ) {
-                        if (!isAdded()) return;
+                            @NonNull Call<StudyPlanResponse> call,
+                            @NonNull Throwable t) {
 
-                        setCreateLoading(false);
+                        if (!isAdded()) {
+                            return;
+                        }
 
-                        setPlanStatus(
-                                "Could not connect to the server. "
-                                        + safeMessage(t),
-                                true
-                        );
+                        btnCreatePlan.setEnabled(true);
+                        progressCreatePlan.setVisibility(View.GONE);
+                        tvPlanStatus.setText("Connection failed.");
+
+                        showMessage("Network error: " + t.getMessage());
                     }
                 }
         );
     }
 
-    private JsonObject makePlan(
-            String subject,
-            String topic,
-            String difficulty,
-            String examDate,
-            int minutes
-    ) {
-        JsonObject plan = new JsonObject();
-
-        plan.addProperty("id", "local_" + System.currentTimeMillis());
-        plan.addProperty("subject", subject);
-        plan.addProperty("topic", topic);
-        plan.addProperty("difficulty", difficulty);
-        plan.addProperty("examDate", examDate);
-        plan.addProperty("targetMinutes", minutes);
-        plan.addProperty("durationMinutes", minutes);
-        plan.addProperty("completedMinutes", 0);
-        plan.addProperty("completed", false);
-        plan.addProperty("status", "ACTIVE");
-        plan.addProperty("createdAt", System.currentTimeMillis());
-
-        return plan;
-    }
-
-    private JsonObject findPlanObject(JsonElement element) {
-        if (element == null || element.isJsonNull()) return null;
-
-        if (element.isJsonObject()) {
-            JsonObject object = element.getAsJsonObject();
-
-            if (object.has("subject") || object.has("topic")) {
-                return object;
-            }
-
-            String[] possibleKeys = {
-                    "plan", "data", "studyPlan", "result"
-            };
-
-            for (String key : possibleKeys) {
-                if (object.has(key)) {
-                    JsonObject found = findPlanObject(object.get(key));
-
-                    if (found != null) return found;
-                }
-            }
-        }
-
-        if (element.isJsonArray()) {
-            JsonArray array = element.getAsJsonArray();
-
-            for (JsonElement item : array) {
-                JsonObject found = findPlanObject(item);
-
-                if (found != null) return found;
-            }
-        }
-
-        return null;
-    }
-
-    private void upsertPlan(JsonObject newPlan) {
-        String id = string(newPlan, "id");
-
-        for (int i = 0; i < plans.size(); i++) {
-            if (!id.isEmpty()
-                    && id.equals(string(plans.get(i), "id"))) {
-                plans.set(i, newPlan);
-                return;
-            }
-        }
-
-        plans.add(0, newPlan);
-    }
-
-    private void clearPlanForm() {
-        etPlanSubject.setText("");
-        etPlanTopic.setText("");
-        etPlanExamDate.setText("");
-        etPlanMinutes.setText("");
-        spPlanDifficulty.setSelection(0);
-    }
-
-    private void setCreateLoading(boolean loading) {
-        if (btnCreatePlan == null) return;
-
-        btnCreatePlan.setEnabled(!loading);
-        btnCreatePlan.setAlpha(loading ? 0.65f : 1f);
-
-        btnCreatePlan.setText(
-                loading ? "GENERATING PLAN…" : "GENERATE STUDY PLAN  →"
-        );
-
-        progressCreatePlan.setVisibility(
-                loading ? View.VISIBLE : View.GONE
-        );
-    }
-
-    private void setPlanStatus(String message, boolean error) {
-        tvPlanStatus.setText(message);
-
-        tvPlanStatus.setTextColor(
-                Color.parseColor(error ? "#FF8585" : "#4D8DFF")
-        );
-
-        tvPlanStatus.setVisibility(View.VISIBLE);
-    }
-
-    // ---------------------------------------------------------
-    // LOCAL PLAN STORAGE AND BACKEND LOADING
-    // ---------------------------------------------------------
-
-    private void loadSavedPlans() {
-        if (!isAdded()) return;
-
-        SharedPreferences preferences = requireContext()
-                .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-
-        String json = preferences.getString(PREFS_PLANS_KEY, "[]");
-
-        plans.clear();
+    private boolean isValidDate(String date) {
 
         try {
-            JsonArray array = JsonParser.parseString(json).getAsJsonArray();
+            SimpleDateFormat format =
+                    new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
-            for (JsonElement element : array) {
-                if (element.isJsonObject()) {
-                    plans.add(element.getAsJsonObject());
-                }
-            }
-        } catch (Exception ignored) {
-            plans.clear();
+            format.setLenient(false);
+
+            Date parsed = format.parse(date);
+
+            return parsed != null && format.format(parsed).equals(date);
+
+        } catch (Exception e) {
+            return false;
         }
-
-        renderPlans();
     }
 
-    private void loadActivePlansFromServer() {
-        if (!isAdded() || api == null) return;
+    // ==========================================
+    // LOAD ACTIVE STUDY PLANS
+    // ==========================================
 
-        api.getActiveStudyPlans().enqueue(
-                new Callback<List<JsonObject>>() {
+    private void loadActivePlans() {
+
+        apiService.getActiveStudyPlans().enqueue(
+                new Callback<java.util.List<StudyPlanResponse>>() {
+
                     @Override
                     public void onResponse(
-                            @NonNull Call<List<JsonObject>> call,
-                            @NonNull Response<List<JsonObject>> response
-                    ) {
-                        if (!isAdded()) return;
+                            @NonNull Call<java.util.List<StudyPlanResponse>> call,
+                            @NonNull Response<java.util.List<StudyPlanResponse>> response) {
 
-                        if (!response.isSuccessful()
-                                || response.body() == null) {
+                        if (!isAdded()) {
                             return;
                         }
 
-                        for (JsonObject serverPlan : response.body()) {
-                            if (serverPlan == null) continue;
+                        if (response.isSuccessful() && response.body() != null) {
 
-                            JsonObject plan = serverPlan.deepCopy();
+                            java.util.List<StudyPlanResponse> plans =
+                                    response.body();
 
-                            if (!plan.has("completed")
-                                    || plan.get("completed").isJsonNull()) {
-                                plan.addProperty(
-                                        "completed",
-                                        "COMPLETED".equalsIgnoreCase(
-                                                string(plan, "status")
-                                        )
-                                );
+                            tvActivePlans.setText(
+                                    String.valueOf(plans.size())
+                            );
+
+                            layoutPlans.removeAllViews();
+
+                            boolean empty = plans.isEmpty();
+
+                            tvPlansEmpty.setVisibility(
+                                    empty ? View.VISIBLE : View.GONE
+                            );
+
+                            layoutPlans.setVisibility(
+                                    empty ? View.GONE : View.VISIBLE
+                            );
+
+                            for (StudyPlanResponse plan : plans) {
+                                addPlanCard(plan);
                             }
 
-                            if (!plan.has("targetMinutes")
-                                    || plan.get("targetMinutes").isJsonNull()) {
-                                plan.addProperty(
-                                        "targetMinutes",
-                                        number(plan, "durationMinutes", 25)
-                                );
-                            }
-
-                            // Merge backend plans with local plans by ID.
-                            upsertPlan(plan);
+                        } else {
+                            showMessage(
+                                    "Unable to load plans. HTTP "
+                                            + response.code()
+                            );
                         }
-
-                        savePlans();
-                        renderPlans();
-                        updateDashboard();
                     }
 
                     @Override
                     public void onFailure(
-                            @NonNull Call<List<JsonObject>> call,
-                            @NonNull Throwable t
-                    ) {
-                        // Keep locally saved plans visible if the server
-                        // cannot be reached.
+                            @NonNull Call<java.util.List<StudyPlanResponse>> call,
+                            @NonNull Throwable t) {
+
+                        if (isAdded()) {
+                            showMessage("Could not load plans: " + t.getMessage());
+                        }
                     }
                 }
         );
     }
 
-    private void savePlans() {
-        if (!isAdded()) return;
+    private void addPlanCard(StudyPlanResponse plan) {
 
-        JsonArray array = new JsonArray();
+        TextView card = new TextView(requireContext());
 
-        for (JsonObject plan : plans) {
-            array.add(plan);
-        }
+        String subject = plan.getSubject() == null
+                ? "Untitled subject" : plan.getSubject();
 
-        requireContext()
-                .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-                .edit()
-                .putString(PREFS_PLANS_KEY, array.toString())
-                .apply();
-    }
+        String topic = plan.getTopic() == null
+                ? "Not specified" : plan.getTopic();
 
-    private void renderPlans() {
-        if (layoutPlans == null || !isAdded()) return;
+        String difficulty = plan.getDifficulty() == null
+                ? "Not specified" : plan.getDifficulty();
 
-        layoutPlans.removeAllViews();
+        String examDate = plan.getExamDate() == null
+                || plan.getExamDate().trim().isEmpty()
+                ? "Not set" : plan.getExamDate();
 
-        tvPlansEmpty.setVisibility(
-                plans.isEmpty() ? View.VISIBLE : View.GONE
+        Integer targetMinutes = plan.getTargetMinutes();
+
+        String target = targetMinutes == null
+                ? "Not set" : targetMinutes + " minutes";
+
+        card.setText(
+                subject
+                        + "\nTopic: " + topic
+                        + "\nDifficulty: " + difficulty
+                        + "\nExam date: " + examDate
+                        + "\nDaily target: " + target
         );
 
-        int visibleCount = showingAllPlans
-                ? plans.size()
-                : Math.min(plans.size(), 3);
+        card.setTextColor(0xFFF5F7FF);
+        card.setTextSize(14);
+        card.setLineSpacing(dp(4), 1.0f);
+        card.setPadding(dp(16), dp(15), dp(16), dp(15));
+        card.setBackgroundResource(R.drawable.bg_main_card);
 
-        for (int i = 0; i < visibleCount; i++) {
-            final int index = i;
-            JsonObject plan = plans.get(i);
-
-            LinearLayout card = new LinearLayout(requireContext());
-            card.setOrientation(LinearLayout.VERTICAL);
-            card.setPadding(dp(17), dp(16), dp(17), dp(16));
-            card.setBackgroundResource(R.drawable.bg_main_card);
-
-            LinearLayout.LayoutParams cardParams =
-                    new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT
-                    );
-
-            cardParams.bottomMargin = dp(9);
-            card.setLayoutParams(cardParams);
-
-            TextView title = makeText(
-                    string(plan, "subject") + " — " + string(plan, "topic"),
-                    14,
-                    "#F5F7FF",
-                    true
-            );
-
-            card.addView(title);
-
-            String details = number(
-                    plan,
-                    "targetMinutes",
-                    number(plan, "durationMinutes", 25)
-            ) + " min"
-                    + "  ·  "
-                    + stringOr(plan, "difficulty", "Medium")
-                    + " difficulty";
-
-            TextView subtitle = makeText(
-                    details,
-                    10,
-                    "#858DA5",
-                    false
-            );
-
-            LinearLayout.LayoutParams subtitleParams =
-                    new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT
-                    );
-
-            subtitleParams.topMargin = dp(7);
-            subtitle.setLayoutParams(subtitleParams);
-            card.addView(subtitle);
-
-            int target = Math.max(
-                    1,
-                    number(
-                            plan,
-                            "targetMinutes",
-                            number(plan, "durationMinutes", 25)
-                    )
-            );
-
-            int completed = Math.max(
-                    0,
-                    number(plan, "completedMinutes", 0)
-            );
-
-            int progress = isCompleted(plan)
-                    ? 100
-                    : Math.min(100, completed * 100 / target);
-
-            ProgressBar bar = new ProgressBar(
-                    requireContext(),
-                    null,
-                    android.R.attr.progressBarStyleHorizontal
-            );
-
-            bar.setMax(100);
-            bar.setProgress(progress);
-
-            bar.setProgressTintList(
-                    android.content.res.ColorStateList.valueOf(
-                            Color.parseColor("#4D8DFF")
-                    )
-            );
-
-            bar.setProgressBackgroundTintList(
-                    android.content.res.ColorStateList.valueOf(
-                            Color.parseColor("#252B3A")
-                    )
-            );
-
-            LinearLayout.LayoutParams barParams =
-                    new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            dp(4)
-                    );
-
-            barParams.topMargin = dp(13);
-            bar.setLayoutParams(barParams);
-            card.addView(bar);
-
-            TextView status = makeText(
-                    (isCompleted(plan) ? "COMPLETED" : "ACTIVE")
-                            + "  ·  Exam: "
-                            + stringOr(plan, "examDate", "Not set"),
-                    10,
-                    isCompleted(plan) ? "#61DDAA" : "#858DA5",
-                    true
-            );
-
-            LinearLayout.LayoutParams statusParams =
-                    new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT
-                    );
-
-            statusParams.topMargin = dp(9);
-            status.setLayoutParams(statusParams);
-            card.addView(status);
-
-            TextView action = makeText(
-                    isCompleted(plan)
-                            ? "COMPLETED"
-                            : "STUDY THIS PLAN  →",
-                    10,
-                    "#4D8DFF",
-                    true
-            );
-
-            action.setGravity(android.view.Gravity.CENTER);
-            action.setPadding(0, dp(12), 0, dp(4));
-
-            action.setOnClickListener(v -> {
-                if (isCompleted(plan)) {
-                    showToast("This plan is already completed.");
-                    return;
-                }
-
-                currentPlanIndex = index;
-                currentSubject = string(plan, "subject");
-
-                tvFocusSubject.setText(
-                        (currentSubject + " — " + string(plan, "topic"))
-                                .toUpperCase(Locale.getDefault())
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
                 );
 
-                focusDurationSeconds = Math.max(
-                        60,
-                        number(
-                                plan,
-                                "targetMinutes",
-                                number(plan, "durationMinutes", 25)
-                        ) * 60
-                );
+        params.bottomMargin = dp(10);
 
-                elapsedSeconds = 0;
-                updateTimerDisplay();
-                startSession();
-            });
-
-            card.addView(action);
-            layoutPlans.addView(card);
-        }
-
-        btnViewAllPlans.setText(
-                showingAllPlans ? "SHOW LESS  ↑" : "VIEW ALL  →"
-        );
-
-        updateDashboard();
+        layoutPlans.addView(card, params);
     }
 
-    // ---------------------------------------------------------
-    // FOCUS TIMER AND BACKEND SESSIONS
-    // ---------------------------------------------------------
+    // ==========================================
+    // FOCUS SESSION
+    // ==========================================
+
+    private void setupFocusSession() {
+
+        tvFocusSubject.setText("Ready to focus?");
+
+        btnStartSession.setText("Start Session");
+        btnPauseSession.setText("Pause Session");
+        btnFinishSession.setText("Finish Session");
+
+        btnPauseSession.setEnabled(false);
+        btnFinishSession.setEnabled(false);
+
+        updateTimerDisplay();
+
+        btnStartSession.setOnClickListener(v -> startSession());
+        btnPauseSession.setOnClickListener(v -> pauseSession());
+        btnFinishSession.setOnClickListener(v -> finishSession(false));
+    }
 
     private void startSession() {
-        if (!isAdded() || sessionStarting || sessionFinishing) return;
 
-        if (currentSessionId != null) {
-            showToast("A study session is already active.");
+        if (isSessionPaused) {
+
+            isSessionPaused = false;
+            isSessionRunning = true;
+
+            btnStartSession.setText("Resume Session");
+            btnPauseSession.setEnabled(true);
+            btnFinishSession.setEnabled(true);
+
+            tvFocusSubject.setText("Studying: " + sessionSubject);
+
+            timerHandler.removeCallbacks(timerRunnable);
+            timerHandler.postDelayed(timerRunnable, 1000);
+
             return;
         }
 
-        if (currentSubject.trim().isEmpty()) {
-            if (currentPlanIndex >= 0 && currentPlanIndex < plans.size()) {
-                currentSubject = string(
-                        plans.get(currentPlanIndex),
-                        "subject"
-                );
-            } else {
-                showToast("Choose a study plan first.");
-                return;
+        if (isSessionRunning) {
+            return;
+        }
+
+        int minutes = 25;
+
+        String minutesText = etPlanMinutes.getText().toString().trim();
+
+        if (!minutesText.isEmpty()) {
+            try {
+                minutes = Integer.parseInt(minutesText);
+            } catch (NumberFormatException ignored) {
+                minutes = 25;
             }
         }
 
-        final String subject = currentSubject;
-
-        sessionStarting = true;
-        updateButtons();
-
-        api.startStudySession(
-                new StartStudySessionRequest(subject)
-        ).enqueue(new Callback<StudySessionResponse>() {
-            @Override
-            public void onResponse(
-                    @NonNull Call<StudySessionResponse> call,
-                    @NonNull Response<StudySessionResponse> response
-            ) {
-                if (!isAdded()) return;
-
-                sessionStarting = false;
-                StudySessionResponse body = response.body();
-
-                if (response.isSuccessful()
-                        && body != null
-                        && body.getId() != null) {
-
-                    currentSessionId = body.getId();
-                    elapsedSeconds = 0;
-                    lastTickMillis = System.currentTimeMillis();
-                    timerRunning = true;
-
-                    handler.removeCallbacks(timerRunnable);
-                    handler.postDelayed(timerRunnable, 1000L);
-
-                    tvFocusSubject.setText(
-                            subject.toUpperCase(Locale.getDefault())
-                    );
-
-                    updateTimerDisplay();
-                    updateButtons();
-                    showToast("Focus session started.");
-                } else {
-                    updateButtons();
-
-                    showToast(
-                            "Could not start session. HTTP "
-                                    + response.code()
-                    );
-                }
-            }
-
-            @Override
-            public void onFailure(
-                    @NonNull Call<StudySessionResponse> call,
-                    @NonNull Throwable t
-            ) {
-                if (!isAdded()) return;
-
-                sessionStarting = false;
-                updateButtons();
-
-                showToast("Network error: " + safeMessage(t));
-            }
-        });
-    }
-
-    private void togglePause() {
-        if (currentSessionId == null || sessionFinishing) return;
-
-        if (timerRunning) {
-            elapsedSeconds += Math.max(
-                    0L,
-                    (System.currentTimeMillis() - lastTickMillis) / 1000L
-            );
-
-            timerRunning = false;
-            handler.removeCallbacks(timerRunnable);
-        } else {
-            timerRunning = true;
-            lastTickMillis = System.currentTimeMillis();
-
-            handler.removeCallbacks(timerRunnable);
-            handler.postDelayed(timerRunnable, 1000L);
+        if (minutes <= 0) {
+            minutes = 25;
         }
+
+        totalSeconds = minutes * 60;
+        remainingSeconds = totalSeconds;
+
+        sessionSubject = etPlanSubject.getText().toString().trim();
+
+        if (sessionSubject.isEmpty()) {
+            sessionSubject = "Focus Session";
+        }
+
+        isSessionRunning = true;
+        isSessionPaused = false;
+        isSessionFinished = false;
+
+        btnStartSession.setText("Resume Session");
+        btnPauseSession.setEnabled(true);
+        btnFinishSession.setEnabled(true);
+
+        tvFocusSubject.setText("Studying: " + sessionSubject);
 
         updateTimerDisplay();
-        updateButtons();
+
+        timerHandler.removeCallbacks(timerRunnable);
+        timerHandler.postDelayed(timerRunnable, 1000);
     }
 
-    private void finishSession() {
-        if (!isAdded() || currentSessionId == null || sessionFinishing) {
-            if (currentSessionId == null) {
-                showToast("Start a session first.");
-            }
+    private void pauseSession() {
+
+        if (!isSessionRunning) {
             return;
         }
 
-        if (timerRunning) {
-            elapsedSeconds += Math.max(
-                    0L,
-                    (System.currentTimeMillis() - lastTickMillis) / 1000L
-            );
+        isSessionRunning = false;
+        isSessionPaused = true;
+
+        timerHandler.removeCallbacks(timerRunnable);
+
+        btnStartSession.setText("Resume Session");
+        btnPauseSession.setEnabled(false);
+        btnFinishSession.setEnabled(true);
+
+        tvFocusSubject.setText("Session paused");
+
+        updateTimerDisplay();
+    }
+
+    private void finishSession(boolean completedNaturally) {
+
+        if (isSessionFinished) {
+            return;
         }
 
-        timerRunning = false;
-        handler.removeCallbacks(timerRunnable);
+        timerHandler.removeCallbacks(timerRunnable);
 
-        final long sessionId = currentSessionId;
+        isSessionRunning = false;
+        isSessionPaused = false;
+        isSessionFinished = true;
 
-        final int minutes = (int) Math.max(
-                1L,
-                (elapsedSeconds + 59L) / 60L
+        int elapsedSeconds = totalSeconds - remainingSeconds;
+
+        // Save this session to local history.
+        saveStudyHistory(
+                sessionSubject,
+                elapsedSeconds,
+                completedNaturally
         );
 
-        sessionFinishing = true;
+        btnStartSession.setText("Start Session");
+        btnPauseSession.setEnabled(false);
+        btnFinishSession.setEnabled(false);
+
+        if (completedNaturally) {
+
+            remainingSeconds = 0;
+            tvFocusSubject.setText("Session completed!");
+
+            showMessage("Great work! Your focus session is complete.");
+
+        } else {
+
+            tvFocusSubject.setText("Session finished");
+
+            showMessage(
+                    "Focus time: " + formatDuration(elapsedSeconds)
+            );
+        }
+
         updateTimerDisplay();
-        updateButtons();
 
-        api.finishStudySession(
-                sessionId,
-                new FinishStudySessionRequest(minutes)
-        ).enqueue(new Callback<StudySessionResponse>() {
-            @Override
-            public void onResponse(
-                    @NonNull Call<StudySessionResponse> call,
-                    @NonNull Response<StudySessionResponse> response
-            ) {
-                if (!isAdded()) return;
-
-                sessionFinishing = false;
-
-                if (response.isSuccessful()) {
-                    currentSessionId = null;
-                    timerRunning = false;
-
-                    if (currentPlanIndex >= 0
-                            && currentPlanIndex < plans.size()) {
-
-                        JsonObject plan = plans.get(currentPlanIndex);
-
-                        int oldMinutes = number(
-                                plan,
-                                "completedMinutes",
-                                0
-                        );
-
-                        plan.addProperty(
-                                "completedMinutes",
-                                oldMinutes + minutes
-                        );
-
-                        int target = number(
-                                plan,
-                                "targetMinutes",
-                                number(plan, "durationMinutes", 25)
-                        );
-
-                        if (oldMinutes + minutes >= target) {
-                            plan.addProperty("completed", true);
-                            plan.addProperty("status", "COMPLETED");
-                        }
-
-                        savePlans();
-                    }
-
-                    elapsedSeconds = 0;
-                    currentSubject = "";
-                    currentPlanIndex = -1;
-
-                    tvFocusSubject.setText(
-                            "READY FOR YOUR NEXT SESSION?"
-                    );
-
-                    focusDurationSeconds = DEFAULT_FOCUS_SECONDS;
-
-                    updateTimerDisplay();
-                    updateButtons();
-                    renderPlans();
-                    loadStudyHistory();
-
-                    showToast(
-                            "Study session saved: " + minutes + " min"
-                    );
-                } else {
-                    updateButtons();
-
-                    showToast(
-                            "Could not finish session. HTTP "
-                                    + response.code()
-                    );
-                }
-            }
-
-            @Override
-            public void onFailure(
-                    @NonNull Call<StudySessionResponse> call,
-                    @NonNull Throwable t
-            ) {
-                if (!isAdded()) return;
-
-                sessionFinishing = false;
-                updateButtons();
-
-                showToast("Network error: " + safeMessage(t));
-            }
-        });
+        // Refresh history immediately if it is open.
+        if (layoutHistory != null
+                && layoutHistory.getVisibility() == View.VISIBLE) {
+            loadStudyHistory();
+        }
     }
 
     private void updateTimerDisplay() {
-        if (tvFocusTimer == null) return;
 
-        long remaining = Math.max(
-                0,
-                focusDurationSeconds - elapsedSeconds
+        int minutes = remainingSeconds / 60;
+        int seconds = remainingSeconds % 60;
+
+        tvFocusTimer.setText(
+                String.format(
+                        Locale.getDefault(),
+                        "%02d:%02d",
+                        minutes,
+                        seconds
+                )
         );
 
-        long minutes = remaining / 60;
-        long seconds = remaining % 60;
-
-        tvFocusTimer.setText(String.format(
-                Locale.US,
-                "%02d:%02d",
-                minutes,
-                seconds
-        ));
-
         if (progressFocusTimer != null) {
-            progressFocusTimer.setMax(
-                    Math.max(1, focusDurationSeconds)
-            );
 
-            progressFocusTimer.setProgress((int) Math.max(
-                    0,
-                    focusDurationSeconds - elapsedSeconds
-            ));
+            progressFocusTimer.setMax(Math.max(totalSeconds, 1));
+
+            progressFocusTimer.setProgress(
+                    Math.max(0, totalSeconds - remainingSeconds)
+            );
         }
     }
 
-    private void updateButtons() {
-        if (btnStartSession == null) return;
+    // ==========================================
+    // STUDY HISTORY
+    // ==========================================
 
-        boolean active = currentSessionId != null;
+    private void setupStudyHistory() {
 
-        btnStartSession.setEnabled(
-                !active && !sessionStarting && !sessionFinishing
-        );
+        layoutHistory.setVisibility(View.GONE);
 
-        btnStartSession.setText(
-                sessionStarting
-                        ? "STARTING SESSION…"
-                        : "▶   START SESSION"
-        );
+        btnViewHistory.setText("View Study History");
 
-        btnPauseSession.setEnabled(active && !sessionFinishing);
+        btnViewHistory.setOnClickListener(v -> {
 
-        btnPauseSession.setText(
-                timerRunning ? "Ⅱ   PAUSE" : "▶   RESUME"
-        );
+            if (layoutHistory.getVisibility() == View.VISIBLE) {
 
-        btnFinishSession.setEnabled(active && !sessionFinishing);
+                layoutHistory.setVisibility(View.GONE);
+                btnViewHistory.setText("View Study History");
 
-        btnFinishSession.setText(
-                sessionFinishing ? "SAVING…" : "✓   FINISH"
-        );
+            } else {
+
+                loadStudyHistory();
+
+                layoutHistory.setVisibility(View.VISIBLE);
+                btnViewHistory.setText("Hide Study History");
+            }
+        });
     }
 
-    // ---------------------------------------------------------
-    // STUDY HISTORY
-    // ---------------------------------------------------------
+    private void saveStudyHistory(
+            String subject,
+            int elapsedSeconds,
+            boolean completedNaturally) {
+
+        try {
+
+            JSONArray history = new JSONArray(
+                    historyPreferences.getString(HISTORY_KEY, "[]")
+            );
+
+            JSONObject session = new JSONObject();
+
+            session.put("subject", subject);
+            session.put("durationSeconds", elapsedSeconds);
+
+            session.put(
+                    "status",
+                    completedNaturally ? "Completed" : "Stopped"
+            );
+
+            String date = new SimpleDateFormat(
+                    "dd MMM yyyy, hh:mm a",
+                    Locale.getDefault()
+            ).format(new Date());
+
+            session.put("date", date);
+
+            JSONArray updatedHistory = new JSONArray();
+            updatedHistory.put(session);
+
+            for (int i = 0; i < history.length(); i++) {
+                updatedHistory.put(history.getJSONObject(i));
+            }
+
+            historyPreferences.edit()
+                    .putString(HISTORY_KEY, updatedHistory.toString())
+                    .apply();
+
+        } catch (Exception e) {
+            showMessage("Could not save study history.");
+        }
+    }
 
     private void loadStudyHistory() {
-        if (!isAdded() || api == null) return;
-
-        api.getStudySessions().enqueue(
-                new Callback<List<StudySessionResponse>>() {
-                    @Override
-                    public void onResponse(
-                            @NonNull Call<List<StudySessionResponse>> call,
-                            @NonNull Response<List<StudySessionResponse>> response
-                    ) {
-                        if (!isAdded()) return;
-
-                        if (response.isSuccessful()
-                                && response.body() != null) {
-
-                            history.clear();
-
-                            Gson gson = new Gson();
-
-                            for (StudySessionResponse session : response.body()) {
-                                try {
-                                    JsonObject object =
-                                            JsonParser.parseString(
-                                                    gson.toJson(session)
-                                            ).getAsJsonObject();
-
-                                    history.add(object);
-                                } catch (Exception ignored) {
-                                    // Skip malformed history records.
-                                }
-                            }
-
-                            renderHistory();
-                            updateDashboard();
-                        } else {
-                            tvHistorySummary.setText(
-                                    "Study history could not be loaded."
-                            );
-
-                            tvHistorySummary.setVisibility(View.VISIBLE);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(
-                            @NonNull Call<List<StudySessionResponse>> call,
-                            @NonNull Throwable t
-                    ) {
-                        if (!isAdded()) return;
-
-                        tvHistorySummary.setText(
-                                "History unavailable. Check your connection."
-                        );
-
-                        tvHistorySummary.setVisibility(View.VISIBLE);
-                    }
-                }
-        );
-    }
-
-    private void renderHistory() {
-        if (!isAdded() || layoutHistory == null) return;
 
         layoutHistory.removeAllViews();
 
-        layoutHistory.setVisibility(
-                showingHistory ? View.VISIBLE : View.GONE
-        );
+        try {
 
-        btnViewHistory.setText(
-                showingHistory
-                        ? "HIDE STUDY HISTORY  ↑"
-                        : "VIEW STUDY HISTORY  →"
-        );
-
-        int totalMinutes = 0;
-
-        for (JsonObject session : history) {
-            totalMinutes += number(
-                    session,
-                    "durationMinutes",
-                    number(session, "minutes", 0)
-            );
-        }
-
-        tvHistorySummary.setText(
-                history.size() + " sessions  ·  "
-                        + totalMinutes + " minutes recorded"
-        );
-
-        tvHistorySummary.setVisibility(View.VISIBLE);
-
-        if (!showingHistory) return;
-
-        if (history.isEmpty()) {
-            layoutHistory.addView(makeText(
-                    "No completed sessions found yet.",
-                    11,
-                    "#858DA5",
-                    false
-            ));
-
-            return;
-        }
-
-        for (JsonObject session : history) {
-            String subject = stringOr(
-                    session,
-                    "subject",
-                    "Study session"
+            JSONArray history = new JSONArray(
+                    historyPreferences.getString(HISTORY_KEY, "[]")
             );
 
-            int minutes = number(
-                    session,
-                    "durationMinutes",
-                    number(session, "minutes", 0)
-            );
+            int count = history.length();
+            int totalFocusSeconds = 0;
+            int completedCount = 0;
 
-            TextView row = makeText(
-                    subject + "\n" + minutes + " minutes",
-                    12,
-                    "#F5F7FF",
-                    false
-            );
+            if (count == 0) {
 
-            row.setPadding(dp(12), dp(12), dp(12), dp(12));
-            row.setBackgroundResource(R.drawable.bg_main_card);
+                tvHistorySummary.setText("No study sessions yet.");
 
-            LinearLayout.LayoutParams params =
-                    new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT
-                    );
+                TextView emptyView = new TextView(requireContext());
 
-            params.bottomMargin = dp(7);
-            row.setLayoutParams(params);
-
-            layoutHistory.addView(row);
-        }
-    }
-
-    // ---------------------------------------------------------
-    // SUMMARY
-    // ---------------------------------------------------------
-
-    private void updateDashboard() {
-        if (!isAdded()) return;
-
-        int activePlans = 0;
-        int todayMinutes = 0;
-
-        String today = LocalDate.now().toString();
-
-        for (JsonObject plan : plans) {
-            if (!isCompleted(plan)) activePlans++;
-        }
-
-        for (JsonObject session : history) {
-            String date = stringOr(
-                    session,
-                    "date",
-                    stringOr(
-                            session,
-                            "createdAt",
-                            stringOr(session, "startTime", "")
-                    )
-            );
-
-            if (date.startsWith(today)) {
-                todayMinutes += number(
-                        session,
-                        "durationMinutes",
-                        number(session, "minutes", 0)
+                emptyView.setText(
+                        "Your finished study sessions will appear here."
                 );
+
+                emptyView.setTextColor(0xFFB8BED1);
+                emptyView.setTextSize(14);
+                emptyView.setPadding(
+                        dp(12), dp(12), dp(12), dp(12)
+                );
+
+                layoutHistory.addView(emptyView);
+
+                return;
             }
-        }
 
-        tvActivePlans.setText(String.valueOf(activePlans));
-        tvStudyTimeToday.setText(todayMinutes + " min");
+            for (int i = 0; i < count; i++) {
 
-        tvDailyGoalProgress.setText(
-                todayMinutes + " / " + DAILY_GOAL_MINUTES + " min"
-        );
+                JSONObject session = history.getJSONObject(i);
 
-        progressDailyGoal.setMax(DAILY_GOAL_MINUTES);
+                String subject = session.optString(
+                        "subject", "Study Session"
+                );
 
-        progressDailyGoal.setProgress(
-                Math.min(todayMinutes, DAILY_GOAL_MINUTES)
-        );
-    }
+                int seconds = session.optInt(
+                        "durationSeconds", 0
+                );
 
-    // ---------------------------------------------------------
-    // HELPERS
-    // ---------------------------------------------------------
+                String status = session.optString(
+                        "status", "Stopped"
+                );
 
-    private TextView makeText(
-            String text,
-            int sizeSp,
-            String color,
-            boolean bold
-    ) {
-        TextView view = new TextView(requireContext());
+                String date = session.optString(
+                        "date", "Date unavailable"
+                );
 
-        view.setText(text);
-        view.setTextSize(sizeSp);
-        view.setTextColor(Color.parseColor(color));
+                totalFocusSeconds += seconds;
 
-        if (bold) {
-            view.setTypeface(
-                    null,
-                    android.graphics.Typeface.BOLD
+                if ("Completed".equals(status)) {
+                    completedCount++;
+                }
+
+                TextView sessionView = new TextView(requireContext());
+
+                sessionView.setText(
+                        subject
+                                + "\nDuration: " + formatDuration(seconds)
+                                + "\nStatus: " + status
+                                + "\nDate: " + date
+                );
+
+                sessionView.setTextColor(0xFFF5F7FF);
+                sessionView.setTextSize(14);
+                sessionView.setLineSpacing(dp(4), 1.0f);
+                sessionView.setPadding(
+                        dp(14), dp(14), dp(14), dp(14)
+                );
+
+                sessionView.setBackgroundResource(
+                        R.drawable.bg_main_card
+                );
+
+                LinearLayout.LayoutParams params =
+                        new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT
+                        );
+
+                params.bottomMargin = dp(10);
+
+                layoutHistory.addView(sessionView, params);
+            }
+
+            tvHistorySummary.setText(
+                    "Sessions: " + count
+                            + " | Completed: " + completedCount
+                            + " | Total focus time: "
+                            + formatDuration(totalFocusSeconds)
+            );
+
+        } catch (Exception e) {
+
+            tvHistorySummary.setText(
+                    "Unable to display study history."
             );
         }
-
-        return view;
     }
+
+    private String formatDuration(int seconds) {
+
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int remaining = seconds % 60;
+
+        if (hours > 0) {
+            return hours + "h " + minutes + "m";
+        }
+
+        if (minutes > 0) {
+            return minutes + "m " + remaining + "s";
+        }
+
+        return remaining + "s";
+    }
+
+    // ==========================================
+    // GENERAL HELPERS
+    // ==========================================
 
     private int dp(int value) {
-        return (int) (value * getResources()
-                .getDisplayMetrics().density + 0.5f);
-    }
 
-    private boolean isCompleted(JsonObject plan) {
-        if (plan.has("completed")
-                && !plan.get("completed").isJsonNull()
-                && plan.get("completed").getAsBoolean()) {
-            return true;
-        }
-
-        return "COMPLETED".equalsIgnoreCase(
-                string(plan, "status")
+        return (int) (
+                value * requireContext()
+                        .getResources()
+                        .getDisplayMetrics()
+                        .density
         );
     }
 
-    private String string(JsonObject object, String key) {
-        if (object == null
-                || !object.has(key)
-                || object.get(key).isJsonNull()) {
-            return "";
-        }
+    private void showMessage(String message) {
 
-        try {
-            return object.get(key).getAsString();
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
-    private String stringOr(
-            JsonObject object,
-            String key,
-            String fallback
-    ) {
-        String value = string(object, key);
-
-        return value.trim().isEmpty() ? fallback : value;
-    }
-
-    private int number(
-            JsonObject object,
-            String key,
-            int fallback
-    ) {
-        if (object == null
-                || !object.has(key)
-                || object.get(key).isJsonNull()) {
-            return fallback;
-        }
-
-        try {
-            return object.get(key).getAsInt();
-        } catch (Exception e) {
-            return fallback;
-        }
-    }
-
-    private String readBody(@Nullable ResponseBody body) {
-        if (body == null) return "";
-
-        try {
-            return body.string();
-        } catch (IOException e) {
-            return "";
-        }
-    }
-
-    private void closeBody(@Nullable ResponseBody body) {
-        if (body != null) {
-            body.close();
-        }
-    }
-
-    private String safeMessage(Throwable t) {
-        if (t == null || t.getMessage() == null) {
-            return "Unknown error";
-        }
-
-        return t.getMessage();
-    }
-
-    private void hideKeyboard() {
-        if (!isAdded()) return;
-
-        View focused = requireActivity().getCurrentFocus();
-
-        if (focused == null) return;
-
-        InputMethodManager manager = (InputMethodManager)
-                requireContext().getSystemService(
-                        Context.INPUT_METHOD_SERVICE
-                );
-
-        if (manager != null) {
-            manager.hideSoftInputFromWindow(
-                    focused.getWindowToken(),
-                    0
-            );
-        }
-    }
-
-    private void showToast(String message) {
         if (isAdded()) {
             Toast.makeText(
                     requireContext(),
                     message,
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_LONG
             ).show();
         }
     }
 
     @Override
     public void onDestroyView() {
-        timerRunning = false;
-        handler.removeCallbacksAndMessages(null);
+
+        timerHandler.removeCallbacks(timerRunnable);
+
         super.onDestroyView();
     }
 }

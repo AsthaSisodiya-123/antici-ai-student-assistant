@@ -1,52 +1,70 @@
+
 package com.anticai.studentassistant.network;
 
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class StudyPlanResponse {
 
-    private String title;
-    private String description;
-    private List<StudyPlanItem> sessions;
+    @SerializedName("id")
+    private Long id;
 
-    public String getTitle() {
-        return title;
+    @SerializedName("subject")
+    private String subject;
+
+    @SerializedName("topic")
+    private String topic;
+
+    @SerializedName("difficulty")
+    private String difficulty;
+
+    @SerializedName("examDate")
+    private String examDate;
+
+    @SerializedName("targetMinutes")
+    private Integer targetMinutes;
+
+    @SerializedName("completedMinutes")
+    private Integer completedMinutes;
+
+    @SerializedName("status")
+    private String status;
+
+    @SerializedName("createdAt")
+    private String createdAt;
+
+    public Long getId() {
+        return id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSubject() {
+        return subject;
     }
 
-    public List<StudyPlanItem> getSessions() {
-        return sessions;
+    public String getTopic() {
+        return topic;
     }
 
-    public static class StudyPlanItem {
+    public String getDifficulty() {
+        return difficulty;
+    }
 
-        private String time;
-        private Integer durationMinutes;
-        private String subject;
-        private String topic;
-        private String priority;
+    public String getExamDate() {
+        return examDate;
+    }
 
-        public String getTime() {
-            return time;
-        }
+    public Integer getTargetMinutes() {
+        return targetMinutes;
+    }
 
-        public Integer getDurationMinutes() {
-            return durationMinutes;
-        }
+    public Integer getCompletedMinutes() {
+        return completedMinutes;
+    }
 
-        public String getSubject() {
-            return subject;
-        }
+    public String getStatus() {
+        return status;
+    }
 
-        public String getTopic() {
-            return topic;
-        }
-
-        public String getPriority() {
-            return priority;
-        }
+    public String getCreatedAt() {
+        return createdAt;
     }
 }
-

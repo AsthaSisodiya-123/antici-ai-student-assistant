@@ -1,10 +1,15 @@
 package com.anticai.studentassistant.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.anticai.studentassistant.R;
@@ -20,50 +25,95 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout navHome;
     private LinearLayout navSchedule;
     private LinearLayout navTasks;
-    private LinearLayout navAI;
-    private LinearLayout navStudyPlan;
-    private LinearLayout navProfile;
+    private LinearLayout navStudy;
+
+    private TextView labelHome;
+    private TextView labelSchedule;
+    private TextView labelTasks;
+    private TextView labelStudy;
+
+    private TextView btnAI;
+    private ImageButton btnNotifications;
+    private TextView btnProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initializeNavigation();
+        initializeViews();
         setupNavigation();
+        setupActionButtons();
+
+        getSupportFragmentManager()
+                .addOnBackStackChangedListener(this::updateAIButtonVisibility);
 
         if (savedInstanceState == null) {
             loadFragment(new DashboardFragment(), false);
+            selectNavigation(navHome);
+        } else {
+            updateAIButtonVisibility();
         }
     }
 
-    private void initializeNavigation() {
+    private void initializeViews() {
         navHome = findViewById(R.id.navHome);
         navSchedule = findViewById(R.id.navSchedule);
         navTasks = findViewById(R.id.navTasks);
-        navAI = findViewById(R.id.navAI);
-        navStudyPlan = findViewById(R.id.navStudyPlan);
-        navProfile = findViewById(R.id.navProfile);
+        navStudy = findViewById(R.id.navStudy);
+
+        labelHome = findViewById(R.id.labelHome);
+        labelSchedule = findViewById(R.id.labelSchedule);
+        labelTasks = findViewById(R.id.labelTasks);
+        labelStudy = findViewById(R.id.labelStudy);
+
+        btnAI = findViewById(R.id.btnAI);
+        btnNotifications = findViewById(R.id.btnNotifications);
+        btnProfile = findViewById(R.id.btnProfile);
     }
 
     private void setupNavigation() {
-        navHome.setOnClickListener(v ->
-                loadFragment(new DashboardFragment(), false));
+        navHome.setOnClickListener(v -> {
+            clearBackStack();
+            loadFragment(new DashboardFragment(), false);
+            selectNavigation(navHome);
+        });
 
-        navSchedule.setOnClickListener(v ->
-                loadFragment(new ScheduleFragment(), false));
+        navSchedule.setOnClickListener(v -> {
+            clearBackStack();
+            loadFragment(new ScheduleFragment(), false);
+            selectNavigation(navSchedule);
+        });
 
-        navTasks.setOnClickListener(v ->
-                loadFragment(new TasksFragment(), false));
+        navTasks.setOnClickListener(v -> {
+            clearBackStack();
+            loadFragment(new TasksFragment(), false);
+            selectNavigation(navTasks);
+        });
 
-        navAI.setOnClickListener(v ->
-                loadFragment(new AIChatFragment(), false));
+        navStudy.setOnClickListener(v -> {
+            clearBackStack();
+            loadFragment(new StudyPlanFragment(), false);
+            selectNavigation(navStudy);
+        });
+    }
 
-        navStudyPlan.setOnClickListener(v ->
-                loadFragment(new StudyPlanFragment(), false));
+    private void setupActionButtons() {
+        btnAI.setOnClickListener(v ->
+                loadFragment(new AIChatFragment(), true)
+        );
 
-        navProfile.setOnClickListener(v ->
-                loadFragment(new ProfileFragment(), false));
+        btnNotifications.setOnClickListener(v ->
+                Toast.makeText(
+                        MainActivity.this,
+                        "Notifications coming soon",
+                        Toast.LENGTH_SHORT
+                ).show()
+        );
+
+        btnProfile.setOnClickListener(v ->
+                loadFragment(new ProfileFragment(), true)
+        );
     }
 
     private void loadFragment(Fragment fragment, boolean addToBackStack) {
@@ -77,16 +127,74 @@ public class MainActivity extends AppCompatActivity {
         }
 
         transaction.commit();
+
+        // Complete the transaction before checking the current fragment.
+        getSupportFragmentManager().executePendingTransactions();
+
+        updateAIButtonVisibility();
+    }
+
+    private void updateAIButtonVisibility() {
+        if (btnAI == null) {
+            return;
+        }
+
+        Fragment currentFragment = getSupportFragmentManager()
+                .findFragmentById(R.id.mainContainer);
+
+        if (currentFragment instanceof DashboardFragment) {
+            btnAI.setVisibility(View.VISIBLE);
+        } else {
+            btnAI.setVisibility(View.GONE);
+        }
+    }
+
+    private void clearBackStack() {
+        getSupportFragmentManager().popBackStack(
+                null,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+        );
+
+        getSupportFragmentManager().executePendingTransactions();
+    }
+
+    private void selectNavigation(LinearLayout selectedItem) {
+        resetNavigationLabels();
+
+        int selectedColor = getColor(R.color.nav_selected);
+
+        if (selectedItem == navHome) {
+            labelHome.setTextColor(selectedColor);
+        } else if (selectedItem == navSchedule) {
+            labelSchedule.setTextColor(selectedColor);
+        } else if (selectedItem == navTasks) {
+            labelTasks.setTextColor(selectedColor);
+        } else if (selectedItem == navStudy) {
+            labelStudy.setTextColor(selectedColor);
+        }
+    }
+
+    private void resetNavigationLabels() {
+        int inactiveColor = getColor(R.color.nav_unselected);
+
+        labelHome.setTextColor(inactiveColor);
+        labelSchedule.setTextColor(inactiveColor);
+        labelTasks.setTextColor(inactiveColor);
+        labelStudy.setTextColor(inactiveColor);
     }
 
     public void openStudyPlan() {
-        loadFragment(new StudyPlanFragment(), true);
+        clearBackStack();
+        loadFragment(new StudyPlanFragment(), false);
+        selectNavigation(navStudy);
     }
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
         } else {
             super.onBackPressed();
         }

@@ -1,595 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12">
+    android:orientation="vertical"
+    android:background="#080B14">
 
-    <!-- MAIN FRAGMENT CONTAINER -->
+    <!-- Premium top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="16dp"
+        android:background="#0E1322"
+        android:elevation="4dp">
 
-    <FrameLayout
-        android:id="@+id/mainContainer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#080A12"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <!-- HOME SCREEN -->
-
-        <ScrollView
-            android:id="@+id/mainScroll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:fillViewport="true"
-            android:paddingBottom="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="24dp"
-                android:paddingTop="30dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="25dp">
-
-                <!-- HEADER -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:letterSpacing="0.15"
-                            android:text="GOOD EVENING"
-                            android:textColor="#6F7893"
-                            android:textSize="10sp" />
-
-                        <TextView
-                            android:id="@+id/tvGreeting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Astha."
-                            android:textColor="#F5F7FF"
-                            android:textSize="27sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <!-- NOTIFICATION -->
-
-                    <FrameLayout
-                        android:id="@+id/notificationButton"
-                        android:layout_width="46dp"
-                        android:layout_height="46dp"
-                        android:background="@drawable/bg_main_icon">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="○"
-                            android:textColor="#F5F7FF"
-                            android:textSize="22sp" />
-
-                        <View
-                            android:layout_width="7dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="top|end"
-                            android:layout_marginTop="9dp"
-                            android:layout_marginEnd="9dp"
-                            android:background="@drawable/bg_notification_dot" />
-
-                    </FrameLayout>
-
-                    <!-- PROFILE SHORTCUT -->
-
-                    <TextView
-                        android:id="@+id/profileButton"
-                        android:layout_width="46dp"
-                        android:layout_height="46dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/bg_profile_circle"
-                        android:gravity="center"
-                        android:text="A"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <!-- SUBTITLE -->
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Here's what needs your attention today."
-                    android:textColor="#858DA5"
-                    android:textSize="14sp" />
-
-                <!-- AI PREDICTION CARD -->
-
-                <LinearLayout
-                    android:id="@+id/predictionCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/bg_prediction_card"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:letterSpacing="0.1"
-                            android:text="✦  ANTICIAI PREDICTION"
-                            android:textColor="#AFC7FF"
-                            android:textSize="10sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="82%"
-                            android:textColor="#8B7CFF"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvPrediction"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="You may need a DBMS study session tonight."
-                        android:textColor="#FFFFFF"
-                        android:textSize="21sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:lineSpacingExtra="3dp"
-                        android:text="Your exam is in 3 days and your recent preparation is below your usual pattern."
-                        android:textColor="#A5ADC2"
-                        android:textSize="13sp" />
-
-                    <!-- PREDICTION DATA -->
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:letterSpacing="0.1"
-                                android:text="EXAM"
-                                android:textColor="#69738D"
-                                android:textSize="9sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="3 DAYS"
-                                android:textColor="#F5F7FF"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:letterSpacing="0.1"
-                                android:text="PREPARATION"
-                                android:textColor="#69738D"
-                                android:textSize="9sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="30%"
-                                android:textColor="#F5F7FF"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/btnWhy"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:gravity="center"
-                            android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
-                            android:text="WHY? →"
-                            android:textColor="#7FAAFF"
-                            android:textSize="10sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- TODAY -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TODAY"
-                        android:textColor="#F5F7FF"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvSeeSchedule"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:letterSpacing="0.08"
-                        android:text="SEE ALL  →"
-                        android:textColor="#4D8DFF"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <!-- SCHEDULE ITEM 1 -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@drawable/bg_main_card"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <TextView
-                        android:layout_width="65dp"
-                        android:layout_height="wrap_content"
-                        android:text="10:30&#10;AM"
-                        android:textColor="#4D8DFF"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="35dp"
-                        android:background="#293047" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Data Structures"
-                            android:textColor="#F5F7FF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Room 204"
-                            android:textColor="#69738D"
-                            android:textSize="11sp" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NOW"
-                        android:textColor="#4D8DFF"
-                        android:textSize="9sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <!-- SCHEDULE ITEM 2 -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_main_card"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <TextView
-                        android:layout_width="65dp"
-                        android:layout_height="wrap_content"
-                        android:text="02:00&#10;PM"
-                        android:textColor="#69738D"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="35dp"
-                        android:background="#293047" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Java Programming"
-                            android:textColor="#F5F7FF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Lab 3"
-                            android:textColor="#69738D"
-                            android:textSize="11sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- YOUR PROGRESS -->
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="YOUR PROGRESS"
-                    android:textColor="#F5F7FF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="105dp"
-                    android:layout_marginTop="13dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_main_card"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="68%"
-                            android:textColor="#4D8DFF"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:letterSpacing="0.1"
-                            android:text="WEEKLY PROGRESS"
-                            android:textColor="#69738D"
-                            android:textSize="8sp" />
-
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="1dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_main_card"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4.2h"
-                            android:textColor="#8B7CFF"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:letterSpacing="0.1"
-                            android:text="STUDY THIS WEEK"
-                            android:textColor="#69738D"
-                            android:textSize="8sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- UPCOMING -->
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="UPCOMING"
-                    android:textColor="#F5F7FF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <!-- ASSIGNMENT -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:background="@drawable/bg_main_card"
-                    android:orientation="vertical"
-                    android:padding="17dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="DBMS Assignment"
-                            android:textColor="#F5F7FF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2 DAYS"
-                            android:textColor="#FFB65C"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:text="Complete normalization questions"
-                        android:textColor="#69738D"
-                        android:textSize="11sp" />
-
-                </LinearLayout>
-
-                <!-- EXAM -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_main_card"
-                    android:orientation="vertical"
-                    android:padding="17dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="AI &amp; ML Exam"
-                            android:textColor="#F5F7FF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="7 DAYS"
-                            android:textColor="#69738D"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:text="Preparation progress  •  42%"
-                        android:textColor="#69738D"
-                        android:textSize="11sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
+                android:text="AnticiAI"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:letterSpacing="-0.02" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YOUR PERSONAL STUDY COPILOT"
+                android:textColor="#8996B5"
+                android:textSize="9sp"
+                android:letterSpacing="0.12" />
+        </LinearLayout>
+
+
+        <ImageButton
+            android:id="@+id/btnNotifications"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_icon_button"
+            android:src="@drawable/ic_notifications"
+            android:contentDescription="Notifications"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:focusable="true"
+            app:tint="#EAF0FF" />
+
+        <TextView
+            android:id="@+id/btnProfile"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:gravity="center"
+            android:text="A"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_profile_avatar"
+            android:contentDescription="Profile"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <!-- Fragment content and floating AI -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/mainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="18dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="@drawable/bg_ai_pill"
+            android:elevation="10dp">
+
+            <TextView
+                android:id="@+id/btnAI"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:gravity="center"
+                android:text="AI"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/bg_ai_button"
+                android:contentDescription="Open AI assistant"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
 
     </FrameLayout>
 
-    <!-- BOTTOM NAVIGATION -->
-
+    <!-- Bottom navigation -->
     <LinearLayout
-        android:id="@+id/bottomNavigation"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:background="#0D101A"
-        android:elevation="12dp"
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:gravity="center"
+        android:paddingStart="7dp"
+        android:paddingEnd="7dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="#0E1322"
+        android:elevation="10dp">
 
-        <!-- HOME -->
-
+        <!-- Home -->
         <LinearLayout
             android:id="@+id/navHome"
             android:layout_width="0dp"
@@ -598,27 +134,27 @@
             android:gravity="center"
             android:orientation="vertical"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="⌂"
-                android:textColor="#4D8DFF"
-                android:textSize="21sp" />
+                android:textSize="25sp"
+                android:textColor="#4D8DFF" />
 
             <TextView
+                android:id="@+id/labelHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:letterSpacing="0.08"
-                android:text="HOME"
-                android:textColor="#4D8DFF"
-                android:textSize="8sp" />
-
+                android:text="Home"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="#4D8DFF" />
         </LinearLayout>
 
-        <!-- SCHEDULE -->
-
+        <!-- Schedule -->
         <LinearLayout
             android:id="@+id/navSchedule"
             android:layout_width="0dp"
@@ -627,27 +163,26 @@
             android:gravity="center"
             android:orientation="vertical"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="□"
-                android:textColor="#69738D"
-                android:textSize="20sp" />
+                android:text="▦"
+                android:textSize="22sp"
+                android:textColor="#8996B5" />
 
             <TextView
+                android:id="@+id/labelSchedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:letterSpacing="0.08"
-                android:text="SCHEDULE"
-                android:textColor="#69738D"
-                android:textSize="8sp" />
-
+                android:text="Schedule"
+                android:textSize="11sp"
+                android:textColor="#8996B5" />
         </LinearLayout>
 
-        <!-- TASKS -->
-
+        <!-- Tasks -->
         <LinearLayout
             android:id="@+id/navTasks"
             android:layout_width="0dp"
@@ -656,112 +191,53 @@
             android:gravity="center"
             android:orientation="vertical"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="✓"
-                android:textColor="#69738D"
-                android:textSize="20sp" />
+                android:text="☑"
+                android:textSize="21sp"
+                android:textColor="#8996B5" />
 
             <TextView
+                android:id="@+id/labelTasks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:letterSpacing="0.08"
-                android:text="TASKS"
-                android:textColor="#69738D"
-                android:textSize="8sp" />
-
+                android:text="Tasks"
+                android:textSize="11sp"
+                android:textColor="#8996B5" />
         </LinearLayout>
 
-        <!-- AI -->
-
+        <!-- Study -->
         <LinearLayout
-            android:id="@+id/navAI"
+            android:id="@+id/navStudy"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="✦"
-                android:textColor="#8B7CFF"
-                android:textSize="20sp" />
+                android:text="▤"
+                android:textSize="22sp"
+                android:textColor="#8996B5" />
 
             <TextView
+                android:id="@+id/labelStudy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:letterSpacing="0.08"
-                android:text="AI"
-                android:textColor="#8B7CFF"
-                android:textSize="8sp" />
-
-        </LinearLayout>
-
-        <!-- STUDY PLAN -->
-
-        <LinearLayout
-            android:id="@+id/navStudyPlan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="◷"
-                android:textColor="#4D8DFF"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:letterSpacing="0.04"
-                android:text="STUDY"
-                android:textColor="#69738D"
-                android:textSize="8sp" />
-
-        </LinearLayout>
-
-        <!-- PROFILE -->
-
-        <LinearLayout
-            android:id="@+id/navProfile"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="○"
-                android:textColor="#69738D"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:letterSpacing="0.08"
-                android:text="PROFILE"
-                android:textColor="#69738D"
-                android:textSize="8sp" />
-
+                android:text="Study"
+                android:textSize="11sp"
+                android:textColor="#8996B5" />
         </LinearLayout>
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

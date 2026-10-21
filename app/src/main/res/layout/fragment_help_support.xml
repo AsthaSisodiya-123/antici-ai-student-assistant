@@ -1,172 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#080A12"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SUPPORT"
-            android:textColor="#6F7893"
-            android:textSize="11sp"
-            android:letterSpacing="0.12" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="How can we help?"
-            android:textColor="#F5F7FF"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Find answers about AnticiAI and your account."
-            android:textColor="#858DA5"
-            android:textSize="14sp" />
-
-        <!-- ACCOUNT -->
-
-        <TextView
-            android:id="@+id/faqAccount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/bg_main_card"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="20dp"
-            android:text="Account &amp; Login"
-            android:textColor="#F5F7FF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <!-- TASKS -->
-
-        <TextView
-            android:id="@+id/faqTasks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_main_card"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="20dp"
-            android:text="Tasks &amp; Assignments"
-            android:textColor="#F5F7FF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <!-- PREDICTIONS -->
-
-        <TextView
-            android:id="@+id/faqPredictions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_main_card"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="20dp"
-            android:text="AI Predictions"
-            android:textColor="#F5F7FF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <!-- PRIVACY -->
-
-        <TextView
-            android:id="@+id/faqPrivacy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_main_card"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="20dp"
-            android:text="Privacy &amp; Data"
-            android:textColor="#F5F7FF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <!-- CONTACT SUPPORT -->
-
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/bg_main_card"
+            android:gravity="center_vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/btnHelpBack"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="@drawable/bg_main_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="‹"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp"
+                android:contentDescription="Go back" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ANTICI AI"
+                    android:textColor="#4D8DFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Help &amp; Support"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Welcome card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_prediction_card"
             android:orientation="vertical"
             android:padding="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NEED MORE HELP?"
-                android:textColor="#858DA5"
-                android:textSize="11sp"
-                android:letterSpacing="0.1" />
+                android:text="💬"
+                android:textSize="32sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="How can we help you?"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Find answers to common questions and learn how to use your student assistant."
+                android:textColor="#AAB4C8"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- FAQ heading -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp"
+            android:text="FREQUENTLY ASKED QUESTIONS"
+            android:textColor="#4D8DFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- FAQ 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What is Antici AI?"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Contact AnticiAI support"
-                android:textColor="#F5F7FF"
+                android:lineSpacingExtra="3dp"
+                android:text="Antici AI is a student assistant designed to help organize study tasks, plan sessions, and manage academic priorities."
+                android:textColor="#AAB4C8"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- FAQ 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How do I update my profile?"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Open Profile, select Edit Profile, update your student details, and tap Save Changes."
+                android:textColor="#AAB4C8"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- FAQ 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How do I manage study goals?"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Open Profile, go to Settings, select your daily study goal, and save your preferences."
+                android:textColor="#AAB4C8"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- FAQ 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What if my settings do not save?"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Check that you tapped Save Preferences. If the issue continues, close and reopen the app, then try again."
+                android:textColor="#AAB4C8"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Troubleshooting -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:text="TROUBLESHOOTING"
+            android:textColor="#4D8DFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Check your internet connection if server data fails to load."
+                android:textColor="#DCE4F5"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="• Ensure the backend server is running when using online features."
+                android:textColor="#DCE4F5"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="• Restart the app if a screen does not respond."
+                android:textColor="#DCE4F5"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Contact support -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp"
+            android:text="CONTACT SUPPORT"
+            android:textColor="#4D8DFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_prediction_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Need more help?"
+                android:textColor="#FFFFFF"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="We're here to help with your questions."
-                android:textColor="#858DA5"
+                android:layout_marginTop="7dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Contact your app support team if you continue to experience problems."
+                android:textColor="#AAB4C8"
                 android:textSize="13sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/btnContactSupport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="#4D8DFF"
-                android:background="@drawable/bg_main_card"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingStart="18dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="18dp"
-                android:paddingBottom="12dp"
-                android:text="CONTACT SUPPORT"
-                android:textColor="#4D8DFF"
-                android:textSize="12sp"
+                android:text="Contact Support"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="24dp"
-            android:text="AnticiAI • Support"
-            android:textColor="#4F566B"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="ANTICI AI • HERE TO HELP"
+            android:textColor="#778198"
             android:textSize="11sp" />
 
     </LinearLayout>
-
 </ScrollView>

@@ -28,5 +28,6 @@
     <!-- UI -->
     <color name="divider">#E8E8F0</color>
     <color name="input_background">#F5F5FA</color>
-
+    <color name="nav_selected">#4D8DFF</color>
+    <color name="nav_unselected">#8996B5</color>
 </resources>

@@ -1,9 +1,13 @@
 package com.anticai.studentassistant.fragments.profile;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,14 +19,14 @@ import com.anticai.studentassistant.R;
 
 public class HelpSupportFragment extends Fragment {
 
-    private TextView faqAccount;
-    private TextView faqTasks;
-    private TextView faqPredictions;
-    private TextView faqPrivacy;
-    private TextView btnContactSupport;
+    private TextView btnHelpBack;
+    private Button btnContactSupport;
+
+    // Replace this with your actual support email address.
+    private static final String SUPPORT_EMAIL = "your-support-email@example.com";
 
     public HelpSupportFragment() {
-        // Required empty constructor
+        // Required empty public constructor
     }
 
     @Nullable
@@ -45,55 +49,73 @@ public class HelpSupportFragment extends Fragment {
     }
 
     private void initializeViews(View view) {
-
-        faqAccount = view.findViewById(R.id.faqAccount);
-        faqTasks = view.findViewById(R.id.faqTasks);
-        faqPredictions = view.findViewById(R.id.faqPredictions);
-        faqPrivacy = view.findViewById(R.id.faqPrivacy);
-
-        btnContactSupport =
-                view.findViewById(R.id.btnContactSupport);
+        btnHelpBack = view.findViewById(R.id.btnHelpBack);
+        btnContactSupport = view.findViewById(R.id.btnContactSupport);
     }
 
     private void setupClickListeners() {
 
-        faqAccount.setOnClickListener(v ->
-                showMessage(
-                        "Account & Login: Manage your profile, password and account settings."
-                )
-        );
+        btnHelpBack.setOnClickListener(v -> goBack());
 
-        faqTasks.setOnClickListener(v ->
-                showMessage(
-                        "Tasks & Assignments: Add deadlines and track your academic work."
-                )
-        );
-
-        faqPredictions.setOnClickListener(v ->
-                showMessage(
-                        "AI Predictions: AnticiAI uses permitted activity data to generate predictions."
-                )
-        );
-
-        faqPrivacy.setOnClickListener(v ->
-                showMessage(
-                        "Privacy & Data: You control which optional data sources are permitted."
-                )
-        );
-
-        btnContactSupport.setOnClickListener(v ->
-                showMessage(
-                        "Support contact will be connected later."
-                )
-        );
+        btnContactSupport.setOnClickListener(v -> contactSupport());
     }
 
-    private void showMessage(String message) {
+    private void goBack() {
+        if (!isAdded()) {
+            return;
+        }
 
-        Toast.makeText(
-                requireContext(),
-                message,
-                Toast.LENGTH_LONG
-        ).show();
+        requireActivity()
+                .getSupportFragmentManager()
+                .popBackStack();
+    }
+
+    private void contactSupport() {
+
+        if (!isAdded()) {
+            return;
+        }
+
+        if (SUPPORT_EMAIL.equals("your-support-email@example.com")) {
+            Toast.makeText(
+                    requireContext(),
+                    "Please configure your support email in HelpSupportFragment.java.",
+                    Toast.LENGTH_LONG
+            ).show();
+            return;
+        }
+
+        Intent emailIntent = new Intent(
+                Intent.ACTION_SENDTO,
+                Uri.parse("mailto:" + SUPPORT_EMAIL)
+        );
+
+        emailIntent.putExtra(
+                Intent.EXTRA_SUBJECT,
+                "Antici AI - Support Request"
+        );
+
+        emailIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Hello Antici AI Support Team,\n\n"
+                        + "I need help with the Antici AI application.\n\n"
+                        + "Issue description:\n\n"
+                        + "Thank you."
+        );
+
+        try {
+            startActivity(
+                    Intent.createChooser(
+                            emailIntent,
+                            "Contact Antici AI Support"
+                    )
+            );
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(
+                    requireContext(),
+                    "No email application is available on this device.",
+                    Toast.LENGTH_LONG
+            ).show();
+        }
     }
 }

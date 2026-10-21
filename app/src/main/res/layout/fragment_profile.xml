@@ -5,36 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#080A12"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:paddingBottom="110dp">
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="120dp">
 
         <!-- HEADER -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:letterSpacing="0.15"
-            android:text="ANTICIAI"
-            android:textColor="#4D8DFF"
-            android:textSize="9sp"
-            android:textStyle="bold" />
+            android:text="ANTICIAI  /  ACCOUNT"
+            android:textColor="#6D9AFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.12"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="Profile."
+            android:layout_marginTop="9dp"
+            android:text="Your profile."
             android:textColor="#F5F7FF"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Everything about your student journey."
+            android:textColor="#858DA5"
+            android:textSize="13sp"/>
 
         <!-- PROFILE CARD -->
 
@@ -43,203 +52,445 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:background="@drawable/bg_prediction_card"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- PROFILE INITIALS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvProfileInitials"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/bg_profile_circle"
+                    android:gravity="center"
+                    android:text="AS"
+                    android:textColor="#FFFFFF"
+                    android:textSize="23sp"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Student Name"
+                        android:textColor="#F5F7FF"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        android:maxLines="2"/>
+
+                    <TextView
+                        android:id="@+id/tvProfileRole"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="College Student"
+                        android:textColor="#A8B7D8"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tvProfileEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="student@example.com"
+                        android:textColor="#858DA5"
+                        android:textSize="11sp"
+                        android:maxLines="2"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="#30364A"/>
 
             <TextView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/bg_profile_circle"
-                android:gravity="center"
-                android:text="AS"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="YOUR PERSONAL SPACE"
+                android:textColor="#A8BFFF"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08"/>
 
-            <!-- USER INFO -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Keep your details up to date for a more personalized study experience."
+                android:textColor="#A0A9C0"
+                android:textSize="12sp"
+                android:lineSpacingExtra="3dp"/>
+
+            <TextView
+                android:id="@+id/btnEditProfile"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_main_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="✎   Edit Profile"
+                android:textColor="#8CB0FF"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <!-- ACADEMIC DETAILS -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:text="ACADEMIC DETAILS"
+            android:textColor="#818CA8"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.12"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="17dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COLLEGE / UNIVERSITY"
+                android:textColor="#69738D"
+                android:textSize="9sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvProfileCollege"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Add your college"
+                android:textColor="#F5F7FF"
+                android:textSize="14sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#252C3D"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="COURSE / BRANCH"
+                android:textColor="#69738D"
+                android:textSize="9sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvProfileCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Add your course"
+                android:textColor="#F5F7FF"
+                android:textSize="14sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#252C3D"/>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Astha Sisodiya"
-                    android:textColor="#F5F7FF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="B.E. Student"
-                    android:textColor="#858DA5"
-                    android:textSize="11sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YEAR OF STUDY"
+                        android:textColor="#69738D"
+                        android:textSize="9sp"
+                        android:textStyle="bold"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvProfileYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Not set"
+                        android:textColor="#F5F7FF"
+                        android:textSize="13sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:text="Computer Engineering"
-                    android:textColor="#69738D"
-                    android:textSize="10sp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ACCOUNT STATUS"
+                        android:textColor="#69738D"
+                        android:textSize="9sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvProfileStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="● Active"
+                        android:textColor="#61E6A7"
+                        android:textSize="13sp"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-
-        <!-- EDIT PROFILE -->
+        <!-- ACCOUNT & PREFERENCES -->
 
         <TextView
-            android:id="@+id/btnEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:text="ACCOUNT &amp; PREFERENCES"
+            android:textColor="#818CA8"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.12"/>
+
+        <!-- PRIVACY -->
+
+        <LinearLayout
+            android:id="@+id/btnPrivacy"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="#202B42"
+                android:gravity="center"
+                android:text="◈"
+                android:textColor="#80A9FF"
+                android:textSize="23sp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy &amp; Data"
+                    android:textColor="#F5F7FF"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Your data and privacy options"
+                    android:textColor="#858DA5"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textColor="#858DA5"
+                android:textSize="25sp"/>
+
+        </LinearLayout>
+
+        <!-- SETTINGS -->
+
+        <LinearLayout
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="#292541"
+                android:gravity="center"
+                android:text="⚙"
+                android:textColor="#C1A3FF"
+                android:textSize="22sp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="App Settings"
+                    android:textColor="#F5F7FF"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Customize your experience"
+                    android:textColor="#858DA5"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textColor="#858DA5"
+                android:textSize="25sp"/>
+
+        </LinearLayout>
+
+        <!-- HELP -->
+
+        <LinearLayout
+            android:id="@+id/btnHelpSupport"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="#20352F"
+                android:gravity="center"
+                android:text="?"
+                android:textColor="#61E6A7"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Help &amp; Support"
+                    android:textColor="#F5F7FF"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Get help with Antici AI"
+                    android:textColor="#858DA5"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textColor="#858DA5"
+                android:textSize="25sp"/>
+
+        </LinearLayout>
+
+        <!-- LOGOUT -->
+
+        <TextView
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/bg_main_card"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:text="EDIT PROFILE"
-            android:textColor="#4D8DFF"
-            android:textSize="11sp"
-            android:textStyle="bold" />
+            android:text="↪   Sign Out"
+            android:textColor="#FF7B87"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
 
-
-        <!-- ACADEMIC -->
+        <!-- FOOTER -->
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="ACADEMIC PROFILE"
-            android:textColor="#69738D"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:text="ANTICIAI  •  BUILD BETTER HABITS"
+            android:textColor="#505970"
             android:textSize="9sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="vertical"
-            android:padding="17dp">
-
-            <!-- COLLEGE -->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="COLLEGE"
-                android:textColor="#69738D"
-                android:textSize="8sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="NMIET, Talegaon Dabhade"
-                android:textColor="#F5F7FF"
-                android:textSize="13sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="13dp"
-                android:background="#202638" />
-
-            <!-- YEAR -->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
-                android:text="YEAR"
-                android:textColor="#69738D"
-                android:textSize="8sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Second Year"
-                android:textColor="#F5F7FF"
-                android:textSize="13sp" />
-
-        </LinearLayout>
-
-
-        <!-- ACCOUNT -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="ACCOUNT"
-            android:textColor="#69738D"
-            android:textSize="9sp"
-            android:textStyle="bold" />
-
-
-        <!-- PRIVACY -->
-
-        <TextView
-            android:id="@+id/btnPrivacy"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_main_card"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingStart="17dp"
-            android:text="Privacy &amp; Data"
-            android:textColor="#F5F7FF"
-            android:textSize="13sp" />
-
-
-        <!-- SETTINGS -->
-
-        <TextView
-            android:id="@+id/btnSettings"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_main_card"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingStart="17dp"
-            android:text="Settings"
-            android:textColor="#F5F7FF"
-            android:textSize="13sp" />
-
-
-        <!-- HELP & SUPPORT -->
-
-        <TextView
-            android:id="@+id/btnHelpSupport"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_main_card"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingStart="17dp"
-            android:text="Help &amp; Support"
-            android:textColor="#F5F7FF"
-            android:textSize="13sp" />
+            android:letterSpacing="0.10"/>
 
     </LinearLayout>
 

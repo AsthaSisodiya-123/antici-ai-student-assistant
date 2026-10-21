@@ -3,7 +3,6 @@ package com.anticai.studentassistant.fragments.ai;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,32 +22,29 @@ import androidx.fragment.app.Fragment;
 import com.anticai.studentassistant.R;
 import com.anticai.studentassistant.network.ApiService;
 import com.anticai.studentassistant.network.RetrofitClient;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.anticai.studentassistant.network.StudyPlanRequest;
+import com.anticai.studentassistant.network.StudyPlanResponse;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CreateStudyPlanFragment extends Fragment {
 
-    private static final String PREFS_NAME = "anticai_saved_plans";
-    private static final String PLANS_KEY = "plans";
-
     private EditText etSubjects;
     private EditText etExamDates;
+
     private RadioGroup rgDifficulty;
     private Spinner spDailyHours;
     private Spinner spSessionMinutes;
     private Spinner spBreakMinutes;
+
     private Button btnGeneratePlan;
     private ProgressBar progressGeneratePlan;
     private TextView tvGeneratedPlanResult;
@@ -65,6 +61,7 @@ public class CreateStudyPlanFragment extends Fragment {
             {"5", "10", "15", "20", "30"};
 
     public CreateStudyPlanFragment() {
+        // Required empty constructor
     }
 
     @Nullable
@@ -82,18 +79,19 @@ public class CreateStudyPlanFragment extends Fragment {
 
         etSubjects = view.findViewById(R.id.etSubjects);
         etExamDates = view.findViewById(R.id.etExamDates);
+
         rgDifficulty = view.findViewById(R.id.rgDifficulty);
         spDailyHours = view.findViewById(R.id.spDailyHours);
         spSessionMinutes = view.findViewById(R.id.spSessionMinutes);
         spBreakMinutes = view.findViewById(R.id.spBreakMinutes);
+
         btnGeneratePlan = view.findViewById(R.id.btnGeneratePlan);
         progressGeneratePlan =
                 view.findViewById(R.id.progressGeneratePlan);
         tvGeneratedPlanResult =
                 view.findViewById(R.id.tvGeneratedPlanResult);
 
-        apiService = RetrofitClient.getInstance(requireContext())
-                .create(ApiService.class);
+        apiService = RetrofitClient.getApiService(requireContext());
 
         configureSpinner(spDailyHours, dailyHoursOptions);
         configureSpinner(spSessionMinutes, sessionOptions);
@@ -103,6 +101,8 @@ public class CreateStudyPlanFragment extends Fragment {
         spSessionMinutes.setSelection(2);
         spBreakMinutes.setSelection(1);
 
+        progressGeneratePlan.setVisibility(View.GONE);
+
         configureDatePicker();
 
         btnGeneratePlan.setOnClickListener(v -> generatePlan());
@@ -111,32 +111,41 @@ public class CreateStudyPlanFragment extends Fragment {
     }
 
     private void configureSpinner(Spinner spinner, String[] values) {
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 requireContext(),
                 android.R.layout.simple_spinner_item,
                 values
         );
+
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
         );
+
         spinner.setAdapter(adapter);
     }
 
     private void configureDatePicker() {
+
         etExamDates.setFocusable(false);
         etExamDates.setClickable(true);
 
         etExamDates.setOnClickListener(v -> {
+
             Calendar calendar = Calendar.getInstance();
 
             DatePickerDialog picker = new DatePickerDialog(
                     requireContext(),
                     (datePicker, year, month, day) -> {
+
                         Calendar chosen = Calendar.getInstance();
                         chosen.set(year, month, day);
 
                         SimpleDateFormat formatter =
-                                new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                                new SimpleDateFormat(
+                                        "yyyy-MM-dd",
+                                        Locale.US
+                                );
 
                         etExamDates.setText(
                                 formatter.format(chosen.getTime())
@@ -152,6 +161,7 @@ public class CreateStudyPlanFragment extends Fragment {
     }
 
     private void generatePlan() {
+
         String input = etSubjects.getText().toString().trim();
 
         if (input.isEmpty()) {
@@ -160,128 +170,124 @@ public class CreateStudyPlanFragment extends Fragment {
             return;
         }
 
-        List<String> subjects = parseSubjects(input);
+        String[] subjects = input.split("[,;\\n]");
+        String subject = subjects[0].trim();
 
-        if (subjects.isEmpty()) {
+        if (subject.isEmpty()) {
             etSubjects.setError("Enter a valid subject");
             return;
         }
 
-        final int dailyHours = spinnerInt(spDailyHours, 2);
-        final int sessionMinutes = spinnerInt(spSessionMinutes, 45);
-        final int breakMinutes = spinnerInt(spBreakMinutes, 10);
+        String examDate = etExamDates.getText().toString().trim();
 
-        final String examDate = etExamDates.getText().toString().trim();
+        if (examDate.isEmpty()) {
+            showMessage("Please select your exam date.");
+            return;
+        }
 
-        final String difficulty =
+        int dailyHours = getSpinnerValue(spDailyHours, 2);
+        int sessionMinutes = getSpinnerValue(spSessionMinutes, 45);
+        int breakMinutes = getSpinnerValue(spBreakMinutes, 10);
+
+        String difficulty =
                 rgDifficulty.getCheckedRadioButtonId() == R.id.rbHard
                         ? "Hard" : "Easy";
 
-        JsonArray subjectArray = new JsonArray();
+        // Backend expects targetMinutes, not dailyStudyHours.
+        int targetMinutes = dailyHours * 60;
 
-        for (String subject : subjects) {
-            JsonObject item = new JsonObject();
-            item.addProperty("name", subject);
-            item.addProperty("difficulty", difficulty);
-
-            if (!examDate.isEmpty()) {
-                item.addProperty("examDate", examDate);
-            }
-
-            subjectArray.add(item);
-        }
-
-        JsonObject request = new JsonObject();
-        request.add("subjects", subjectArray);
-        request.addProperty("dailyStudyHours", dailyHours);
-        request.addProperty("sessionMinutes", sessionMinutes);
-        request.addProperty("breakMinutes", breakMinutes);
+        StudyPlanRequest request = new StudyPlanRequest(
+                subject,
+                subject,
+                difficulty,
+                examDate,
+                targetMinutes
+        );
 
         setLoading(true);
-        tvGeneratedPlanResult.setText("Generating your study plan...");
+        tvGeneratedPlanResult.setText(
+                "Saving your study plan..."
+        );
 
-        apiService.generateStudyPlan(request).enqueue(
-                new Callback<ResponseBody>() {
+        apiService.createStudyPlan(request).enqueue(
+                new Callback<StudyPlanResponse>() {
+
                     @Override
                     public void onResponse(
-                            @NonNull Call<ResponseBody> call,
-                            @NonNull Response<ResponseBody> response) {
+                            @NonNull Call<StudyPlanResponse> call,
+                            @NonNull Response<StudyPlanResponse> response) {
 
                         if (!isAdded()) return;
 
                         setLoading(false);
 
-                        if (!response.isSuccessful()) {
+                        if (response.isSuccessful()
+                                && response.body() != null) {
+
+                            StudyPlanResponse plan = response.body();
+
+                            String result =
+                                    "Study plan saved successfully!\n\n"
+                                            + "Subject: " + plan.getSubject()
+                                            + "\nTopic: " + plan.getTopic()
+                                            + "\nDifficulty: " + plan.getDifficulty()
+                                            + "\nExam date: " + plan.getExamDate()
+                                            + "\nDaily target: " + dailyHours
+                                            + " hours"
+                                            + "\nStudy session: " + sessionMinutes
+                                            + " minutes"
+                                            + "\nBreak: " + breakMinutes
+                                            + " minutes"
+                                            + "\nStatus: " + plan.getStatus();
+
+                            tvGeneratedPlanResult.setText(result);
+
+                            showMessage("Study plan saved to the server.");
+
+                        } else {
+
+                            String error = "HTTP " + response.code();
+
+                            try {
+                                if (response.errorBody() != null) {
+                                    error += ": "
+                                            + response.errorBody().string();
+                                }
+                            } catch (IOException ignored) {
+                                // Keep the HTTP error message.
+                            }
+
                             tvGeneratedPlanResult.setText(
-                                    "Plan generation failed. HTTP "
-                                            + response.code()
+                                    "Could not save study plan."
                             );
-                            return;
+
+                            showMessage(error);
                         }
-
-                        savePlans(
-                                subjects,
-                                examDate,
-                                difficulty,
-                                dailyHours,
-                                sessionMinutes,
-                                breakMinutes
-                        );
-
-                        tvGeneratedPlanResult.setText(
-                                "Study plan created successfully!\n\n"
-                                        + "Subjects: "
-                                        + TextUtils.join(", ", subjects)
-                                        + "\nExam date: "
-                                        + (examDate.isEmpty()
-                                        ? "Not set" : examDate)
-                                        + "\nDifficulty: " + difficulty
-                                        + "\nDaily hours: " + dailyHours
-                                        + "\nSession: " + sessionMinutes
-                                        + " minutes\nBreak: " + breakMinutes
-                                        + " minutes\n\n"
-                                        + "Open Study Plan to start."
-                        );
-
-                        Toast.makeText(
-                                requireContext(),
-                                "Study plan saved",
-                                Toast.LENGTH_SHORT
-                        ).show();
                     }
 
                     @Override
                     public void onFailure(
-                            @NonNull Call<ResponseBody> call,
+                            @NonNull Call<StudyPlanResponse> call,
                             @NonNull Throwable t) {
 
                         if (!isAdded()) return;
 
                         setLoading(false);
+
                         tvGeneratedPlanResult.setText(
-                                "Could not connect to the server: "
-                                        + t.getMessage()
+                                "Connection failed. Please try again."
+                        );
+
+                        showMessage(
+                                "Network error: " + t.getMessage()
                         );
                     }
                 }
         );
     }
 
-    private List<String> parseSubjects(String input) {
-        List<String> subjects = new ArrayList<>();
+    private int getSpinnerValue(Spinner spinner, int fallback) {
 
-        for (String part : input.split("[,;\\n]")) {
-            String subject = part.trim();
-
-            if (!subject.isEmpty() && !subjects.contains(subject)) {
-                subjects.add(subject);
-            }
-        }
-
-        return subjects;
-    }
-
-    private int spinnerInt(Spinner spinner, int fallback) {
         try {
             return Integer.parseInt(
                     spinner.getSelectedItem().toString()
@@ -291,59 +297,23 @@ public class CreateStudyPlanFragment extends Fragment {
         }
     }
 
-    private void savePlans(
-            List<String> subjects,
-            String examDate,
-            String difficulty,
-            int dailyHours,
-            int sessionMinutes,
-            int breakMinutes) {
-
-        String oldJson = requireContext()
-                .getSharedPreferences(PREFS_NAME, 0)
-                .getString(PLANS_KEY, "[]");
-
-        JsonArray plans;
-
-        try {
-            plans = JsonParser.parseString(oldJson).getAsJsonArray();
-        } catch (Exception e) {
-            plans = new JsonArray();
-        }
-
-        long createdAt = System.currentTimeMillis();
-
-        for (String subject : subjects) {
-            JsonObject plan = new JsonObject();
-
-            plan.addProperty(
-                    "id",
-                    subject + "_" + createdAt + "_" + plans.size()
-            );
-            plan.addProperty("subject", subject);
-            plan.addProperty("topic", subject);
-            plan.addProperty("examDate", examDate);
-            plan.addProperty("difficulty", difficulty);
-            plan.addProperty("dailyStudyHours", dailyHours);
-            plan.addProperty("durationMinutes", sessionMinutes);
-            plan.addProperty("breakMinutes", breakMinutes);
-            plan.addProperty("completed", false);
-            plan.addProperty("createdAt", createdAt);
-
-            plans.add(plan);
-        }
-
-        requireContext()
-                .getSharedPreferences(PREFS_NAME, 0)
-                .edit()
-                .putString(PLANS_KEY, plans.toString())
-                .apply();
-    }
-
     private void setLoading(boolean loading) {
+
         progressGeneratePlan.setVisibility(
                 loading ? View.VISIBLE : View.GONE
         );
+
         btnGeneratePlan.setEnabled(!loading);
+    }
+
+    private void showMessage(String message) {
+
+        if (isAdded()) {
+            Toast.makeText(
+                    requireContext(),
+                    message,
+                    Toast.LENGTH_LONG
+            ).show();
+        }
     }
 }

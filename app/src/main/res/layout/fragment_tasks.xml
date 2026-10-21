@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#080A12"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="30dp">
 
         <!-- HEADER -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:letterSpacing="0.15"
-            android:text="PERSONAL WORKSPACE"
+            android:text="YOUR PERSONAL WORKSPACE"
             android:textColor="#4D8DFF"
-            android:textSize="9sp"
-            android:textStyle="bold" />
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.10" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="Tasks."
+            android:layout_marginTop="9dp"
+            android:text="My Tasks."
             android:textColor="#F5F7FF"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -37,228 +41,375 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Keep your academic work organized and visible."
-            android:textColor="#858DA5"
-            android:textSize="12sp" />
+            android:text="Stay organized. Finish one thing at a time."
+            android:textColor="#929DB5"
+            android:textSize="13sp" />
 
-        <!-- SUMMARY -->
+        <!-- SUMMARY CARD -->
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_prediction_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TASK OVERVIEW"
+                android:textColor="#A9C5FF"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvActiveTasks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Active tasks"
+                        android:textColor="#A5ADC2"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="49dp"
+                    android:background="#35415A" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDueSoonTasks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#FFCB86"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Due soon"
+                        android:textColor="#A5ADC2"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="49dp"
+                    android:background="#35415A" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvCompletedTasks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#75D6A5"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Completed"
+                        android:textColor="#A5ADC2"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressTaskCompletion"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="20dp"
+                android:max="100"
+                android:progress="0"
+                android:progressBackgroundTint="#252B3A"
+                android:progressTint="#4D8DFF" />
+
+            <TextView
+                android:id="@+id/tvTaskCompletionSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Your progress will appear here."
+                android:textColor="#A5ADC2"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <!-- QUICK ACTIONS -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnAddTask"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#4D8DFF"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="+  Add new task"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnAssignments"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_main_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Assignments  →"
+                android:textColor="#A9C5FF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- TASK LIST HEADER -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="All your tasks"
+                android:textColor="#F5F7FF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTaskListCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 tasks"
+                android:textColor="#929DB5"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Assignments, projects and personal study goals."
+            android:textColor="#929DB5"
+            android:textSize="12sp" />
+
+        <!-- FILTERS -->
+
+        <RadioGroup
+            android:id="@+id/rgTaskFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <RadioButton
+                android:id="@+id/rbTaskAll"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="All"
+                android:textColor="#F5F7FF"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/rbTaskPending"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Pending"
+                android:textColor="#929DB5"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/rbTaskCompleted"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Completed"
+                android:textColor="#929DB5"
+                android:textSize="12sp" />
+
+        </RadioGroup>
+
+        <!-- DYNAMIC TASKS -->
+
+        <LinearLayout
+            android:id="@+id/layoutTaskList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <!-- EMPTY STATE -->
+
+            <LinearLayout
+                android:id="@+id/tvTasksEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_main_card"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="28dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✓"
+                    android:textColor="#4D8DFF"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="You're ready to get organized!"
+                    android:textColor="#F5F7FF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:gravity="center"
+                    android:text="Add your first assignment, project or study task to see it here."
+                    android:textColor="#929DB5"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="3dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- PRODUCTIVITY TIP -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_main_card"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="✦"
+                android:textColor="#A9C5FF"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="A small productivity tip"
+                    android:textColor="#F5F7FF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Start with the task that has the nearest deadline. Break bigger assignments into smaller steps."
+                    android:textColor="#929DB5"
+                    android:textSize="11sp"
+                    android:lineSpacingExtra="3dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- FOOTER -->
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:background="@drawable/bg_prediction_card"
-            android:orientation="horizontal"
-            android:padding="18dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ACTIVE"
-                    android:textColor="#69738D"
-                    android:textSize="9sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="04"
-                    android:textColor="#F5F7FF"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DUE SOON"
-                    android:textColor="#69738D"
-                    android:textSize="9sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="02"
-                    android:textColor="#FFB86B"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- ASSIGNMENTS -->
-
-        <TextView
-            android:id="@+id/btnAssignments"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/bg_main_card"
-            android:gravity="center_vertical"
-            android:paddingStart="17dp"
-            android:text="ASSIGNMENTS →"
-            android:textColor="#4D8DFF"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-        <!-- TODAY -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="TODAY"
-            android:textColor="#69738D"
-            android:textSize="9sp"
-            android:textStyle="bold" />
-
-        <!-- DBMS TASK -->
-
-        <LinearLayout
-            android:id="@+id/taskDbms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_prediction_card"
-            android:orientation="vertical"
-            android:padding="17dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HIGH PRIORITY"
-                android:textColor="#FF6B7A"
-                android:textSize="8sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Complete DBMS Assignment"
-                android:textColor="#F5F7FF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Due 30 September 2026"
-                android:textColor="#858DA5"
-                android:textSize="10sp" />
-
-        </LinearLayout>
-
-        <!-- DSA TASK -->
-
-        <LinearLayout
-            android:id="@+id/taskDsa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="vertical"
-            android:padding="17dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MEDIUM PRIORITY"
-                android:textColor="#FFB86B"
-                android:textSize="8sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Practice DSA Problems"
-                android:textColor="#F5F7FF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Due 01 October 2026"
-                android:textColor="#858DA5"
-                android:textSize="10sp" />
-
-        </LinearLayout>
-
-        <!-- UPCOMING -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="UPCOMING"
-            android:textColor="#69738D"
-            android:textSize="9sp"
-            android:textStyle="bold" />
-
-        <!-- AI & ML PROJECT -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_main_card"
-            android:orientation="vertical"
-            android:padding="17dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ai_ml_project"
-                android:textColor="#F5F7FF"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Due 04 October 2026"
-                android:textColor="#69738D"
-                android:textSize="10sp" />
-
-        </LinearLayout>
-
-        <!-- ADD TASK -->
-
-        <TextView
-            android:id="@+id/btnAddTask"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_main_card"
-            android:clickable="true"
-            android:focusable="true"
             android:gravity="center"
-            android:text="+ ADD NEW TASK"
-            android:textColor="#4D8DFF"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+            android:text="ANTICIAI  ·  ONE TASK AT A TIME."
+            android:textColor="#525D75"
+            android:textSize="9sp"
+            android:letterSpacing="0.07" />
 
     </LinearLayout>
 

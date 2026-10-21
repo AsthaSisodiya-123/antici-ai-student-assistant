@@ -1,13 +1,15 @@
 package com.anticai.studentassistant.fragments.profile;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,15 +20,13 @@ import com.anticai.studentassistant.R;
 
 public class EditProfileFragment extends Fragment {
 
-    private EditText etFullName;
+    private EditText etName;
     private EditText etEmail;
-    private EditText etPhone;
     private EditText etCollege;
-    private EditText etBranch;
-
-    private Spinner spinnerSemester;
-
-    private Button btnSaveChanges;
+    private EditText etCourse;
+    private EditText etYear;
+    private Button btnSaveProfile;
+    private ImageView btnBack;
 
     public EditProfileFragment() {
         // Required empty constructor
@@ -46,170 +46,130 @@ public class EditProfileFragment extends Fragment {
         );
 
         initializeViews(view);
-        setupSemesterSpinner();
-        setupSaveButton();
+        loadSavedProfile();
+        setupClickListeners();
 
         return view;
     }
 
     private void initializeViews(View view) {
-
-        etFullName = view.findViewById(R.id.etFullName);
+        etName = view.findViewById(R.id.etName);
         etEmail = view.findViewById(R.id.etEmail);
-        etPhone = view.findViewById(R.id.etPhone);
         etCollege = view.findViewById(R.id.etCollege);
-        etBranch = view.findViewById(R.id.etBranch);
-
-        spinnerSemester =
-                view.findViewById(R.id.spinnerSemester);
-
-        btnSaveChanges =
-                view.findViewById(R.id.btnSaveChanges);
+        etCourse = view.findViewById(R.id.etCourse);
+        etYear = view.findViewById(R.id.etYear);
+        btnSaveProfile = view.findViewById(R.id.btnSaveProfile);
+        btnBack = view.findViewById(R.id.btnBack);
     }
 
-    private void setupSemesterSpinner() {
+    private void loadSavedProfile() {
+        if (getContext() == null) return;
 
-        String[] semesters = {
-                "Select Semester",
-                "Semester 1",
-                "Semester 2",
-                "Semester 3",
-                "Semester 4",
-                "Semester 5",
-                "Semester 6",
-                "Semester 7",
-                "Semester 8"
-        };
-
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(
-                        requireContext(),
-                        android.R.layout.simple_spinner_item,
-                        semesters
+        android.content.SharedPreferences preferences =
+                requireContext().getSharedPreferences(
+                        "AnticiAIProfile",
+                        Context.MODE_PRIVATE
                 );
 
-        adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item
+        etName.setText(preferences.getString(
+                "name", "Astha Sisodiya"
+        ));
+
+        etEmail.setText(preferences.getString(
+                "email", ""
+        ));
+
+        etCollege.setText(preferences.getString(
+                "college", "NMIET, Talegaon Dabhade"
+        ));
+
+        etCourse.setText(preferences.getString(
+                "course", "B.E. Computer Engineering"
+        ));
+
+        etYear.setText(preferences.getString(
+                "year", "Second Year"
+        ));
+    }
+
+    private void setupClickListeners() {
+        btnSaveProfile.setOnClickListener(v -> saveProfile());
+
+        btnBack.setOnClickListener(v ->
+                requireActivity()
+                        .getSupportFragmentManager()
+                        .popBackStack()
         );
-
-        spinnerSemester.setAdapter(adapter);
     }
 
-    private void setupSaveButton() {
+    private void saveProfile() {
+        String name = etName.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
+        String college = etCollege.getText().toString().trim();
+        String course = etCourse.getText().toString().trim();
+        String year = etYear.getText().toString().trim();
 
-        btnSaveChanges.setOnClickListener(v -> {
+        if (TextUtils.isEmpty(name)) {
+            etName.setError("Please enter your name");
+            etName.requestFocus();
+            return;
+        }
 
-            String name =
-                    etFullName.getText()
-                            .toString()
-                            .trim();
+        if (TextUtils.isEmpty(email)
+                || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("Enter a valid email address");
+            etEmail.requestFocus();
+            return;
+        }
 
-            String email =
-                    etEmail.getText()
-                            .toString()
-                            .trim();
+        if (TextUtils.isEmpty(college)) {
+            etCollege.setError("Please enter your college");
+            etCollege.requestFocus();
+            return;
+        }
 
-            String phone =
-                    etPhone.getText()
-                            .toString()
-                            .trim();
+        if (TextUtils.isEmpty(course)) {
+            etCourse.setError("Please enter your course");
+            etCourse.requestFocus();
+            return;
+        }
 
-            String college =
-                    etCollege.getText()
-                            .toString()
-                            .trim();
+        if (TextUtils.isEmpty(year)) {
+            etYear.setError("Please enter your academic year");
+            etYear.requestFocus();
+            return;
+        }
 
-            String branch =
-                    etBranch.getText()
-                            .toString()
-                            .trim();
-
-            String semester =
-                    spinnerSemester.getSelectedItem()
-                            .toString();
-
-            if (name.isEmpty()) {
-
-                etFullName.setError(
-                        "Enter your full name"
+        android.content.SharedPreferences preferences =
+                requireContext().getSharedPreferences(
+                        "AnticiAIProfile",
+                        Context.MODE_PRIVATE
                 );
 
-                etFullName.requestFocus();
-                return;
-            }
+        boolean saved = preferences.edit()
+                .putString("name", name)
+                .putString("email", email)
+                .putString("college", college)
+                .putString("course", course)
+                .putString("year", year)
+                .commit();
 
-            if (email.isEmpty()) {
-
-                etEmail.setError(
-                        "Enter your email"
-                );
-
-                etEmail.requestFocus();
-                return;
-            }
-
-            if (!android.util.Patterns.EMAIL_ADDRESS
-                    .matcher(email)
-                    .matches()) {
-
-                etEmail.setError(
-                        "Enter a valid email"
-                );
-
-                etEmail.requestFocus();
-                return;
-            }
-
-            if (phone.isEmpty()) {
-
-                etPhone.setError(
-                        "Enter your phone number"
-                );
-
-                etPhone.requestFocus();
-                return;
-            }
-
-            if (college.isEmpty()) {
-
-                etCollege.setError(
-                        "Enter your college"
-                );
-
-                etCollege.requestFocus();
-                return;
-            }
-
-            if (branch.isEmpty()) {
-
-                etBranch.setError(
-                        "Enter your branch"
-                );
-
-                etBranch.requestFocus();
-                return;
-            }
-
-            if (semester.equals("Select Semester")) {
-
-                Toast.makeText(
-                        requireContext(),
-                        "Please select semester",
-                        Toast.LENGTH_SHORT
-                ).show();
-
-                return;
-            }
-
+        if (saved) {
             Toast.makeText(
                     requireContext(),
-                    "Profile updated successfully",
+                    "Profile saved successfully!",
                     Toast.LENGTH_SHORT
             ).show();
 
             requireActivity()
                     .getSupportFragmentManager()
                     .popBackStack();
-        });
+        } else {
+            Toast.makeText(
+                    requireContext(),
+                    "Could not save profile. Please try again.",
+                    Toast.LENGTH_LONG
+            ).show();
+        }
     }
 }

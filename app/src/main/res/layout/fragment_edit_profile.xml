@@ -1,199 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#080A12"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="22dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ACCOUNT"
-            android:textColor="#6F7893"
-            android:textSize="11sp"
-            android:letterSpacing="0.12" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Edit profile."
-            android:textColor="#F5F7FF"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Keep your personal and academic information up to date."
-            android:textColor="#858DA5"
-            android:textSize="14sp" />
-
-        <!-- PROFILE -->
-
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/bg_main_card"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="18dp">
+            android:paddingTop="8dp"
+            android:paddingBottom="22dp">
 
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:background="@drawable/bg_main_card"
-                android:gravity="center"
-                android:text="AS"
-                android:textColor="#4D8DFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Go back"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_media_previous"
+                app:tint="#FFFFFF" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="14dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PROFILE"
-                    android:textColor="#858DA5"
-                    android:textSize="10sp"
-                    android:letterSpacing="0.1" />
+                    android:text="EDIT PROFILE"
+                    android:textColor="#4D8DFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Personal information"
-                    android:textColor="#F5F7FF"
-                    android:textSize="15sp" />
+                    android:text="Personal Information"
+                    android:textColor="#FFFFFF"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Keep your student details up to date."
+            android:textColor="#9AA4B8"
+            android:textSize="14sp" />
+
+        <!-- Profile Form -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_main_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <!-- Full Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:textColor="#DCE4F5"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/bg_prediction_card"
+                android:hint="Enter your full name"
+                android:inputType="textPersonName|textCapWords"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#778198"
+                android:textSize="14sp" />
+
+            <!-- Email -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email Address"
+                android:textColor="#DCE4F5"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/bg_prediction_card"
+                android:hint="Enter your email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#778198"
+                android:textSize="14sp" />
+
+            <!-- College -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="College Name"
+                android:textColor="#DCE4F5"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/etCollege"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/bg_prediction_card"
+                android:hint="Enter your college"
+                android:inputType="textCapWords"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#778198"
+                android:textSize="14sp" />
+
+            <!-- Course -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course / Branch"
+                android:textColor="#DCE4F5"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/etCourse"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/bg_prediction_card"
+                android:hint="B.E. Computer Engineering"
+                android:inputType="textCapWords"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#778198"
+                android:textSize="14sp" />
+
+            <!-- Academic Year -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Academic Year"
+                android:textColor="#DCE4F5"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/etYear"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/bg_prediction_card"
+                android:hint="e.g. Second Year"
+                android:inputType="textCapWords"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#778198"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <!-- FULL NAME -->
-
-        <EditText
-            android:id="@+id/etFullName"
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSaveProfile"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_main_card"
-            android:hint="Full name"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
-            android:textSize="15sp" />
-
-        <!-- EMAIL -->
-
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_main_card"
-            android:hint="Email address"
-            android:inputType="textEmailAddress"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
-            android:textSize="15sp" />
-
-        <!-- PHONE -->
-
-        <EditText
-            android:id="@+id/etPhone"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_main_card"
-            android:hint="Phone number"
-            android:inputType="phone"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
-            android:textSize="15sp" />
-
-        <!-- COLLEGE -->
-
-        <EditText
-            android:id="@+id/etCollege"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_main_card"
-            android:hint="College / University"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
-            android:textSize="15sp" />
-
-        <!-- BRANCH -->
-
-        <EditText
-            android:id="@+id/etBranch"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_main_card"
-            android:hint="Branch / Department"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
-            android:textSize="15sp" />
-
-        <!-- SEMESTER -->
+            android:layout_height="54dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#4D8DFF"
+            android:text="Save Changes"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="SEMESTER"
-            android:textColor="#858DA5"
-            android:textSize="11sp"
-            android:letterSpacing="0.1" />
-
-        <Spinner
-            android:id="@+id/spinnerSemester"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_main_card"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp" />
-
-        <Button
-            android:id="@+id/btnSaveChanges"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:backgroundTint="#4D8DFF"
-            android:text="SAVE CHANGES"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:text="Keep your Antici AI profile up to date."
+            android:textColor="#778198"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

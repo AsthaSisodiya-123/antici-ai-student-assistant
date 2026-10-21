@@ -14,6 +14,8 @@ import com.anticai.studentassistant.R;
 
 public class PrivacyFragment extends Fragment {
 
+    private TextView btnPrivacyBack;
+
     public PrivacyFragment() {
         // Required empty constructor
     }
@@ -31,14 +33,29 @@ public class PrivacyFragment extends Fragment {
                 false
         );
 
-        TextView btnBack = view.findViewById(R.id.btnBack);
-
-        btnBack.setOnClickListener(v ->
-                requireActivity()
-                        .getSupportFragmentManager()
-                        .popBackStack()
-        );
+        initializeViews(view);
+        setupClickListeners();
 
         return view;
+    }
+
+    private void initializeViews(View view) {
+        btnPrivacyBack = view.findViewById(
+                R.id.btnPrivacyBack
+        );
+    }
+
+    private void setupClickListeners() {
+        btnPrivacyBack.setOnClickListener(v -> goBack());
+    }
+
+    private void goBack() {
+        if (!isAdded()) {
+            return;
+        }
+
+        requireActivity()
+                .getSupportFragmentManager()
+                .popBackStack();
     }
 }
