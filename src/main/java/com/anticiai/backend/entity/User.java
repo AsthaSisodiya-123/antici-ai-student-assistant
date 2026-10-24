@@ -22,6 +22,15 @@ public class User {
     @Column(nullable = false)
     private String role = "ROLE_STUDENT";
 
+    @Column(length = 150)
+    private String college;
+
+    @Column(length = 150)
+    private String course;
+
+    @Column(name = "academic_year", length = 50)
+    private String year;
+
     public User() {
     }
 
@@ -40,6 +49,14 @@ public class User {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -56,19 +73,35 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }
