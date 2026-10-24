@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
-    android:fillViewport="true">
+    android:background="@color/app_background"
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +22,7 @@
             android:layout_marginTop="15dp"
             android:letterSpacing="0.15"
             android:text="ACADEMIC SCHEDULE"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -29,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="Exams."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -38,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Track your upcoming examinations."
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
         <!-- SUMMARY -->
@@ -61,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="UPCOMING"
-                    android:textColor="#69738D"
+                    android:textColor="@color/text_secondary"
                     android:textSize="9sp"
                     android:textStyle="bold" />
 
@@ -70,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="02"
-                    android:textColor="#F5F7FF"
+                    android:textColor="@color/text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -86,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NEXT EXAM"
-                    android:textColor="#69738D"
+                    android:textColor="@color/text_secondary"
                     android:textSize="9sp"
                     android:textStyle="bold" />
 
@@ -95,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="02 OCT"
-                    android:textColor="#FFB86B"
+                    android:textColor="@color/warning"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -103,14 +105,14 @@
 
         </LinearLayout>
 
-        <!-- UPCOMING -->
+        <!-- UPCOMING EXAMS -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="UPCOMING EXAMS"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -131,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="06 OCTOBER 2026"
-                android:textColor="#FFB86B"
+                android:textColor="@color/warning"
                 android:textSize="8sp"
                 android:textStyle="bold" />
 
@@ -140,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="Database Management Systems"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -149,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="09:00 AM • Main Examination Hall"
-                android:textColor="#858DA5"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -171,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="02 OCTOBER 2026"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="8sp"
                 android:textStyle="bold" />
 
@@ -180,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/data_structures_algorithms"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -189,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="09:00 AM • Main Examination Hall"
-                android:textColor="#858DA5"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -207,7 +209,7 @@
             android:focusable="true"
             android:gravity="center"
             android:text="+ ADD NEW EXAM"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="10sp"
             android:textStyle="bold" />
 

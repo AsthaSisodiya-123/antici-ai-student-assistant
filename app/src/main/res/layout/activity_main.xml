@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#080B14">
+    android:background="@color/app_background">
 
     <!-- Premium top bar -->
     <LinearLayout
@@ -13,7 +14,7 @@
         android:gravity="center_vertical"
         android:paddingStart="20dp"
         android:paddingEnd="16dp"
-        android:background="#0E1322"
+        android:background="@color/surface_color"
         android:elevation="4dp">
 
         <LinearLayout
@@ -26,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AnticiAI"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:letterSpacing="-0.02" />
@@ -35,11 +36,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="YOUR PERSONAL STUDY COPILOT"
-                android:textColor="#8996B5"
+                android:textColor="@color/text_secondary"
                 android:textSize="9sp"
                 android:letterSpacing="0.12" />
-        </LinearLayout>
 
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/btnNotifications"
@@ -53,7 +54,7 @@
             android:scaleType="fitCenter"
             android:clickable="true"
             android:focusable="true"
-            app:tint="#EAF0FF" />
+            app:tint="@color/text_primary" />
 
         <TextView
             android:id="@+id/btnProfile"
@@ -63,7 +64,7 @@
             android:text="A"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:background="@drawable/bg_profile_avatar"
             android:contentDescription="Profile"
             android:clickable="true"
@@ -75,7 +76,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/app_background">
 
         <FrameLayout
             android:id="@+id/mainContainer"
@@ -102,7 +104,7 @@
                 android:text="AI"
                 android:textSize="19sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:background="@drawable/bg_ai_button"
                 android:contentDescription="Open AI assistant"
                 android:clickable="true"
@@ -122,7 +124,7 @@
         android:paddingEnd="7dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:background="#0E1322"
+        android:background="@color/surface_color"
         android:elevation="10dp">
 
         <!-- Home -->
@@ -142,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:text="⌂"
                 android:textSize="25sp"
-                android:textColor="#4D8DFF" />
+                android:textColor="@color/nav_selected" />
 
             <TextView
                 android:id="@+id/labelHome"
@@ -151,7 +153,8 @@
                 android:text="Home"
                 android:textSize="11sp"
                 android:textStyle="bold"
-                android:textColor="#4D8DFF" />
+                android:textColor="@color/nav_selected" />
+
         </LinearLayout>
 
         <!-- Schedule -->
@@ -171,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:text="▦"
                 android:textSize="22sp"
-                android:textColor="#8996B5" />
+                android:textColor="@color/nav_unselected" />
 
             <TextView
                 android:id="@+id/labelSchedule"
@@ -179,7 +182,8 @@
                 android:layout_height="wrap_content"
                 android:text="Schedule"
                 android:textSize="11sp"
-                android:textColor="#8996B5" />
+                android:textColor="@color/nav_unselected" />
+
         </LinearLayout>
 
         <!-- Tasks -->
@@ -199,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:text="☑"
                 android:textSize="21sp"
-                android:textColor="#8996B5" />
+                android:textColor="@color/nav_unselected" />
 
             <TextView
                 android:id="@+id/labelTasks"
@@ -207,7 +211,8 @@
                 android:layout_height="wrap_content"
                 android:text="Tasks"
                 android:textSize="11sp"
-                android:textColor="#8996B5" />
+                android:textColor="@color/nav_unselected" />
+
         </LinearLayout>
 
         <!-- Study -->
@@ -227,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:text="▤"
                 android:textSize="22sp"
-                android:textColor="#8996B5" />
+                android:textColor="@color/nav_unselected" />
 
             <TextView
                 android:id="@+id/labelStudy"
@@ -235,7 +240,8 @@
                 android:layout_height="wrap_content"
                 android:text="Study"
                 android:textSize="11sp"
-                android:textColor="#8996B5" />
+                android:textColor="@color/nav_unselected" />
+
         </LinearLayout>
 
     </LinearLayout>

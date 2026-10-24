@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true"
     android:scrollbars="none">
 
@@ -13,7 +14,8 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- Header -->
+        <!-- HEADER -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +32,7 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="‹"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="34sp"
                 android:contentDescription="Go back" />
 
@@ -45,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ANTICI AI"
-                    android:textColor="#4D8DFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="11sp"
                     android:textStyle="bold"
                     android:letterSpacing="0.12" />
@@ -55,13 +57,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Settings"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_primary"
                     android:textSize="27sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Intro card -->
+        <!-- INTRO CARD -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Make it work for you"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="19sp"
                 android:textStyle="bold" />
 
@@ -90,18 +94,20 @@
                 android:layout_marginTop="6dp"
                 android:lineSpacingExtra="3dp"
                 android:text="Customize reminders and preferences to build a better study routine."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
+
         </LinearLayout>
 
-        <!-- Notification section -->
+        <!-- NOTIFICATIONS -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="12dp"
             android:text="NOTIFICATIONS"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp"
             android:textStyle="bold"
             android:letterSpacing="0.08" />
@@ -112,6 +118,8 @@
             android:background="@drawable/bg_main_card"
             android:orientation="vertical"
             android:padding="17dp">
+
+            <!-- PUSH NOTIFICATIONS -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -138,7 +146,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Push notifications"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -147,8 +155,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Allow study-related alerts"
-                        android:textColor="#AAB4C8"
+                        android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
+
                 </LinearLayout>
 
                 <Switch
@@ -156,7 +165,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="Push notifications"
-                    android:buttonTint="#4D8DFF" />
+                    android:buttonTint="@color/accent_blue" />
+
             </LinearLayout>
 
             <View
@@ -164,7 +174,9 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="#293044" />
+                android:background="@color/divider" />
+
+            <!-- STUDY REMINDERS -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -191,7 +203,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Study reminders"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -200,8 +212,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Get reminders for study time"
-                        android:textColor="#AAB4C8"
+                        android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
+
                 </LinearLayout>
 
                 <Switch
@@ -209,18 +222,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="Study reminders"
-                    android:buttonTint="#4D8DFF" />
+                    android:buttonTint="@color/accent_blue" />
+
             </LinearLayout>
+
         </LinearLayout>
 
-        <!-- Study preferences -->
+        <!-- STUDY PREFERENCES -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="12dp"
             android:text="STUDY PREFERENCES"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp"
             android:textStyle="bold"
             android:letterSpacing="0.08" />
@@ -236,7 +252,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Daily study goal"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -245,7 +261,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Choose a target that works for you"
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp" />
 
             <RadioGroup
@@ -259,44 +275,47 @@
                     android:id="@+id/goal30"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#4D8DFF"
+                    android:buttonTint="@color/accent_blue"
                     android:text="30 minutes"
-                    android:textColor="#DCE4F5" />
+                    android:textColor="@color/text_primary" />
 
                 <RadioButton
                     android:id="@+id/goal60"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#4D8DFF"
+                    android:buttonTint="@color/accent_blue"
                     android:text="1 hour"
-                    android:textColor="#DCE4F5" />
+                    android:textColor="@color/text_primary" />
 
                 <RadioButton
                     android:id="@+id/goal120"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#4D8DFF"
+                    android:buttonTint="@color/accent_blue"
                     android:text="2 hours"
-                    android:textColor="#DCE4F5" />
+                    android:textColor="@color/text_primary" />
 
                 <RadioButton
                     android:id="@+id/goal180"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#4D8DFF"
+                    android:buttonTint="@color/accent_blue"
                     android:text="3 hours"
-                    android:textColor="#DCE4F5" />
+                    android:textColor="@color/text_primary" />
+
             </RadioGroup>
+
         </LinearLayout>
 
-        <!-- Appearance section -->
+        <!-- APPEARANCE -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="12dp"
             android:text="APPEARANCE"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp"
             android:textStyle="bold"
             android:letterSpacing="0.08" />
@@ -312,7 +331,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="App theme"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -327,38 +346,41 @@
                     android:id="@+id/radioDark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#4D8DFF"
+                    android:buttonTint="@color/accent_blue"
                     android:text="Dark mode"
-                    android:textColor="#DCE4F5" />
+                    android:textColor="@color/text_primary" />
 
                 <RadioButton
                     android:id="@+id/radioLight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#4D8DFF"
+                    android:buttonTint="@color/accent_blue"
                     android:text="Light mode"
-                    android:textColor="#DCE4F5" />
+                    android:textColor="@color/text_primary" />
 
                 <RadioButton
                     android:id="@+id/radioSystem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#4D8DFF"
+                    android:buttonTint="@color/accent_blue"
                     android:text="Use system setting"
-                    android:textColor="#DCE4F5" />
+                    android:textColor="@color/text_primary" />
+
             </RadioGroup>
+
         </LinearLayout>
 
-        <!-- Save button -->
+        <!-- SAVE SETTINGS -->
+
         <Button
             android:id="@+id/btnSaveSettings"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="26dp"
-            android:backgroundTint="#4D8DFF"
+            android:backgroundTint="@color/accent_blue"
             android:text="Save Preferences"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -369,8 +391,9 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="Small steps. Better habits. Smarter studying."
-            android:textColor="#778198"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
     </LinearLayout>
+
 </ScrollView>

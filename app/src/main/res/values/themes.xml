@@ -1,24 +1,22 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
-    <!-- Dark theme -->
     <style name="Base.Theme.AnticiAI"
-        parent="Theme.Material3.DayNight.NoActionBar">
+        parent="Theme.AppCompat.DayNight.NoActionBar">
 
-        <!-- AnticiAI brand colors -->
         <item name="colorPrimary">#4D8DFF</item>
-        <item name="colorSecondary">#4D8DFF</item>
+        <item name="colorPrimaryDark">#EAF0FA</item>
+        <item name="colorAccent">#4D8DFF</item>
 
-        <!-- Status bar -->
-        <item name="android:statusBarColor">#080A12</item>
-        <item name="android:windowLightStatusBar">false</item>
-
-        <!-- Navigation bar -->
-        <item name="android:navigationBarColor">#080A12</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
-
-        <!-- Default window background -->
-        <item name="android:windowBackground">#080A12</item>
+        <item name="android:statusBarColor">#F5F7FF</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">#F5F7FF</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">#F5F7FF</item>
 
     </style>
+
+    <style name="Theme.AnticiAI"
+        parent="Base.Theme.AnticiAI" />
 
 </resources>

@@ -4,11 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:orientation="vertical">
 
     <!-- HEADER -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -22,7 +21,7 @@
             android:layout_height="wrap_content"
             android:letterSpacing="0.15"
             android:text="ANTICIAI"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -31,15 +30,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="AI Assistant"
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="23sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
-
     <!-- CHAT AREA -->
-
     <ScrollView
         android:id="@+id/chatScrollView"
         android:layout_width="match_parent"
@@ -59,7 +56,6 @@
             android:paddingBottom="20dp">
 
             <!-- INITIAL AI MESSAGE -->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="✦  ANTICIAI"
-                    android:textColor="#4D8DFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="9sp"
                     android:textStyle="bold" />
 
@@ -80,21 +76,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="9dp"
                     android:text="Hi Astha. I'm your personal academic assistant. I can help you understand your schedule, tasks, study patterns and upcoming deadlines."
-                    android:textColor="#DCE2F2"
+                    android:textColor="@color/text_primary"
                     android:textSize="13sp"
                     android:lineSpacingExtra="3dp" />
 
             </LinearLayout>
 
-
             <!-- SUGGESTIONS -->
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:text="TRY ASKING"
-                android:textColor="#69738D"
+                android:textColor="@color/text_secondary"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -108,7 +102,7 @@
                 android:focusable="true"
                 android:padding="15dp"
                 android:text="What should I study today?"
-                android:textColor="#AFC7FF"
+                android:textColor="@color/accent_blue"
                 android:textSize="12sp" />
 
             <TextView
@@ -121,7 +115,7 @@
                 android:focusable="true"
                 android:padding="15dp"
                 android:text="Create a study plan for my DBMS exam."
-                android:textColor="#AFC7FF"
+                android:textColor="@color/accent_blue"
                 android:textSize="12sp" />
 
             <TextView
@@ -134,20 +128,18 @@
                 android:focusable="true"
                 android:padding="15dp"
                 android:text="What needs my attention next?"
-                android:textColor="#AFC7FF"
+                android:textColor="@color/accent_blue"
                 android:textSize="12sp" />
 
         </LinearLayout>
 
     </ScrollView>
 
-
     <!-- MESSAGE INPUT -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:background="#0D101A"
+        android:background="@color/surface_color"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
@@ -163,8 +155,8 @@
             android:maxLines="3"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#69738D"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="12sp" />
 
         <TextView
@@ -177,7 +169,7 @@
             android:focusable="true"
             android:gravity="center"
             android:text="→"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 

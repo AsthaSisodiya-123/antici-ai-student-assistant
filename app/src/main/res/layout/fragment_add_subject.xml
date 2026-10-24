@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -13,11 +13,13 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- HEADER -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PERSONAL WORKSPACE"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:letterSpacing="0.12" />
 
@@ -26,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="New subject."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -35,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Add a subject to personalize your academic workspace."
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
         <!-- SUBJECT NAME -->
@@ -49,8 +51,8 @@
             android:hint="Subject name"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="15sp" />
 
         <!-- SUBJECT CODE -->
@@ -64,8 +66,8 @@
             android:hint="Subject code"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="15sp"
             android:inputType="textCapCharacters" />
 
@@ -80,8 +82,8 @@
             android:hint="Teacher name"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="15sp" />
 
         <!-- SEMESTER -->
@@ -91,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="SEMESTER"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:letterSpacing="0.1" />
 
@@ -104,7 +106,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp" />
 
-        <!-- BUTTON -->
+        <!-- ADD SUBJECT BUTTON -->
 
         <Button
             android:id="@+id/btnAddSubject"
@@ -112,9 +114,9 @@
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:backgroundTint="#4D8DFF"
+            android:backgroundTint="@color/accent_blue"
             android:text="ADD SUBJECT"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
 

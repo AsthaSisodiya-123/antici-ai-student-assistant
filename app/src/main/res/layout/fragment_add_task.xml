@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -20,7 +21,7 @@
             android:layout_marginTop="15dp"
             android:letterSpacing="0.15"
             android:text="PERSONAL WORKSPACE"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="New task."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Create a task and keep your workload organized."
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
         <!-- TASK TITLE -->
@@ -48,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="TASK TITLE"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -61,8 +62,8 @@
             android:hint="Enter task title"
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#69738D"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="13sp" />
 
         <!-- SUBJECT -->
@@ -72,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="SUBJECT"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -92,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="PRIORITY"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -112,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="DUE DATE"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -126,8 +127,10 @@
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
             android:text="Select due date"
-            android:textColor="#858DA5"
-            android:textSize="13sp" />
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:clickable="true"
+            android:focusable="true" />
 
         <!-- DESCRIPTION -->
 
@@ -136,7 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="DESCRIPTION"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -148,13 +151,13 @@
             android:background="@drawable/bg_main_card"
             android:gravity="top"
             android:hint="Add notes about this task..."
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|textCapSentences"
             android:padding="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#69738D"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="13sp" />
 
-        <!-- ADD BUTTON -->
+        <!-- ADD TASK BUTTON -->
 
         <Button
             android:id="@+id/btnAddTask"
@@ -162,9 +165,9 @@
             android:layout_height="56dp"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/bg_main_card"
+            android:backgroundTint="@color/accent_blue"
             android:text="ADD TASK"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/white"
             android:textSize="11sp"
             android:textStyle="bold" />
 

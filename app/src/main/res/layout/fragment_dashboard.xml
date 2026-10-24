@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true"
     android:scrollbars="none">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Welcome back! 👋"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_primary"
             android:textSize="26sp"
             android:textStyle="bold" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Let's make today productive."
-            android:textColor="#A7AEC4"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
         <!-- AI Priority Recommendation -->
@@ -45,8 +45,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="✦ ANTICI AI • YOUR NEXT ACTION"
-                android:textColor="#B9A7FF"
+                android:text="✦ ANTICIAI • YOUR NEXT ACTION"
+                android:textColor="@color/primary_light"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="What should I do right now?"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Your highest-priority task will appear here."
-                android:textColor="#D0D4E5"
+                android:textColor="@color/text_secondary"
                 android:textSize="15sp" />
 
             <TextView
@@ -74,11 +74,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:background="#3A2945"
+                android:background="@color/surface_secondary"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="7dp"
                 android:text="Priority: Calculating..."
-                android:textColor="#FFD166"
+                android:textColor="@color/warning"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Recommendations will consider deadlines, urgency and importance."
-                android:textColor="#C4C9DA"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
 
             <TextView
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Suggested focus time: 25 minutes"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -109,7 +109,7 @@
                 android:background="@drawable/bg_main_card"
                 android:gravity="center"
                 android:text="Start This Task  →"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="↻ Recalculate My Priorities"
-                android:textColor="#B9A7FF"
+                android:textColor="@color/primary_light"
                 android:textSize="13sp" />
 
         </LinearLayout>
@@ -131,10 +131,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="Today's Overview"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_primary"
             android:textSize="19sp"
             android:textStyle="bold" />
 
+        <!-- Completed and Pending -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="✓ Completed"
-                    android:textColor="#A7AEC4"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
                 <TextView
@@ -164,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="0"
-                    android:textColor="#61E6A7"
+                    android:textColor="@color/success"
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
@@ -184,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="◷ Pending"
-                    android:textColor="#A7AEC4"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
                 <TextView
@@ -193,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="0"
-                    android:textColor="#FFCA70"
+                    android:textColor="@color/warning"
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
@@ -201,6 +202,7 @@
 
         </LinearLayout>
 
+        <!-- Study Time and Active Plans -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -221,7 +223,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="◷ Study Time"
-                    android:textColor="#A7AEC4"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
                 <TextView
@@ -230,7 +232,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="0 min"
-                    android:textColor="#80BFFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -250,7 +252,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="▤ Active Plans"
-                    android:textColor="#A7AEC4"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
                 <TextView
@@ -259,7 +261,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="0"
-                    android:textColor="#C7A7FF"
+                    android:textColor="@color/primary_light"
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
@@ -287,7 +289,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Daily Study Goal"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_primary"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -296,7 +298,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0%"
-                    android:textColor="#61E6A7"
+                    android:textColor="@color/success"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -310,8 +312,8 @@
                 android:layout_marginTop="16dp"
                 android:max="100"
                 android:progress="0"
-                android:progressTint="#61E6A7"
-                android:progressBackgroundTint="#303447" />
+                android:progressTint="@color/success"
+                android:progressBackgroundTint="@color/divider" />
 
             <TextView
                 android:id="@+id/tvDashboardGoalMessage"
@@ -319,18 +321,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Start studying to make progress toward your daily goal."
-                android:textColor="#A7AEC4"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
 
         </LinearLayout>
 
-        <!-- Priority Task List -->
+        <!-- Upcoming Tasks -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="Your Upcoming Tasks"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_primary"
             android:textSize="19sp"
             android:textStyle="bold" />
 
@@ -339,7 +341,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Tasks should be arranged by urgency and importance."
-            android:textColor="#A7AEC4"
+            android:textColor="@color/text_secondary"
             android:textSize="13sp" />
 
         <LinearLayout
@@ -357,7 +359,7 @@
                 android:gravity="center"
                 android:padding="22dp"
                 android:text="Your pending tasks will appear here."
-                android:textColor="#A7AEC4"
+                android:textColor="@color/text_secondary"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -373,7 +375,7 @@
             android:gravity="center"
             android:padding="18dp"
             android:text="Small steps every day lead to big results. ✨"
-            android:textColor="#C7B8FF"
+            android:textColor="@color/primary_light"
             android:textSize="14sp"
             android:textStyle="italic" />
 

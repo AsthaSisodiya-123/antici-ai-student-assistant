@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true"
     android:scrollbars="none">
 
@@ -13,7 +14,7 @@
         android:orientation="vertical"
         android:padding="22dp">
 
-        <!-- Header -->
+        <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,8 +31,9 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="‹"
-                android:textColor="#FFFFFF"
-                android:textSize="34sp" />
+                android:textColor="@color/text_primary"
+                android:textSize="34sp"
+                android:contentDescription="Go back" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -44,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ACCOUNT PROTECTION"
-                    android:textColor="#4D8DFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="11sp"
                     android:textStyle="bold" />
 
@@ -53,13 +55,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Privacy &amp; Security"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Privacy introduction -->
+        <!-- PRIVACY INTRODUCTION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Your privacy matters"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="19sp"
                 android:textStyle="bold" />
 
@@ -88,18 +91,19 @@
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="4dp"
                 android:text="Review how you manage your account information and protect access to your Antici AI account."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
-        <!-- Account Information -->
+        <!-- ACCOUNT INFORMATION -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:layout_marginBottom="12dp"
             android:text="ACCOUNT INFORMATION"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -114,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Personal Information"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -123,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="Keep your name, email, college and course details accurate in your profile."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
 
             <View
@@ -131,13 +135,13 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="#293044" />
+                android:background="@color/divider" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Study Data"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -146,18 +150,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="Your study plans and progress may be stored by the app. Check the application's actual privacy policy for data storage and usage details."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
+
         </LinearLayout>
 
-        <!-- Security Tips -->
+        <!-- SECURITY TIPS -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:layout_marginBottom="12dp"
             android:text="SECURITY TIPS"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -172,7 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="✓  Use a strong password"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp" />
 
             <TextView
@@ -180,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="✓  Never share your password or login token"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp" />
 
             <TextView
@@ -188,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="✓  Sign out on shared devices"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp" />
 
             <TextView
@@ -196,11 +201,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="✓  Keep your app updated"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
-        <!-- Account Safety Notice -->
+        <!-- ACCOUNT SAFETY NOTICE -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -209,17 +215,19 @@
             android:lineSpacingExtra="3dp"
             android:padding="16dp"
             android:text="Important: This screen provides privacy information and security tips. Account deletion, data export and server-side security controls must be implemented separately."
-            android:textColor="#AAB4C8"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
+        <!-- FOOTER -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:gravity="center"
             android:text="ANTICI AI  •  PRIVACY &amp; SECURITY"
-            android:textColor="#778198"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp" />
 
     </LinearLayout>
+
 </ScrollView>

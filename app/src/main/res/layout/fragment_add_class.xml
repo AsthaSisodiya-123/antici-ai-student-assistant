@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -13,11 +13,13 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- HEADER -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PERSONAL WORKSPACE"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:letterSpacing="0.12" />
 
@@ -26,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="New class."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -35,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Add a class to keep your timetable organized."
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
         <!-- SUBJECT -->
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="SUBJECT"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:letterSpacing="0.1" />
 
@@ -65,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="DAY"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:letterSpacing="0.1" />
 
@@ -85,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="START TIME"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:letterSpacing="0.1" />
 
@@ -97,8 +99,9 @@
             android:background="@drawable/bg_main_card"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
+            android:paddingEnd="18dp"
             android:text="Select start time"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="15sp"
             android:clickable="true"
             android:focusable="true" />
@@ -110,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="END TIME"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:letterSpacing="0.1" />
 
@@ -122,8 +125,9 @@
             android:background="@drawable/bg_main_card"
             android:gravity="center_vertical"
             android:paddingStart="18dp"
+            android:paddingEnd="18dp"
             android:text="Select end time"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="15sp"
             android:clickable="true"
             android:focusable="true" />
@@ -139,8 +143,8 @@
             android:hint="Teacher name"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="15sp" />
 
         <!-- ROOM -->
@@ -154,8 +158,8 @@
             android:hint="Room / Classroom"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#6F7893"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="15sp" />
 
         <!-- CLASS TYPE -->
@@ -165,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="CLASS TYPE"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:letterSpacing="0.1" />
 
@@ -178,15 +182,17 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp" />
 
+        <!-- ADD CLASS BUTTON -->
+
         <Button
             android:id="@+id/btnAddClass"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:backgroundTint="#4D8DFF"
+            android:backgroundTint="@color/accent_blue"
             android:text="ADD CLASS"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
 

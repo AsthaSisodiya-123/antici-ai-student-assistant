@@ -1,13 +1,14 @@
+
 package com.anticai.studentassistant.fragments.profile;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,17 +17,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.anticai.studentassistant.R;
+import com.anticai.studentassistant.network.RetrofitClient;
+import com.google.gson.JsonObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HelpSupportFragment extends Fragment {
 
-    private TextView btnHelpBack;
     private Button btnContactSupport;
 
-    // Replace this with your actual support email address.
-    private static final String SUPPORT_EMAIL = "your-support-email@example.com";
-
     public HelpSupportFragment() {
-        // Required empty public constructor
+        // Required empty constructor
     }
 
     @Nullable
@@ -42,80 +45,154 @@ public class HelpSupportFragment extends Fragment {
                 false
         );
 
-        initializeViews(view);
-        setupClickListeners();
+        TextView btnBack = view.findViewById(R.id.btnHelpBack);
+        btnContactSupport = view.findViewById(R.id.btnContactSupport);
+
+        btnBack.setOnClickListener(v ->
+                requireActivity()
+                        .getSupportFragmentManager()
+                        .popBackStack()
+        );
+
+        btnContactSupport.setOnClickListener(v -> showSupportForm());
 
         return view;
     }
 
-    private void initializeViews(View view) {
-        btnHelpBack = view.findViewById(R.id.btnHelpBack);
-        btnContactSupport = view.findViewById(R.id.btnContactSupport);
-    }
+    private void showSupportForm() {
+        LinearLayout layout = new LinearLayout(requireContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
 
-    private void setupClickListeners() {
+        int padding = (int) (20 * getResources()
+                .getDisplayMetrics().density);
 
-        btnHelpBack.setOnClickListener(v -> goBack());
+        layout.setPadding(padding, padding / 2, padding, 0);
 
-        btnContactSupport.setOnClickListener(v -> contactSupport());
-    }
+        EditText subjectInput = new EditText(requireContext());
+        subjectInput.setHint("Subject");
+        subjectInput.setSingleLine(true);
+        layout.addView(subjectInput);
 
-    private void goBack() {
-        if (!isAdded()) {
-            return;
-        }
+        EditText messageInput = new EditText(requireContext());
+        messageInput.setHint("Describe your issue");
+        messageInput.setMinLines(4);
+        messageInput.setGravity(
+                android.view.Gravity.TOP | android.view.Gravity.START
+        );
+        layout.addView(messageInput);
 
-        requireActivity()
-                .getSupportFragmentManager()
-                .popBackStack();
-    }
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setTitle("Contact Support")
+                .setMessage("Tell us how we can help.")
+                .setView(layout)
+                .setNegativeButton("Cancel", (d, which) -> d.dismiss())
+                .setPositiveButton("Submit", null)
+                .create();
 
-    private void contactSupport() {
+        dialog.setOnShowListener(ignored ->
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setOnClickListener(v -> {
+                            String subject = subjectInput.getText()
+                                    .toString().trim();
 
-        if (!isAdded()) {
-            return;
-        }
+                            String message = messageInput.getText()
+                                    .toString().trim();
 
-        if (SUPPORT_EMAIL.equals("your-support-email@example.com")) {
-            Toast.makeText(
-                    requireContext(),
-                    "Please configure your support email in HelpSupportFragment.java.",
-                    Toast.LENGTH_LONG
-            ).show();
-            return;
-        }
+                            if (subject.isEmpty()) {
+                                subjectInput.setError(
+                                        "Please enter a subject"
+                                );
+                                return;
+                            }
 
-        Intent emailIntent = new Intent(
-                Intent.ACTION_SENDTO,
-                Uri.parse("mailto:" + SUPPORT_EMAIL)
+                            if (message.isEmpty()) {
+                                messageInput.setError(
+                                        "Please describe your issue"
+                                );
+                                return;
+                            }
+
+                            if (subject.length() > 150) {
+                                subjectInput.setError(
+                                        "Maximum 150 characters"
+                                );
+                                return;
+                            }
+
+                            if (message.length() > 3000) {
+                                messageInput.setError(
+                                        "Maximum 3000 characters"
+                                );
+                                return;
+                            }
+
+                            dialog.dismiss();
+                            submitSupportRequest(subject, message);
+                        })
         );
 
-        emailIntent.putExtra(
-                Intent.EXTRA_SUBJECT,
-                "Antici AI - Support Request"
-        );
+        dialog.show();
+    }
 
-        emailIntent.putExtra(
-                Intent.EXTRA_TEXT,
-                "Hello Antici AI Support Team,\n\n"
-                        + "I need help with the Antici AI application.\n\n"
-                        + "Issue description:\n\n"
-                        + "Thank you."
-        );
+    private void submitSupportRequest(
+            String subject,
+            String message) {
 
-        try {
-            startActivity(
-                    Intent.createChooser(
-                            emailIntent,
-                            "Contact Antici AI Support"
-                    )
-            );
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(
-                    requireContext(),
-                    "No email application is available on this device.",
-                    Toast.LENGTH_LONG
-            ).show();
-        }
+        if (!isAdded()) return;
+
+        btnContactSupport.setEnabled(false);
+        btnContactSupport.setText("Submitting...");
+
+        JsonObject request = new JsonObject();
+        request.addProperty("subject", subject);
+        request.addProperty("message", message);
+        request.addProperty("category", "GENERAL");
+
+        RetrofitClient.getApiService(requireContext())
+                .submitSupportRequest(request)
+                .enqueue(new Callback<JsonObject>() {
+
+                    @Override
+                    public void onResponse(
+                            @NonNull Call<JsonObject> call,
+                            @NonNull Response<JsonObject> response) {
+
+                        if (!isAdded()) return;
+
+                        btnContactSupport.setEnabled(true);
+                        btnContactSupport.setText("Contact Support");
+
+                        if (response.isSuccessful()) {
+                            Toast.makeText(
+                                    requireContext(),
+                                    "Support request submitted successfully.",
+                                    Toast.LENGTH_LONG
+                            ).show();
+                        } else {
+                            Toast.makeText(
+                                    requireContext(),
+                                    "Submission failed. Please try again.",
+                                    Toast.LENGTH_LONG
+                            ).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(
+                            @NonNull Call<JsonObject> call,
+                            @NonNull Throwable t) {
+
+                        if (!isAdded()) return;
+
+                        btnContactSupport.setEnabled(true);
+                        btnContactSupport.setText("Contact Support");
+
+                        Toast.makeText(
+                                requireContext(),
+                                "Could not connect to the server. Please try again.",
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                });
     }
 }

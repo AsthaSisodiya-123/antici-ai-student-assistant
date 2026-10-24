@@ -1,3 +1,4 @@
+
 package com.anticai.studentassistant.activities;
 
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        applySavedTheme();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -46,13 +50,41 @@ public class MainActivity extends AppCompatActivity {
         setupActionButtons();
 
         getSupportFragmentManager()
-                .addOnBackStackChangedListener(this::updateAIButtonVisibility);
+                .addOnBackStackChangedListener(
+                        this::updateAIButtonVisibility);
 
         if (savedInstanceState == null) {
             loadFragment(new DashboardFragment(), false);
             selectNavigation(navHome);
         } else {
             updateAIButtonVisibility();
+        }
+    }
+
+    private void applySavedTheme() {
+        android.content.SharedPreferences prefs =
+                getSharedPreferences("AnticiAISettings", MODE_PRIVATE);
+
+        String theme = prefs.getString("themeMode", "dark");
+
+        int mode;
+
+        switch (theme) {
+            case "light":
+                mode = AppCompatDelegate.MODE_NIGHT_NO;
+                break;
+
+            case "system":
+                mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+                break;
+
+            default:
+                mode = AppCompatDelegate.MODE_NIGHT_YES;
+                break;
+        }
+
+        if (AppCompatDelegate.getDefaultNightMode() != mode) {
+            AppCompatDelegate.setDefaultNightMode(mode);
         }
     }
 
@@ -100,27 +132,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupActionButtons() {
         btnAI.setOnClickListener(v ->
-                loadFragment(new AIChatFragment(), true)
-        );
+                loadFragment(new AIChatFragment(), true));
 
         btnNotifications.setOnClickListener(v ->
                 Toast.makeText(
                         MainActivity.this,
                         "Notifications coming soon",
                         Toast.LENGTH_SHORT
-                ).show()
-        );
+                ).show());
 
         btnProfile.setOnClickListener(v ->
-                loadFragment(new ProfileFragment(), true)
-        );
+                loadFragment(new ProfileFragment(), true));
     }
 
-    private void loadFragment(Fragment fragment, boolean addToBackStack) {
-        FragmentTransaction transaction = getSupportFragmentManager()
-                .beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(R.id.mainContainer, fragment);
+    private void loadFragment(
+            Fragment fragment,
+            boolean addToBackStack) {
+
+        FragmentTransaction transaction =
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.mainContainer, fragment);
 
         if (addToBackStack) {
             transaction.addToBackStack(null);
@@ -128,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
 
         transaction.commit();
 
-        // Complete the transaction before checking the current fragment.
         getSupportFragmentManager().executePendingTransactions();
 
         updateAIButtonVisibility();
@@ -139,8 +171,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        Fragment currentFragment = getSupportFragmentManager()
-                .findFragmentById(R.id.mainContainer);
+        Fragment currentFragment =
+                getSupportFragmentManager()
+                        .findFragmentById(R.id.mainContainer);
 
         if (currentFragment instanceof DashboardFragment) {
             btnAI.setVisibility(View.VISIBLE);
@@ -152,8 +185,7 @@ public class MainActivity extends AppCompatActivity {
     private void clearBackStack() {
         getSupportFragmentManager().popBackStack(
                 null,
-                FragmentManager.POP_BACK_STACK_INCLUSIVE
-        );
+                FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         getSupportFragmentManager().executePendingTransactions();
     }
@@ -191,7 +223,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager =
+                getSupportFragmentManager();
 
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack();

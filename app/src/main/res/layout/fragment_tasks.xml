@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true"
     android:scrollbars="none">
 
@@ -18,12 +18,11 @@
         android:paddingBottom="30dp">
 
         <!-- HEADER -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="YOUR PERSONAL WORKSPACE"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="10sp"
             android:textStyle="bold"
             android:letterSpacing="0.10" />
@@ -33,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
             android:text="My Tasks."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -42,11 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Stay organized. Finish one thing at a time."
-            android:textColor="#929DB5"
+            android:textColor="@color/text_secondary"
             android:textSize="13sp" />
 
-        <!-- SUMMARY CARD -->
-
+        <!-- TASK SUMMARY CARD -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TASK OVERVIEW"
-                android:textColor="#A9C5FF"
+                android:textColor="@color/accent_blue"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.08" />
@@ -70,6 +68,7 @@
                 android:layout_marginTop="17dp"
                 android:orientation="horizontal">
 
+                <!-- ACTIVE TASKS -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -81,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_primary"
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
@@ -90,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Active tasks"
-                        android:textColor="#A5ADC2"
+                        android:textColor="@color/text_secondary"
                         android:textSize="11sp" />
 
                 </LinearLayout>
@@ -98,8 +97,9 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="49dp"
-                    android:background="#35415A" />
+                    android:background="@color/divider" />
 
+                <!-- DUE SOON -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="#FFCB86"
+                        android:textColor="@color/warning"
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
@@ -121,7 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Due soon"
-                        android:textColor="#A5ADC2"
+                        android:textColor="@color/text_secondary"
                         android:textSize="11sp" />
 
                 </LinearLayout>
@@ -129,8 +129,9 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="49dp"
-                    android:background="#35415A" />
+                    android:background="@color/divider" />
 
+                <!-- COMPLETED TASKS -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -143,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="#75D6A5"
+                        android:textColor="@color/success"
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
@@ -152,13 +153,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Completed"
-                        android:textColor="#A5ADC2"
+                        android:textColor="@color/text_secondary"
                         android:textSize="11sp" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
+            <!-- COMPLETION PROGRESS -->
             <ProgressBar
                 android:id="@+id/progressTaskCompletion"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -167,8 +169,8 @@
                 android:layout_marginTop="20dp"
                 android:max="100"
                 android:progress="0"
-                android:progressBackgroundTint="#252B3A"
-                android:progressTint="#4D8DFF" />
+                android:progressBackgroundTint="@color/divider"
+                android:progressTint="@color/accent_blue" />
 
             <TextView
                 android:id="@+id/tvTaskCompletionSummary"
@@ -176,13 +178,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Your progress will appear here."
-                android:textColor="#A5ADC2"
+                android:textColor="@color/text_secondary"
                 android:textSize="11sp" />
 
         </LinearLayout>
 
         <!-- QUICK ACTIONS -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -194,12 +195,12 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="#4D8DFF"
+                android:background="@drawable/bg_profile_circle"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
                 android:text="+  Add new task"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -214,14 +215,13 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="Assignments  →"
-                android:textColor="#A9C5FF"
+                android:textColor="@color/accent_blue"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <!-- TASK LIST HEADER -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -234,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="All your tasks"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -243,7 +243,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 tasks"
-                android:textColor="#929DB5"
+                android:textColor="@color/text_secondary"
                 android:textSize="11sp" />
 
         </LinearLayout>
@@ -253,11 +253,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Assignments, projects and personal study goals."
-            android:textColor="#929DB5"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
-        <!-- FILTERS -->
-
+        <!-- TASK FILTERS -->
         <RadioGroup
             android:id="@+id/rgTaskFilter"
             android:layout_width="match_parent"
@@ -276,7 +275,7 @@
                 android:checked="true"
                 android:gravity="center"
                 android:text="All"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="12sp" />
 
             <RadioButton
@@ -287,7 +286,7 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="Pending"
-                android:textColor="#929DB5"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp" />
 
             <RadioButton
@@ -298,13 +297,12 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="Completed"
-                android:textColor="#929DB5"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp" />
 
         </RadioGroup>
 
-        <!-- DYNAMIC TASKS -->
-
+        <!-- DYNAMIC TASK LIST -->
         <LinearLayout
             android:id="@+id/layoutTaskList"
             android:layout_width="match_parent"
@@ -313,7 +311,6 @@
             android:orientation="vertical">
 
             <!-- EMPTY STATE -->
-
             <LinearLayout
                 android:id="@+id/tvTasksEmpty"
                 android:layout_width="match_parent"
@@ -327,7 +324,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="✓"
-                    android:textColor="#4D8DFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="36sp"
                     android:textStyle="bold" />
 
@@ -337,7 +334,7 @@
                     android:layout_marginTop="12dp"
                     android:gravity="center"
                     android:text="You're ready to get organized!"
-                    android:textColor="#F5F7FF"
+                    android:textColor="@color/text_primary"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -347,7 +344,7 @@
                     android:layout_marginTop="7dp"
                     android:gravity="center"
                     android:text="Add your first assignment, project or study task to see it here."
-                    android:textColor="#929DB5"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp"
                     android:lineSpacingExtra="3dp" />
 
@@ -356,7 +353,6 @@
         </LinearLayout>
 
         <!-- PRODUCTIVITY TIP -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -369,7 +365,7 @@
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
                 android:text="✦"
-                android:textColor="#A9C5FF"
+                android:textColor="@color/accent_blue"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -382,7 +378,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="A small productivity tip"
-                    android:textColor="#F5F7FF"
+                    android:textColor="@color/text_primary"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -391,7 +387,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Start with the task that has the nearest deadline. Break bigger assignments into smaller steps."
-                    android:textColor="#929DB5"
+                    android:textColor="@color/text_secondary"
                     android:textSize="11sp"
                     android:lineSpacingExtra="3dp" />
 
@@ -400,14 +396,13 @@
         </LinearLayout>
 
         <!-- FOOTER -->
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:gravity="center"
             android:text="ANTICIAI  ·  ONE TASK AT A TIME."
-            android:textColor="#525D75"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:letterSpacing="0.07" />
 

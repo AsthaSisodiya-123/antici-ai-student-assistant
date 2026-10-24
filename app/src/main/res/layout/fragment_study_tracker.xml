@@ -4,8 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
-    android:fillViewport="true">
+    android:background="@color/app_background"
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,14 +14,15 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- HEADER -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:letterSpacing="0.15"
             android:text="PERSONAL PRODUCTIVITY"
-            android:textColor="#4D8DFF"
-            android:textSize="9sp"
+            android:textColor="@color/accent_blue"
+            android:textSize="10sp"
             android:textStyle="bold" />
 
         <TextView
@@ -28,26 +30,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="Study Tracker."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="3dp"
             android:text="Track your study routine and help AnticiAI understand your learning patterns."
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
-
-        <!-- TODAY SUMMARY -->
-
+        <!-- TODAY SUMMARY CARD -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:background="@drawable/bg_prediction_card"
+            android:elevation="2dp"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -55,8 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TODAY"
-                android:textColor="#4D8DFF"
-                android:textSize="9sp"
+                android:textColor="@color/accent_blue"
+                android:textSize="10sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -64,38 +66,36 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="1h 15m"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="4dp"
                 android:text="Study time completed"
-                android:textColor="#858DA5"
-                android:textSize="10sp" />
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="17dp"
-                android:background="#29324A" />
+                android:layout_marginTop="18dp"
+                android:background="@color/divider" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="DAILY GOAL     2h 00m"
-                android:textColor="#69738D"
-                android:textSize="9sp"
+                android:textColor="@color/text_secondary"
+                android:textSize="10sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-
-        <!-- START SESSION -->
-
+        <!-- START SESSION BUTTON -->
         <TextView
             android:id="@+id/btnStartSession"
             android:layout_width="match_parent"
@@ -104,85 +104,88 @@
             android:background="@drawable/bg_profile_circle"
             android:gravity="center"
             android:text="START STUDY SESSION  →"
-            android:textColor="#FFFFFF"
-            android:textSize="11sp"
-            android:textStyle="bold" />
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
 
-
-        <!-- CURRENT PATTERN -->
-
+        <!-- CURRENT PATTERN HEADER -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="YOUR CURRENT PATTERN"
-            android:textColor="#69738D"
-            android:textSize="9sp"
+            android:textColor="@color/text_secondary"
+            android:textSize="10sp"
             android:textStyle="bold" />
 
+        <!-- CURRENT PATTERN CARD -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/bg_main_card"
+            android:elevation="1dp"
             android:orientation="vertical"
-            android:padding="17dp">
+            android:padding="18dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Most active period"
-                android:textColor="#69738D"
-                android:textSize="9sp" />
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="5dp"
                 android:text="7:00 PM – 9:00 PM"
-                android:textColor="#F5F7FF"
-                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="13dp"
-                android:background="#202638" />
+                android:layout_marginTop="15dp"
+                android:background="@color/divider" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="14dp"
                 android:text="Average session"
-                android:textColor="#69738D"
-                android:textSize="9sp" />
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="5dp"
                 android:text="42 minutes"
-                android:textColor="#F5F7FF"
-                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-
-        <!-- HISTORY -->
-
+        <!-- STUDY HISTORY BUTTON -->
         <TextView
             android:id="@+id/btnHistory"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="54dp"
             android:layout_marginTop="18dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_main_card"
             android:gravity="center"
             android:text="VIEW STUDY HISTORY  →"
-            android:textColor="#4D8DFF"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textColor="@color/accent_blue"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 

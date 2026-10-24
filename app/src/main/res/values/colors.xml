@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
     <!-- AnticiAI Primary -->
     <color name="primary">#635BFF</color>
     <color name="primary_dark">#5147E8</color>
     <color name="primary_light">#A78BFA</color>
+    <color name="accent_blue">#4D8DFF</color>
 
-    <!-- Dark -->
+    <!-- Backgrounds -->
     <color name="navy">#10162F</color>
     <color name="deep_navy">#0B1020</color>
-
-    <!-- Background -->
     <color name="background">#F7F7FC</color>
     <color name="surface">#FFFFFF</color>
+
+    <!-- Shared theme backgrounds -->
+    <color name="app_background">#F5F7FF</color>
+    <color name="surface_color">#FFFFFF</color>
+    <color name="surface_secondary">#EAF0FA</color>
 
     <!-- Text -->
     <color name="text_primary">#171A2B</color>
@@ -30,4 +36,6 @@
     <color name="input_background">#F5F5FA</color>
     <color name="nav_selected">#4D8DFF</color>
     <color name="nav_unselected">#8996B5</color>
+    <color name="border_color">#DCE3F0</color>
+
 </resources>

@@ -1,6 +1,7 @@
 
 package com.anticai.studentassistant.network;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -168,4 +169,47 @@ public interface ApiService {
     Call<Void> deleteStudyPlan(
             @Path("id") long id
     );
+
+    // PROFILE APIs
+
+    @GET("api/student/me")
+    Call<ProfileResponse> getProfile();
+
+    @PUT("api/student/me")
+    Call<ProfileResponse> updateProfile(
+            @Body ProfileUpdateRequest request
+    );
+
+
+    @GET("api/settings")
+    Call<JsonObject> getSettings();
+
+    @PUT("api/settings")
+    Call<JsonObject> updateSettings(@Body JsonObject settings);
+
+    @GET("api/privacy")
+    Call<JsonObject> getPrivacyInformation();
+
+    @POST("api/support")
+    Call<JsonObject> submitSupportRequest(@Body JsonObject request);
+
+    @GET("api/support")
+    Call<List<JsonObject>> getMySupportRequests();
+
+
+    // PRIVACY SCREEN APIs
+
+    @GET("api/student/me")
+    Call<JsonElement> getPrivacyProfile();
+
+    @GET("api/tasks")
+    Call<JsonElement> getPrivacyTasks();
+
+    @GET("api/study-plan")
+    Call<JsonElement> getPrivacyStudyPlans();
+
+    @GET("api/study-sessions")
+    Call<JsonElement> getPrivacyStudySessions();
+
+
 }

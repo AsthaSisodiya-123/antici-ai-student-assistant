@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true"
     android:scrollbars="none">
 
@@ -33,7 +33,7 @@
                 android:contentDescription="Go back"
                 android:padding="12dp"
                 android:src="@android:drawable/ic_media_previous"
-                app:tint="#FFFFFF" />
+                app:tint="@color/text_primary" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="EDIT PROFILE"
-                    android:textColor="#4D8DFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="11sp"
                     android:textStyle="bold" />
 
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Personal Information"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_primary"
                     android:textSize="21sp"
                     android:textStyle="bold" />
 
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="Keep your student details up to date."
-            android:textColor="#9AA4B8"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
         <!-- Profile Form -->
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Full Name"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <EditText
@@ -98,8 +98,8 @@
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#778198"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 android:textSize="14sp" />
 
             <!-- Email -->
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email Address"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <EditText
@@ -122,8 +122,8 @@
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#778198"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 android:textSize="14sp" />
 
             <!-- College -->
@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="College Name"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <EditText
@@ -146,16 +146,16 @@
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#778198"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 android:textSize="14sp" />
 
-            <!-- Course -->
+            <!-- Course / Branch -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Course / Branch"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <EditText
@@ -170,8 +170,8 @@
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#778198"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 android:textSize="14sp" />
 
             <!-- Academic Year -->
@@ -179,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Academic Year"
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <EditText
@@ -193,8 +193,8 @@
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#778198"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -205,10 +205,10 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#4D8DFF"
+            android:backgroundTint="@color/accent_blue"
             android:text="Save Changes"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -217,8 +217,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:gravity="center"
-            android:text="Keep your Antici AI profile up to date."
-            android:textColor="#778198"
+            android:text="Keep your AnticiAI profile up to date."
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
     </LinearLayout>

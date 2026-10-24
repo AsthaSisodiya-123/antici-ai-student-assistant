@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true"
     android:scrollbars="none">
 
@@ -30,7 +31,7 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="‹"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="34sp"
                 android:contentDescription="Go back" />
 
@@ -45,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ANTICI AI"
-                    android:textColor="#4D8DFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="11sp"
                     android:textStyle="bold" />
 
@@ -54,13 +55,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Help &amp; Support"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_primary"
                     android:textSize="25sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Welcome card -->
+        <!-- Welcome Card -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="How can we help you?"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -89,18 +90,18 @@
                 android:layout_marginTop="7dp"
                 android:lineSpacingExtra="3dp"
                 android:text="Find answers to common questions and learn how to use your student assistant."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
         </LinearLayout>
 
-        <!-- FAQ heading -->
+        <!-- FAQ Heading -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="12dp"
             android:text="FREQUENTLY ASKED QUESTIONS"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -117,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="What is Antici AI?"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -127,7 +128,7 @@
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="3dp"
                 android:text="Antici AI is a student assistant designed to help organize study tasks, plan sessions, and manage academic priorities."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -144,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="How do I update my profile?"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -154,7 +155,7 @@
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="3dp"
                 android:text="Open Profile, select Edit Profile, update your student details, and tap Save Changes."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -171,7 +172,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="How do I manage study goals?"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -181,7 +182,7 @@
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="3dp"
                 android:text="Open Profile, go to Settings, select your daily study goal, and save your preferences."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -198,7 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="What if my settings do not save?"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -208,7 +209,7 @@
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="3dp"
                 android:text="Check that you tapped Save Preferences. If the issue continues, close and reopen the app, then try again."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -219,7 +220,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="12dp"
             android:text="TROUBLESHOOTING"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -234,7 +235,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="• Check your internet connection if server data fails to load."
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <TextView
@@ -242,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="• Ensure the backend server is running when using online features."
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <TextView
@@ -250,18 +251,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="• Restart the app if a screen does not respond."
-                android:textColor="#DCE4F5"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
         </LinearLayout>
 
-        <!-- Contact support -->
+        <!-- Contact Support -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="12dp"
             android:text="CONTACT SUPPORT"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -276,7 +277,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Need more help?"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_primary"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -286,7 +287,7 @@
                 android:layout_marginTop="7dp"
                 android:lineSpacingExtra="3dp"
                 android:text="Contact your app support team if you continue to experience problems."
-                android:textColor="#AAB4C8"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
 
             <Button
@@ -294,14 +295,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="#4D8DFF"
+                android:backgroundTint="@color/accent_blue"
                 android:text="Contact Support"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <!-- Footer -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -309,8 +311,9 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="ANTICI AI • HERE TO HELP"
-            android:textColor="#778198"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp" />
 
     </LinearLayout>
+
 </ScrollView>

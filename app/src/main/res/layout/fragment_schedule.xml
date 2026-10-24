@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true"
     android:scrollbars="none">
 
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="YOUR ACADEMIC PLANNER"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="10sp"
             android:textStyle="bold"
             android:letterSpacing="0.12" />
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
             android:text="Schedule."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Your classes and exams, all in one place."
-            android:textColor="#929DB5"
+            android:textColor="@color/text_secondary"
             android:textSize="13sp" />
 
         <!-- DATE CARD -->
@@ -66,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="YOUR WEEK"
-                    android:textColor="#9DBBFF"
+                    android:textColor="@color/primary_light"
                     android:textSize="10sp"
                     android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Plan your week"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_primary"
                     android:textSize="19sp"
                     android:textStyle="bold" />
 
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Add classes or exams to get started."
-                    android:textColor="#A5ADC2"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -94,10 +94,10 @@
             <TextView
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:background="#263D6B"
+                android:background="@color/surface_secondary"
                 android:gravity="center"
                 android:text="▦"
-                android:textColor="#9DBBFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="28sp" />
 
         </LinearLayout>
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:text="VIEW SCHEDULE"
-            android:textColor="#929DB5"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:textStyle="bold"
             android:letterSpacing="0.08" />
@@ -128,11 +128,11 @@
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_weight="1"
-                android:buttonTint="#4D8DFF"
+                android:buttonTint="@color/accent_blue"
                 android:checked="true"
                 android:gravity="center"
                 android:text="Classes"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <RadioButton
@@ -140,10 +140,10 @@
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_weight="1"
-                android:buttonTint="#4D8DFF"
+                android:buttonTint="@color/accent_blue"
                 android:gravity="center"
                 android:text="Exams"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
         </RadioGroup>
@@ -168,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Your schedule"
-                    android:textColor="#F5F7FF"
+                    android:textColor="@color/text_primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -178,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Entries you add will appear here."
-                    android:textColor="#929DB5"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -187,14 +187,14 @@
                 android:id="@+id/btnAddClass"
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
-                android:background="#4D8DFF"
+                android:background="@color/accent_blue"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:text="+ Add"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -209,7 +209,7 @@
             android:layout_marginTop="16dp"
             android:orientation="vertical">
 
-            <!-- Empty state shown until entries are loaded -->
+            <!-- EMPTY STATE -->
 
             <LinearLayout
                 android:id="@+id/layoutScheduleEmpty"
@@ -224,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="▦"
-                    android:textColor="#4D8DFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="36sp" />
 
                 <TextView
@@ -233,7 +233,7 @@
                     android:layout_marginTop="12dp"
                     android:gravity="center"
                     android:text="Nothing scheduled yet"
-                    android:textColor="#F5F7FF"
+                    android:textColor="@color/text_primary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -243,7 +243,7 @@
                     android:layout_marginTop="7dp"
                     android:gravity="center"
                     android:text="Tap + Add to enter your class timetable or exam details."
-                    android:textColor="#929DB5"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp"
                     android:lineSpacingExtra="3dp" />
 
@@ -264,21 +264,22 @@
             <TextView
                 android:layout_width="28dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
                 android:text="i"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="11dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginStart="8dp"
                 android:text="Keep your schedule updated whenever your class timings or exam dates change."
-                android:textColor="#929DB5"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp"
-                android:lineSpacingExtra="3dp"
-                android:layout_marginBottom="15dp"/>
+                android:lineSpacingExtra="3dp" />
 
         </LinearLayout>
 

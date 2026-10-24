@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -24,10 +24,9 @@
             android:focusable="true"
             android:gravity="center_vertical"
             android:text="←  BACK"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:textStyle="bold" />
-
 
         <!-- HEADER -->
 
@@ -37,7 +36,7 @@
             android:layout_marginTop="18dp"
             android:letterSpacing="0.15"
             android:text="ACADEMIC WORK"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -46,10 +45,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="Assignments."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
-
 
         <!-- DUE SOON -->
 
@@ -58,10 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="DUE SOON"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
-
 
         <!-- DBMS ASSIGNMENT -->
 
@@ -80,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="30 SEP 2026"
-                android:textColor="#FF6B7A"
+                android:textColor="@color/danger"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -89,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="DBMS Assignment"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -98,11 +95,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Normalization and SQL queries"
-                android:textColor="#858DA5"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp" />
 
         </LinearLayout>
-
 
         <!-- DSA ASSIGNMENT -->
 
@@ -121,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="01 OCT 2026"
-                android:textColor="#FFB86B"
+                android:textColor="@color/warning"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -130,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="DSA Assignment"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -139,11 +135,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Sorting algorithms implementation"
-                android:textColor="#858DA5"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp" />
 
         </LinearLayout>
-
 
         <!-- UPCOMING -->
 
@@ -152,10 +147,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="UPCOMING"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
-
 
         <!-- AI & ML PROJECT -->
 
@@ -171,7 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="04 OCT 2026"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -180,12 +174,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/ai_ml_project"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
-
 
         <!-- ADD ASSIGNMENT -->
 
@@ -199,7 +192,7 @@
             android:focusable="true"
             android:gravity="center"
             android:text="+  ADD ASSIGNMENT"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="10sp"
             android:textStyle="bold" />
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -20,7 +21,7 @@
             android:layout_marginTop="15dp"
             android:letterSpacing="0.15"
             android:text="ACADEMIC SCHEDULE"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="Timetable."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="Organize your weekly class schedule."
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
         <!-- WEEK SUMMARY -->
@@ -61,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CLASSES"
-                    android:textColor="#69738D"
+                    android:textColor="@color/text_secondary"
                     android:textSize="9sp"
                     android:textStyle="bold" />
 
@@ -70,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="18"
-                    android:textColor="#F5F7FF"
+                    android:textColor="@color/text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -86,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="THIS WEEK"
-                    android:textColor="#69738D"
+                    android:textColor="@color/text_secondary"
                     android:textSize="9sp"
                     android:textStyle="bold" />
 
@@ -95,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="05 DAYS"
-                    android:textColor="#4D8DFF"
+                    android:textColor="@color/accent_blue"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -110,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="MONDAY"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -129,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10:00 AM — 11:00 AM"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -138,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="Database Management Systems"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -147,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Room 204"
-                android:textColor="#858DA5"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -159,7 +160,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:text="TUESDAY"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -178,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="09:00 AM — 10:00 AM"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -187,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/data_structures_algorithms"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -196,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Room 301"
-                android:textColor="#858DA5"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -208,7 +209,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:text="WEDNESDAY"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -227,7 +228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="11:00 AM — 12:00 PM"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -236,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="Core Java"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -245,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Lab 02"
-                android:textColor="#858DA5"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -257,7 +258,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:text="THURSDAY"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -276,7 +277,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10:00 AM — 11:00 AM"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -285,7 +286,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/artificial_intelligence_ml"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -298,7 +299,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:text="FRIDAY"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -317,7 +318,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="09:00 AM — 10:00 AM"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -326,7 +327,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="Computer Networks"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -345,7 +346,7 @@
             android:focusable="true"
             android:gravity="center"
             android:text="+ ADD NEW CLASS"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="10sp"
             android:textStyle="bold" />
 

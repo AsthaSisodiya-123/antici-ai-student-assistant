@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12">
+    android:background="@color/app_background">
 
-    <!-- Center content -->
     <LinearLayout
         android:id="@+id/splashContent"
         android:layout_width="match_parent"
@@ -12,22 +13,24 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        >
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
 
-       <ImageView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:src="@drawable/logo"/>
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/logo"
+            android:scaleType="fitCenter"
+            android:contentDescription="AnticiAI logo" />
 
-        <!-- Brand -->
         <TextView
             android:id="@+id/tvBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="28dp"
             android:letterSpacing="0.12"
             android:text="ANTICIAI"
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -35,29 +38,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:letterSpacing="0.18"
+            android:letterSpacing="0.12"
             android:text="PERSONAL INTELLIGENCE"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp" />
+
     </LinearLayout>
 
-    <!-- Full-width loading track -->
     <FrameLayout
         android:id="@+id/loadingTrack"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_gravity="bottom"
-        android:background="#202638">
+        android:background="@color/divider">
 
-        <!-- Blue progress fills the complete width -->
         <View
             android:id="@+id/loadingLine"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#4D8DFF"
+            android:background="@color/accent_blue"
             android:scaleX="0"
             android:transformPivotX="0dp" />
+
     </FrameLayout>
 
 </FrameLayout>

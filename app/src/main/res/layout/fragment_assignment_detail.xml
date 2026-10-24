@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -13,15 +13,21 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- BACK BUTTON -->
+
         <TextView
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:gravity="center_vertical"
             android:text="←  BACK"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- HEADER -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +35,7 @@
             android:layout_marginTop="20dp"
             android:letterSpacing="0.15"
             android:text="ASSIGNMENT"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -38,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="DBMS Assignment"
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -47,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Database Management Systems"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="11sp" />
 
         <!-- STATUS -->
@@ -64,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DUE DATE"
-                android:textColor="#69738D"
+                android:textColor="@color/text_secondary"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -73,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="30 September 2026"
-                android:textColor="#F5F7FF"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -82,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="HIGH PRIORITY"
-                android:textColor="#FF6B7A"
+                android:textColor="@color/danger"
                 android:textSize="9sp"
                 android:textStyle="bold" />
 
@@ -95,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="DESCRIPTION"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -106,7 +112,7 @@
             android:background="@drawable/bg_main_card"
             android:padding="18dp"
             android:text="Complete the assigned questions on database normalization, functional dependencies and SQL queries. Submit the completed work before the deadline."
-            android:textColor="#A5ADC2"
+            android:textColor="@color/text_primary"
             android:textSize="11sp" />
 
         <!-- PROGRESS -->
@@ -116,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="PROGRESS"
-            android:textColor="#69738D"
+            android:textColor="@color/text_secondary"
             android:textSize="9sp"
             android:textStyle="bold" />
 
@@ -127,9 +133,11 @@
             android:background="@drawable/bg_main_card"
             android:padding="18dp"
             android:text="30% completed"
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="13sp"
             android:textStyle="bold" />
+
+        <!-- MARK AS COMPLETED -->
 
         <TextView
             android:id="@+id/btnComplete"
@@ -139,9 +147,11 @@
             android:background="@drawable/bg_profile_circle"
             android:gravity="center"
             android:text="MARK AS COMPLETED"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 

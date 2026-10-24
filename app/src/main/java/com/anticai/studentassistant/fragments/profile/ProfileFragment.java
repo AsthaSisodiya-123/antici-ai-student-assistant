@@ -1,3 +1,4 @@
+
 package com.anticai.studentassistant.fragments.profile;
 
 import android.app.AlertDialog;
@@ -15,6 +16,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.anticai.studentassistant.R;
+import com.anticai.studentassistant.network.ApiService;
+import com.anticai.studentassistant.network.ProfileResponse;
+import com.anticai.studentassistant.network.RetrofitClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
 
@@ -33,6 +41,9 @@ public class ProfileFragment extends Fragment {
     private TextView tvProfileCourse;
     private TextView tvProfileYear;
 
+    private SharedPreferences preferences;
+    private ApiService apiService;
+
     public ProfileFragment() {
         // Required empty constructor
     }
@@ -42,8 +53,8 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
+            @Nullable Bundle savedInstanceState
+    ) {
         View view = inflater.inflate(
                 R.layout.fragment_profile,
                 container,
@@ -51,6 +62,14 @@ public class ProfileFragment extends Fragment {
         );
 
         initializeViews(view);
+
+        preferences = requireContext().getSharedPreferences(
+                "AnticiAIProfile",
+                Context.MODE_PRIVATE
+        );
+
+        apiService = RetrofitClient.getApiService(requireContext());
+
         loadProfileDetails();
         setupClickListeners();
 
@@ -58,7 +77,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initializeViews(View view) {
-
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
         btnPrivacy = view.findViewById(R.id.btnPrivacy);
         btnSettings = view.findViewById(R.id.btnSettings);
@@ -75,64 +93,107 @@ public class ProfileFragment extends Fragment {
     }
 
     private void loadProfileDetails() {
-
         if (!isAdded()) {
             return;
         }
 
-        SharedPreferences preferences =
-                requireContext().getSharedPreferences(
-                        "AnticiAIProfile",
-                        Context.MODE_PRIVATE
-                );
+        String name = preferences.getString("name", "Student");
+        String email = preferences.getString("email", "");
+        String college = preferences.getString("college", "");
+        String course = preferences.getString("course", "");
+        String year = preferences.getString("year", "");
 
-        String name = preferences.getString(
-                "name",
-                "Astha Sisodiya"
-        );
+        displayProfile(name, email, college, course, year);
+        loadProfileFromServer();
+    }
 
-        String email = preferences.getString(
-                "email",
-                "Your registered email"
-        );
+    private void loadProfileFromServer() {
+        apiService.getProfile().enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(
+                    @NonNull Call<ProfileResponse> call,
+                    @NonNull Response<ProfileResponse> response
+            ) {
+                if (!isAdded()) {
+                    return;
+                }
 
-        String college = preferences.getString(
-                "college",
-                "NMIET, Talegaon Dabhade"
-        );
+                if (response.isSuccessful() && response.body() != null) {
+                    ProfileResponse profile = response.body();
 
-        String course = preferences.getString(
-                "course",
-                "B.E. Computer Engineering"
-        );
+                    String name = nonNull(profile.getName(), "Student");
+                    String email = nonNull(profile.getEmail(), "");
+                    String college = nonNull(profile.getCollege(), "");
+                    String course = nonNull(profile.getCourse(), "");
+                    String year = nonNull(profile.getYear(), "");
 
-        String year = preferences.getString(
-                "year",
-                "Second Year"
-        );
+                    preferences.edit()
+                            .putString("name", name)
+                            .putString("email", email)
+                            .putString("college", college)
+                            .putString("course", course)
+                            .putString("year", year)
+                            .apply();
 
+                    displayProfile(name, email, college, course, year);
+
+                } else if (response.code() == 401) {
+                    Toast.makeText(
+                            requireContext(),
+                            "Please log in again to load your profile.",
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
+            }
+
+            @Override
+            public void onFailure(
+                    @NonNull Call<ProfileResponse> call,
+                    @NonNull Throwable t
+            ) {
+                // Keep displaying locally cached profile information.
+            }
+        });
+    }
+
+    private void displayProfile(
+            String name,
+            String email,
+            String college,
+            String course,
+            String year
+    ) {
         tvProfileName.setText(name);
-        tvProfileEmail.setText(email);
-        tvProfileCollege.setText(college);
-        tvProfileCourse.setText(course);
-        tvProfileYear.setText(year);
+        tvProfileEmail.setText(
+                email.isEmpty() ? "Email not available" : email
+        );
+        tvProfileCollege.setText(
+                college.isEmpty() ? "College not added" : college
+        );
+        tvProfileCourse.setText(
+                course.isEmpty() ? "Course not added" : course
+        );
+        tvProfileYear.setText(
+                year.isEmpty() ? "Academic year not added" : year
+        );
 
         tvProfileInitials.setText(getInitials(name));
         tvProfileRole.setText("College Student");
     }
 
-    private String getInitials(String name) {
+    private String nonNull(String value, String fallback) {
+        return value == null ? fallback : value;
+    }
 
+    private String getInitials(String name) {
         if (name == null || name.trim().isEmpty()) {
-            return "U";
+            return "S";
         }
 
         String[] parts = name.trim().split("\\s+");
 
         if (parts.length == 1) {
-            return parts[0]
-                    .substring(0, 1)
-                    .toUpperCase();
+            return parts[0].substring(0, 1).toUpperCase();
         }
 
         return (
@@ -142,7 +203,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupClickListeners() {
-
         btnEditProfile.setOnClickListener(v ->
                 openFragment(new EditProfileFragment())
         );
@@ -152,7 +212,7 @@ public class ProfileFragment extends Fragment {
         );
 
         btnSettings.setOnClickListener(v ->
-                openFragment(new SettingsFragment())
+                openFragment(new com.anticai.studentassistant.fragments.settings.SettingsFragment())
         );
 
         btnHelpSupport.setOnClickListener(v ->
@@ -167,7 +227,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void openFragment(Fragment fragment) {
-
         if (!isAdded()) {
             return;
         }
@@ -182,7 +241,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void showLogoutConfirmation() {
-
         if (!isAdded()) {
             return;
         }
@@ -204,10 +262,9 @@ public class ProfileFragment extends Fragment {
     }
 
     private void performLogout() {
-
         Toast.makeText(
                 requireContext(),
-                "Connect logout to your authentication system.",
+                "Connect this action to your existing logout flow.",
                 Toast.LENGTH_LONG
         ).show();
     }

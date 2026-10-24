@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12"
+    android:background="@color/app_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -16,9 +16,7 @@
         android:paddingTop="30dp"
         android:paddingBottom="35dp">
 
-
         <!-- Header -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="←  BACK"
-                android:textColor="#6F7893"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.1"/>
@@ -40,21 +38,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="01 / 02"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="10sp"
                 android:letterSpacing="0.12"/>
 
         </LinearLayout>
 
-
         <!-- Heading -->
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="42dp"
             android:text="Create your&#10;AnticiAI profile."
-            android:textColor="#F5F7FF"
+            android:textColor="@color/text_primary"
             android:textSize="34sp"
             android:textStyle="bold"/>
 
@@ -64,30 +60,26 @@
             android:layout_marginTop="12dp"
             android:lineSpacingExtra="3dp"
             android:text="Tell us a little about yourself. We'll use this information to personalize your experience."
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"/>
 
-
-        <!-- Section -->
-
+        <!-- Personal information -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="PERSONAL INFORMATION"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="10sp"
             android:letterSpacing="0.14"/>
 
-
         <!-- Full name -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="FULL NAME"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:letterSpacing="0.1"/>
 
@@ -101,19 +93,17 @@
             android:inputType="textPersonName"
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#555D73"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="14sp"/>
 
-
         <!-- Email -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="EMAIL ADDRESS"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:letterSpacing="0.1"/>
 
@@ -127,19 +117,17 @@
             android:inputType="textEmailAddress"
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#555D73"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="14sp"/>
 
-
         <!-- Mobile -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="MOBILE NUMBER"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:letterSpacing="0.1"/>
 
@@ -153,31 +141,27 @@
             android:inputType="phone"
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#555D73"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="14sp"/>
 
-
-        <!-- Academic -->
-
+        <!-- Academic information -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="ACADEMIC INFORMATION"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="10sp"
             android:letterSpacing="0.14"/>
 
-
         <!-- College -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="COLLEGE / INSTITUTE"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:letterSpacing="0.1"/>
 
@@ -191,13 +175,11 @@
             android:inputType="textCapSentences"
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#555D73"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="14sp"/>
 
-
-        <!-- Course + Year -->
-
+        <!-- Course and year -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -214,7 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="COURSE"
-                    android:textColor="#6F7893"
+                    android:textColor="@color/text_secondary"
                     android:textSize="10sp"
                     android:letterSpacing="0.1"/>
 
@@ -227,17 +209,15 @@
                     android:hint="B.E."
                     android:paddingStart="15dp"
                     android:paddingEnd="10dp"
-                    android:textColor="#F5F7FF"
-                    android:textColorHint="#555D73"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary"
                     android:textSize="14sp"/>
 
             </LinearLayout>
 
-
             <Space
                 android:layout_width="12dp"
                 android:layout_height="1dp"/>
-
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -249,7 +229,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="YEAR"
-                    android:textColor="#6F7893"
+                    android:textColor="@color/text_secondary"
                     android:textSize="10sp"
                     android:letterSpacing="0.1"/>
 
@@ -263,23 +243,21 @@
                     android:inputType="text"
                     android:paddingStart="15dp"
                     android:paddingEnd="10dp"
-                    android:textColor="#F5F7FF"
-                    android:textColorHint="#555D73"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary"
                     android:textSize="14sp"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
-
         <!-- Branch -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="BRANCH"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:letterSpacing="0.1"/>
 
@@ -293,31 +271,27 @@
             android:inputType="textCapSentences"
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#555D73"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="14sp"/>
 
-
-        <!-- Security -->
-
+        <!-- Account security -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="ACCOUNT SECURITY"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="10sp"
             android:letterSpacing="0.14"/>
 
-
         <!-- Password -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="PASSWORD"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:letterSpacing="0.1"/>
 
@@ -331,19 +305,17 @@
             android:inputType="textPassword"
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#555D73"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="14sp"/>
 
-
-        <!-- Confirm -->
-
+        <!-- Confirm password -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="CONFIRM PASSWORD"
-            android:textColor="#6F7893"
+            android:textColor="@color/text_secondary"
             android:textSize="10sp"
             android:letterSpacing="0.1"/>
 
@@ -357,26 +329,22 @@
             android:inputType="textPassword"
             android:paddingStart="17dp"
             android:paddingEnd="17dp"
-            android:textColor="#F5F7FF"
-            android:textColorHint="#555D73"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
             android:textSize="14sp"/>
 
-
         <!-- Terms -->
-
         <CheckBox
             android:id="@+id/cbTerms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:buttonTint="#4D8DFF"
+            android:buttonTint="@color/accent_blue"
             android:text="I agree to the Terms of Service and Privacy Policy"
-            android:textColor="#858DA5"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp"/>
 
-
         <!-- Register -->
-
         <TextView
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
@@ -385,14 +353,12 @@
             android:background="@drawable/bg_login_primary"
             android:gravity="center"
             android:text="CREATE ACCOUNT  →"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="13sp"
             android:textStyle="bold"
             android:letterSpacing="0.08"/>
 
-
         <!-- Existing account -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -404,7 +370,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account? "
-                android:textColor="#6F7893"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp"/>
 
             <TextView
@@ -412,7 +378,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Login"
-                android:textColor="#4D8DFF"
+                android:textColor="@color/accent_blue"
                 android:textSize="13sp"
                 android:textStyle="bold"/>
 

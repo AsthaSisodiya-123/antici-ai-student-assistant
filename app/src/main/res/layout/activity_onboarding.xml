@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080A12">
+    android:background="@color/app_background">
 
     <!-- Brand -->
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginTop="35dp"
         android:letterSpacing="0.12"
         android:text="ANTICIAI"
-        android:textColor="#F5F7FF"
+        android:textColor="@color/text_primary"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,10 +30,11 @@
         android:padding="8dp"
         android:letterSpacing="0.12"
         android:text="SKIP"
-        android:textColor="#6F7893"
+        android:textColor="@color/text_secondary"
         android:textSize="11sp"
         android:clickable="true"
         android:focusable="true"
+        android:background="?attr/selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvBrand" />
 
@@ -57,7 +58,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
 
-        <!-- Floating data point -->
+        <!-- Page number -->
         <TextView
             android:id="@+id/tvPageNumber"
             android:layout_width="wrap_content"
@@ -66,10 +67,10 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="28dp"
             android:text="01"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="12sp" />
 
-        <!-- Dynamic label: fixes the NullPointerException -->
+        <!-- Dynamic label -->
         <TextView
             android:id="@+id/tvOrbLabel"
             android:layout_width="wrap_content"
@@ -78,7 +79,7 @@
             android:layout_marginBottom="10dp"
             android:letterSpacing="0.15"
             android:text="PREDICT"
-            android:textColor="#4D8DFF"
+            android:textColor="@color/accent_blue"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -93,7 +94,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="28dp"
         android:text="Your day, before it happens."
-        android:textColor="#F5F7FF"
+        android:textColor="@color/text_primary"
         android:textSize="31sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +111,7 @@
         android:layout_marginEnd="28dp"
         android:lineSpacingExtra="4dp"
         android:text="AnticiAI learns your academic patterns and identifies what may need your attention next."
-        android:textColor="#858DA5"
+        android:textColor="@color/text_secondary"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -142,21 +143,21 @@
                 android:id="@+id/dot1"
                 android:layout_width="30dp"
                 android:layout_height="3dp"
-                android:background="#4D8DFF" />
+                android:background="@color/accent_blue" />
 
             <View
                 android:id="@+id/dot2"
                 android:layout_width="15dp"
                 android:layout_height="3dp"
                 android:layout_marginStart="5dp"
-                android:background="#252B3D" />
+                android:background="@color/divider" />
 
             <View
                 android:id="@+id/dot3"
                 android:layout_width="15dp"
                 android:layout_height="3dp"
                 android:layout_marginStart="5dp"
-                android:background="#252B3D" />
+                android:background="@color/divider" />
 
         </LinearLayout>
 
@@ -169,9 +170,9 @@
             android:letterSpacing="0.04"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="#4D8DFF"
+            android:background="@drawable/bg_login_primary"
             android:text="CONTINUE  →"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="11sp"
             android:textStyle="bold"
             android:clickable="true"
