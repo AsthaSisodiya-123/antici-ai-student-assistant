@@ -2,6 +2,7 @@
 package com.anticiai.backend.config;
 
 import com.anticiai.backend.security.JwtAuthenticationFilter;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,6 +44,12 @@ public class SecurityConfig {
                                 "/api/onboarding/complete",
                                 "/error"
                         ).permitAll()
+
+                        .requestMatchers(
+                                "/api/notifications",
+                                "/api/notifications/**"
+                        ).authenticated()
+
                         .anyRequest().authenticated()
                 )
 
