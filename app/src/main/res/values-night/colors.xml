@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- AnticiAI Primary -->
+    <color name="primary">#635BFF</color>
+    <color name="primary_dark">#5147E8</color>
+    <color name="primary_light">#A78BFA</color>
+    <color name="accent_blue">#4D8DFF</color>
+
+    <!-- Dark Backgrounds -->
+    <color name="navy">#10162F</color>
+    <color name="deep_navy">#080A12</color>
+    <color name="background">#080A12</color>
+    <color name="surface">#0E1322</color>
+
+    <!-- Shared theme backgrounds -->
+    <color name="app_background">#080A12</color>
+    <color name="surface_color">#0E1322</color>
+    <color name="surface_secondary">#151C2E</color>
+
+    <!-- Text -->
+    <color name="text_primary">#F5F7FF</color>
+    <color name="text_secondary">#A5ADC2</color>
+    <color name="text_light">#858DA5</color>
+
+    <!-- Status -->
+    <color name="success">#22C55E</color>
+    <color name="warning">#F59E0B</color>
+    <color name="danger">#EF4444</color>
+
+    <!-- UI -->
+    <color name="divider">#273047</color>
+    <color name="input_background">#151C2E</color>
+    <color name="nav_selected">#4D8DFF</color>
+    <color name="nav_unselected">#8996B5</color>
+    <color name="border_color">#273047</color>
+
+</resources>

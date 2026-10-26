@@ -2,6 +2,7 @@
 package com.anticai.studentassistant.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.anticai.studentassistant.R;
 import com.anticai.studentassistant.models.OnboardingSession;
@@ -24,37 +26,71 @@ public class SplashActivity extends AppCompatActivity {
 
     private static final long SPLASH_DURATION = 2200L;
 
-    private final Handler handler = new Handler(Looper.getMainLooper());
+    private final Handler handler =
+            new Handler(Looper.getMainLooper());
 
     private View loadingLine;
     private boolean navigating = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        applySavedTheme();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
         loadingLine = findViewById(R.id.loadingLine);
 
-        // Animate from 0% to 100% of the available screen width.
-        loadingLine.setPivotX(0f);
-        loadingLine.setScaleX(0f);
+        if (loadingLine != null) {
+            loadingLine.setPivotX(0f);
+            loadingLine.setScaleX(0f);
 
-        loadingLine.post(() -> {
-            if (!isFinishing() && !isDestroyed()) {
-                loadingLine.animate()
-                        .scaleX(1f)
-                        .setDuration(SPLASH_DURATION)
-                        .setInterpolator(
-                                new AccelerateDecelerateInterpolator())
-                        .start();
-            }
-        });
+            loadingLine.post(() -> {
+                if (!isFinishing() && !isDestroyed()) {
+                    loadingLine.animate()
+                            .scaleX(1f)
+                            .setDuration(SPLASH_DURATION)
+                            .setInterpolator(
+                                    new AccelerateDecelerateInterpolator())
+                            .start();
+                }
+            });
+        }
 
-        // Keep the splash visible while the line fills.
         handler.postDelayed(
                 this::checkOnboardingStatus,
-                SPLASH_DURATION);
+                SPLASH_DURATION
+        );
+    }
+
+    private void applySavedTheme() {
+        SharedPreferences prefs = getSharedPreferences(
+                "AnticiAISettings",
+                MODE_PRIVATE
+        );
+
+        String theme = prefs.getString("themeMode", "dark");
+
+        int mode;
+
+        switch (theme) {
+            case "light":
+                mode = AppCompatDelegate.MODE_NIGHT_NO;
+                break;
+
+            case "dark":
+                mode = AppCompatDelegate.MODE_NIGHT_YES;
+                break;
+
+            case "system":
+            default:
+                mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+                break;
+        }
+
+        if (AppCompatDelegate.getDefaultNightMode() != mode) {
+            AppCompatDelegate.setDefaultNightMode(mode);
+        }
     }
 
     private void checkOnboardingStatus() {
@@ -67,12 +103,15 @@ public class SplashActivity extends AppCompatActivity {
 
         api.getOnboardingStatus(deviceId).enqueue(
                 new Callback<JsonObject>() {
+
                     @Override
                     public void onResponse(
                             Call<JsonObject> call,
                             Response<JsonObject> response) {
 
-                        if (isFinishing() || isDestroyed() || navigating) {
+                        if (isFinishing()
+                                || isDestroyed()
+                                || navigating) {
                             return;
                         }
 
@@ -83,15 +122,17 @@ public class SplashActivity extends AppCompatActivity {
                         if (response.isSuccessful()
                                 && response.body() != null
                                 && response.body().has("completed")
-                                && !response.body().get("completed")
-                                .isJsonNull()) {
+                                && !response.body()
+                                .get("completed").isJsonNull()) {
 
                             completed = response.body()
                                     .get("completed")
                                     .getAsBoolean();
 
                             OnboardingSession.setCompleted(
-                                    SplashActivity.this, completed);
+                                    SplashActivity.this,
+                                    completed
+                            );
                         }
 
                         navigate(completed);
@@ -103,11 +144,14 @@ public class SplashActivity extends AppCompatActivity {
                             Throwable throwable) {
 
                         if (!isFinishing() && !isDestroyed()) {
-                            navigate(OnboardingSession.isCompleted(
-                                    SplashActivity.this));
+                            navigate(
+                                    OnboardingSession.isCompleted(
+                                            SplashActivity.this)
+                            );
                         }
                     }
-                });
+                }
+        );
     }
 
     private void navigate(boolean completed) {
@@ -118,14 +162,17 @@ public class SplashActivity extends AppCompatActivity {
         navigating = true;
 
         Class<?> destination = completed
-                ? com.anticai.studentassistant.activities.LoginActivity.class
+                ? LoginActivity.class
                 : OnboardingActivity.class;
 
         Intent intent = new Intent(this, destination);
         startActivity(intent);
+
         overridePendingTransition(
                 android.R.anim.fade_in,
-                android.R.anim.fade_out);
+                android.R.anim.fade_out
+        );
+
         finish();
     }
 

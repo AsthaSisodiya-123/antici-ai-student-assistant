@@ -1,6 +1,6 @@
-
 package com.anticai.studentassistant.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
@@ -24,19 +25,14 @@ import com.anticai.studentassistant.fragments.tasks.TasksFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout navHome;
-    private LinearLayout navSchedule;
-    private LinearLayout navTasks;
-    private LinearLayout navStudy;
-
-    private TextView labelHome;
-    private TextView labelSchedule;
-    private TextView labelTasks;
-    private TextView labelStudy;
-
-    private TextView btnAI;
+    private LinearLayout navHome, navSchedule, navTasks, navStudy;
+    private TextView labelHome, labelSchedule, labelTasks, labelStudy;
+    private TextView btnAI, btnProfile;
     private ImageButton btnNotifications;
-    private TextView btnProfile;
+
+    private static final String PREFS_NAME = "AnticiAISettings";
+    private static final String THEME_KEY = "themeMode";
+    private static final String NAV_KEY = "selectedNavigation";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,23 +45,24 @@ public class MainActivity extends AppCompatActivity {
         setupNavigation();
         setupActionButtons();
 
-        getSupportFragmentManager()
-                .addOnBackStackChangedListener(
-                        this::updateAIButtonVisibility);
+        getSupportFragmentManager().addOnBackStackChangedListener(
+                this::updateAIButtonVisibility
+        );
 
         if (savedInstanceState == null) {
             loadFragment(new DashboardFragment(), false);
             selectNavigation(navHome);
         } else {
+            restoreNavigationSelection();
             updateAIButtonVisibility();
         }
     }
 
     private void applySavedTheme() {
-        android.content.SharedPreferences prefs =
-                getSharedPreferences("AnticiAISettings", MODE_PRIVATE);
+        SharedPreferences prefs =
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        String theme = prefs.getString("themeMode", "dark");
+        String theme = prefs.getString(THEME_KEY, "dark");
 
         int mode;
 
@@ -145,10 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 loadFragment(new ProfileFragment(), true));
     }
 
-    private void loadFragment(
-            Fragment fragment,
-            boolean addToBackStack) {
-
+    private void loadFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction =
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -162,30 +156,28 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
 
         getSupportFragmentManager().executePendingTransactions();
-
         updateAIButtonVisibility();
     }
 
     private void updateAIButtonVisibility() {
-        if (btnAI == null) {
-            return;
-        }
+        if (btnAI == null) return;
 
         Fragment currentFragment =
                 getSupportFragmentManager()
                         .findFragmentById(R.id.mainContainer);
 
-        if (currentFragment instanceof DashboardFragment) {
-            btnAI.setVisibility(View.VISIBLE);
-        } else {
-            btnAI.setVisibility(View.GONE);
-        }
+        btnAI.setVisibility(
+                currentFragment instanceof DashboardFragment
+                        ? View.VISIBLE
+                        : View.GONE
+        );
     }
 
     private void clearBackStack() {
         getSupportFragmentManager().popBackStack(
                 null,
-                FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+        );
 
         getSupportFragmentManager().executePendingTransactions();
     }
@@ -197,12 +189,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (selectedItem == navHome) {
             labelHome.setTextColor(selectedColor);
+            saveNavigationSelection("home");
         } else if (selectedItem == navSchedule) {
             labelSchedule.setTextColor(selectedColor);
+            saveNavigationSelection("schedule");
         } else if (selectedItem == navTasks) {
             labelTasks.setTextColor(selectedColor);
+            saveNavigationSelection("tasks");
         } else if (selectedItem == navStudy) {
             labelStudy.setTextColor(selectedColor);
+            saveNavigationSelection("study");
         }
     }
 
@@ -215,6 +211,28 @@ public class MainActivity extends AppCompatActivity {
         labelStudy.setTextColor(inactiveColor);
     }
 
+    private void saveNavigationSelection(String destination) {
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                .edit()
+                .putString(NAV_KEY, destination)
+                .apply();
+    }
+
+    private void restoreNavigationSelection() {
+        Fragment current = getSupportFragmentManager()
+                .findFragmentById(R.id.mainContainer);
+
+        if (current instanceof ScheduleFragment) {
+            selectNavigation(navSchedule);
+        } else if (current instanceof TasksFragment) {
+            selectNavigation(navTasks);
+        } else if (current instanceof StudyPlanFragment) {
+            selectNavigation(navStudy);
+        } else {
+            selectNavigation(navHome);
+        }
+    }
+
     public void openStudyPlan() {
         clearBackStack();
         loadFragment(new StudyPlanFragment(), false);
@@ -223,8 +241,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        FragmentManager fragmentManager =
-                getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack();

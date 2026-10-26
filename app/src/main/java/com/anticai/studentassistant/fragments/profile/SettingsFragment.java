@@ -1,5 +1,5 @@
 
-package com.anticai.studentassistant.fragments.settings;
+package com.anticai.studentassistant.fragments.profile;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -55,17 +55,23 @@ public class SettingsFragment extends Fragment {
             @Nullable Bundle savedInstanceState) {
 
         return inflater.inflate(
-                R.layout.fragment_settings, container, false);
+                R.layout.fragment_settings,
+                container,
+                false
+        );
     }
 
     @Override
     public void onViewCreated(
             @NonNull View view,
             @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
 
         preferences = requireContext().getSharedPreferences(
-                PREFS_NAME, Context.MODE_PRIVATE);
+                PREFS_NAME,
+                Context.MODE_PRIVATE
+        );
 
         apiService = RetrofitClient.getApiService(requireContext());
 
@@ -76,12 +82,18 @@ public class SettingsFragment extends Fragment {
         btnSaveSettings = view.findViewById(R.id.btnSaveSettings);
 
         View backButton = view.findViewById(R.id.btnSettingsBack);
+
         if (backButton != null) {
             backButton.setOnClickListener(v ->
                     requireActivity()
                             .getSupportFragmentManager()
-                            .popBackStack());
+                            .popBackStack()
+            );
         }
+
+        // Apply the locally saved theme before loading other settings.
+        String savedTheme = preferences.getString(KEY_THEME, "dark");
+        applyTheme(savedTheme);
 
         loadLocalSettings();
         setupListeners();
@@ -92,10 +104,12 @@ public class SettingsFragment extends Fragment {
         loadingSettings = true;
 
         switchNotifications.setChecked(
-                preferences.getBoolean("notificationsEnabled", true));
+                preferences.getBoolean("notificationsEnabled", true)
+        );
 
         switchReminders.setChecked(
-                preferences.getBoolean("remindersEnabled", true));
+                preferences.getBoolean("remindersEnabled", true)
+        );
 
         int goal = preferences.getInt(KEY_GOAL, 60);
         selectStudyGoal(goal);
@@ -104,30 +118,30 @@ public class SettingsFragment extends Fragment {
         selectTheme(theme);
 
         loadingSettings = false;
-
-        // Apply the saved theme immediately.
-        applyTheme(theme);
     }
 
     private void setupListeners() {
+
         radioTheme.setOnCheckedChangeListener((group, checkedId) -> {
             if (loadingSettings) {
                 return;
             }
 
             String theme = getSelectedTheme();
+
             if (theme == null) {
                 return;
             }
 
+            // Save locally first.
             preferences.edit()
                     .putString(KEY_THEME, theme)
                     .apply();
 
-            // Change the app theme immediately.
+            // Apply immediately.
             applyTheme(theme);
 
-            // Also save the selection on the backend.
+            // Sync other settings and the theme with the backend.
             syncSettingsWithServer(false);
         });
 
@@ -135,36 +149,41 @@ public class SettingsFragment extends Fragment {
     }
 
     private void applyTheme(String theme) {
-        int requestedMode;
+
+        int mode;
 
         switch (theme) {
             case "light":
-                requestedMode = AppCompatDelegate.MODE_NIGHT_NO;
+                mode = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
 
             case "dark":
-                requestedMode = AppCompatDelegate.MODE_NIGHT_YES;
+                mode = AppCompatDelegate.MODE_NIGHT_YES;
                 break;
 
+            case "system":
             default:
-                requestedMode =
-                        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+                mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
                 break;
         }
 
-        if (AppCompatDelegate.getDefaultNightMode() != requestedMode) {
-            AppCompatDelegate.setDefaultNightMode(requestedMode);
+        if (AppCompatDelegate.getDefaultNightMode() != mode) {
+            AppCompatDelegate.setDefaultNightMode(mode);
         }
     }
 
     private String getSelectedTheme() {
         int selectedId = radioTheme.getCheckedRadioButtonId();
 
+        if (selectedId == R.id.radioLight) {
+            return "light";
+        }
+
         if (selectedId == R.id.radioDark) {
             return "dark";
-        } else if (selectedId == R.id.radioLight) {
-            return "light";
-        } else if (selectedId == R.id.radioSystem) {
+        }
+
+        if (selectedId == R.id.radioSystem) {
             return "system";
         }
 
@@ -186,12 +205,15 @@ public class SettingsFragment extends Fragment {
             case 30:
                 radioStudyGoal.check(R.id.goal30);
                 break;
+
             case 120:
                 radioStudyGoal.check(R.id.goal120);
                 break;
+
             case 180:
                 radioStudyGoal.check(R.id.goal180);
                 break;
+
             default:
                 radioStudyGoal.check(R.id.goal60);
                 break;
@@ -212,10 +234,11 @@ public class SettingsFragment extends Fragment {
         String theme = getSelectedTheme();
 
         if (theme == null) {
-            theme = "dark";
+            theme = preferences.getString(KEY_THEME, "dark");
         }
 
         int dailyGoal = getSelectedStudyGoal();
+
         boolean notifications = switchNotifications.isChecked();
         boolean reminders = switchReminders.isChecked();
 
@@ -236,19 +259,28 @@ public class SettingsFragment extends Fragment {
         }
 
         JsonObject body = new JsonObject();
+
         body.addProperty(
-                "notificationsEnabled", switchNotifications.isChecked());
+                "notificationsEnabled",
+                switchNotifications.isChecked()
+        );
+
         body.addProperty(
-                "remindersEnabled", switchReminders.isChecked());
+                "remindersEnabled",
+                switchReminders.isChecked()
+        );
 
         String theme = getSelectedTheme();
+
         if (theme == null) {
             theme = preferences.getString(KEY_THEME, "dark");
         }
+
         body.addProperty("themeMode", theme);
 
         apiService.updateSettings(body).enqueue(
                 new Callback<JsonObject>() {
+
                     @Override
                     public void onResponse(
                             @NonNull Call<JsonObject> call,
@@ -269,7 +301,7 @@ public class SettingsFragment extends Fragment {
                         } else if (showMessage) {
                             Toast.makeText(
                                     requireContext(),
-                                    "Could not save settings. Server error: "
+                                    "Settings saved locally. Server error: "
                                             + response.code(),
                                     Toast.LENGTH_LONG
                             ).show();
@@ -284,23 +316,26 @@ public class SettingsFragment extends Fragment {
                         if (isAdded() && showMessage) {
                             Toast.makeText(
                                     requireContext(),
-                                    "Settings saved on this device, but server sync failed",
-                                    Toast.LENGTH_LONG
+                                    "Settings saved on this device",
+                                    Toast.LENGTH_SHORT
                             ).show();
                         }
                     }
-                });
+                }
+        );
     }
 
     private void loadServerSettings() {
         apiService.getSettings().enqueue(
                 new Callback<JsonObject>() {
+
                     @Override
                     public void onResponse(
                             @NonNull Call<JsonObject> call,
                             @NonNull Response<JsonObject> response) {
 
-                        if (!isAdded() || !response.isSuccessful()
+                        if (!isAdded()
+                                || !response.isSuccessful()
                                 || response.body() == null) {
                             return;
                         }
@@ -311,50 +346,44 @@ public class SettingsFragment extends Fragment {
 
                         if (data.has("notificationsEnabled")
                                 && !data.get("notificationsEnabled").isJsonNull()) {
-                            switchNotifications.setChecked(
-                                    data.get("notificationsEnabled").getAsBoolean());
+
+                            boolean enabled = data.get("notificationsEnabled")
+                                    .getAsBoolean();
+
+                            switchNotifications.setChecked(enabled);
+
+                            preferences.edit()
+                                    .putBoolean("notificationsEnabled", enabled)
+                                    .apply();
                         }
 
                         if (data.has("remindersEnabled")
                                 && !data.get("remindersEnabled").isJsonNull()) {
-                            switchReminders.setChecked(
-                                    data.get("remindersEnabled").getAsBoolean());
+
+                            boolean enabled = data.get("remindersEnabled")
+                                    .getAsBoolean();
+
+                            switchReminders.setChecked(enabled);
+
+                            preferences.edit()
+                                    .putBoolean("remindersEnabled", enabled)
+                                    .apply();
                         }
-
-                        String theme = "dark";
-                        if (data.has("themeMode")
-                                && !data.get("themeMode").isJsonNull()) {
-                            theme = data.get("themeMode").getAsString();
-                        }
-
-                        if (!"light".equals(theme)
-                                && !"dark".equals(theme)
-                                && !"system".equals(theme)) {
-                            theme = "dark";
-                        }
-
-                        selectTheme(theme);
-
-                        preferences.edit()
-                                .putBoolean(
-                                        "notificationsEnabled",
-                                        switchNotifications.isChecked())
-                                .putBoolean(
-                                        "remindersEnabled",
-                                        switchReminders.isChecked())
-                                .putString(KEY_THEME, theme)
-                                .apply();
 
                         loadingSettings = false;
-                        applyTheme(theme);
+
+                        // Important:
+                        // Do not load themeMode from the server here.
+                        // The user's locally selected theme remains in control.
                     }
 
                     @Override
                     public void onFailure(
                             @NonNull Call<JsonObject> call,
                             @NonNull Throwable t) {
-                        // Local settings remain available offline.
+                        // Local settings continue working offline.
                     }
-                });
+                }
+        );
     }
 }

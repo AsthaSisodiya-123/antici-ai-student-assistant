@@ -8,6 +8,6 @@
         android:gradientRadius="70dp"
         android:startColor="#55FFFFFF"
         android:centerColor="#20FFFFFF"
-        android:endColor="#00FFFFFF"/>
+        android:endColor="#00FFFFFF" />
 
 </shape>

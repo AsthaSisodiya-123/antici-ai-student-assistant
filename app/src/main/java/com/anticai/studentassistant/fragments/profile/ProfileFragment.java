@@ -212,7 +212,7 @@ public class ProfileFragment extends Fragment {
         );
 
         btnSettings.setOnClickListener(v ->
-                openFragment(new com.anticai.studentassistant.fragments.settings.SettingsFragment())
+                openFragment(new com.anticai.studentassistant.fragments.profile.SettingsFragment())
         );
 
         btnHelpSupport.setOnClickListener(v ->
