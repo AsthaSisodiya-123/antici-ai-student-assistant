@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
@@ -19,6 +17,7 @@ import com.anticai.studentassistant.R;
 import com.anticai.studentassistant.fragments.ai.AIChatFragment;
 import com.anticai.studentassistant.fragments.ai.StudyPlanFragment;
 import com.anticai.studentassistant.fragments.home.DashboardFragment;
+import com.anticai.studentassistant.fragments.home.NotificationFragment;
 import com.anticai.studentassistant.fragments.profile.ProfileFragment;
 import com.anticai.studentassistant.fragments.schedule.ScheduleFragment;
 import com.anticai.studentassistant.fragments.tasks.TasksFragment;
@@ -129,20 +128,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupActionButtons() {
         btnAI.setOnClickListener(v ->
-                loadFragment(new AIChatFragment(), true));
+                loadFragment(new AIChatFragment(), true)
+        );
 
+        // Open the existing Notifications screen
         btnNotifications.setOnClickListener(v ->
-                Toast.makeText(
-                        MainActivity.this,
-                        "Notifications coming soon",
-                        Toast.LENGTH_SHORT
-                ).show());
+                loadFragment(new NotificationFragment(), true)
+        );
 
         btnProfile.setOnClickListener(v ->
-                loadFragment(new ProfileFragment(), true));
+                loadFragment(new ProfileFragment(), true)
+        );
     }
 
-    private void loadFragment(Fragment fragment, boolean addToBackStack) {
+    private void loadFragment(
+            Fragment fragment,
+            boolean addToBackStack) {
+
         FragmentTransaction transaction =
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -160,7 +162,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateAIButtonVisibility() {
-        if (btnAI == null) return;
+        if (btnAI == null) {
+            return;
+        }
 
         Fragment currentFragment =
                 getSupportFragmentManager()
@@ -190,12 +194,15 @@ public class MainActivity extends AppCompatActivity {
         if (selectedItem == navHome) {
             labelHome.setTextColor(selectedColor);
             saveNavigationSelection("home");
+
         } else if (selectedItem == navSchedule) {
             labelSchedule.setTextColor(selectedColor);
             saveNavigationSelection("schedule");
+
         } else if (selectedItem == navTasks) {
             labelTasks.setTextColor(selectedColor);
             saveNavigationSelection("tasks");
+
         } else if (selectedItem == navStudy) {
             labelStudy.setTextColor(selectedColor);
             saveNavigationSelection("study");
@@ -224,10 +231,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (current instanceof ScheduleFragment) {
             selectNavigation(navSchedule);
+
         } else if (current instanceof TasksFragment) {
             selectNavigation(navTasks);
+
         } else if (current instanceof StudyPlanFragment) {
             selectNavigation(navStudy);
+
         } else {
             selectNavigation(navHome);
         }
@@ -241,7 +251,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager =
+                getSupportFragmentManager();
 
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack();

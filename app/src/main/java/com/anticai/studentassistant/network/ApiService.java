@@ -211,5 +211,28 @@ public interface ApiService {
     @GET("api/study-sessions")
     Call<JsonElement> getPrivacyStudySessions();
 
+    // NOTIFICATIONS APIs
+
+    @GET("api/notifications")
+    Call<List<NotificationResponse>> getNotifications();
+
+    @GET("api/notifications/unread-count")
+    Call<Long> getUnreadNotificationCount();
+
+    @POST("api/notifications")
+    Call<NotificationResponse> createNotification(
+            @Body NotificationCreateRequest request
+    );
+
+    @PATCH("api/notifications/{id}/read")
+    Call<NotificationResponse> markNotificationAsRead(
+            @Path("id") long id
+    );
+
+    @DELETE("api/notifications/{id}")
+    Call<Void> deleteNotification(
+            @Path("id") long id
+    );
+
 
 }
