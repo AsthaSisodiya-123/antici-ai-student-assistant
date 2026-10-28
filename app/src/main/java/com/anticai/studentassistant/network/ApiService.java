@@ -233,6 +233,15 @@ public interface ApiService {
     Call<Void> deleteNotification(
             @Path("id") long id
     );
+    @POST("api/privacy/verify-password")
+    Call<PrivacyPasswordResponse> verifyPrivacyPassword(
+            @Body PrivacyPasswordRequest request
+    );
 
+    @POST("api/privacy/history/delete-selected")
+    Call<JsonElement> deleteSelectedHistory(@Body JsonObject request);
+
+    @DELETE("api/privacy/history")
+    Call<JsonElement> clearAllHistory();
 
 }

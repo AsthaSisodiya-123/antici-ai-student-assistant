@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
@@ -14,7 +12,6 @@
         android:orientation="vertical"
         android:padding="22dp">
 
-        <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,11 +55,9 @@
                     android:textColor="@color/text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
         </LinearLayout>
 
-        <!-- PRIVACY INTRODUCTION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,13 +85,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="4dp"
-                android:text="Review how you manage your account information and protect access to your Antici AI account."
+                android:text="Verify your password before viewing personal information or managing your study history."
                 android:textColor="@color/text_secondary"
                 android:textSize="14sp" />
-
         </LinearLayout>
 
-        <!-- ACCOUNT INFORMATION -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,16 +101,19 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/cardPersonalInformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
             android:padding="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Personal Information"
+                android:text="👤  Personal Information"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -126,36 +122,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Keep your name, email, college and course details accurate in your profile."
+                android:text="View your account information from the server."
                 android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/divider" />
-
             <TextView
+                android:id="@+id/tvPersonalPrivacyStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Study Data"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Your study plans and progress may be stored by the app. Check the application's actual privacy policy for data storage and usage details."
-                android:textColor="@color/text_secondary"
-                android:textSize="13sp" />
-
+                android:layout_marginTop="12dp"
+                android:text="🔒 Verify password to view"
+                android:textColor="@color/accent_blue"
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- SECURITY TIPS -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="12dp"
+            android:text="YOUR STUDY DATA"
+            android:textColor="@color/accent_blue"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/cardPrivacyHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🗂  History"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Manage tasks, study plans and study sessions together."
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvPrivacyHistoryStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="🔒 Verify password to manage history"
+                android:textColor="@color/accent_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -203,10 +229,8 @@
                 android:text="✓  Keep your app updated"
                 android:textColor="@color/text_primary"
                 android:textSize="14sp" />
-
         </LinearLayout>
 
-        <!-- ACCOUNT SAFETY NOTICE -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -214,11 +238,10 @@
             android:background="@drawable/bg_prediction_card"
             android:lineSpacingExtra="3dp"
             android:padding="16dp"
-            android:text="Important: This screen provides privacy information and security tips. Account deletion, data export and server-side security controls must be implemented separately."
+            android:text="Deleting history permanently removes your selected study records from the server. Your account and personal information remain unchanged."
             android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
-        <!-- FOOTER -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -229,5 +252,4 @@
             android:textSize="11sp" />
 
     </LinearLayout>
-
 </ScrollView>
