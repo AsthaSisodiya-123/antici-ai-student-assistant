@@ -244,4 +244,17 @@ public interface ApiService {
     @DELETE("api/privacy/history")
     Call<JsonElement> clearAllHistory();
 
+    @POST("api/password/change")
+    Call<JsonObject> changePassword(@Body JsonObject request);
+
+    // FORGOT PASSWORD - GMAIL OTP APIs
+
+    @POST("api/auth/forgot-password")
+    Call<JsonObject> forgotPassword(@Body JsonObject request);
+
+    @POST("api/auth/verify-otp")
+    Call<JsonObject> verifyForgotPasswordOtp(@Body JsonObject request);
+
+    @POST("api/auth/reset-password")
+    Call<JsonObject> resetPassword(@Body JsonObject request);
 }

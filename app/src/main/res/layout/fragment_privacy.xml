@@ -12,6 +12,7 @@
         android:orientation="vertical"
         android:padding="22dp">
 
+        <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,12 +26,12 @@
                 android:layout_height="44dp"
                 android:background="@drawable/bg_main_card"
                 android:clickable="true"
+                android:contentDescription="Go back"
                 android:focusable="true"
                 android:gravity="center"
                 android:text="‹"
                 android:textColor="@color/text_primary"
-                android:textSize="34sp"
-                android:contentDescription="Go back" />
+                android:textSize="34sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -58,6 +59,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- INTRODUCTION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,6 +92,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
+        <!-- ACCOUNT INFORMATION -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,6 +139,93 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
+        <!-- SECURITY SETTINGS -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="12dp"
+            android:text="SECURITY SETTINGS"
+            android:textColor="@color/accent_blue"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- CHANGE PASSWORD -->
+        <LinearLayout
+            android:id="@+id/cardChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🔑  Change Password"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Update your password using your current password."
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Change password  →"
+                android:textColor="@color/accent_blue"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- FORGOT PASSWORD: EMAIL OTP -->
+        <LinearLayout
+            android:id="@+id/cardForgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_main_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✉  Forgot Password?"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Forgot your current password? Verify your registered email with an OTP and create a new password."
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Reset using email OTP  →"
+                android:textColor="@color/accent_blue"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- STUDY DATA -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -182,6 +272,7 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
+        <!-- SECURITY TIPS -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -231,6 +322,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
+        <!-- PRIVACY NOTICE -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -238,10 +330,11 @@
             android:background="@drawable/bg_prediction_card"
             android:lineSpacingExtra="3dp"
             android:padding="16dp"
-            android:text="Deleting history permanently removes your selected study records from the server. Your account and personal information remain unchanged."
+            android:text="Deleting history permanently removes selected study records from the server. Your account and personal information remain unchanged."
             android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
+        <!-- FOOTER -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
