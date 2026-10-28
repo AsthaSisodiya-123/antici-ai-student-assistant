@@ -1,4 +1,3 @@
-
 package com.anticiai.backend.config;
 
 import com.anticiai.backend.security.JwtAuthenticationFilter;
@@ -38,6 +37,8 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
+
+                        // Public endpoints
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/onboarding/status",
@@ -45,11 +46,19 @@ public class SecurityConfig {
                                 "/error"
                         ).permitAll()
 
+                        // Privacy history requires a valid login
+                        .requestMatchers(
+                                "/api/privacy/history",
+                                "/api/privacy/history/**"
+                        ).authenticated()
+
+                        // Notifications require a valid login
                         .requestMatchers(
                                 "/api/notifications",
                                 "/api/notifications/**"
                         ).authenticated()
 
+                        // All remaining endpoints require authentication
                         .anyRequest().authenticated()
                 )
 
